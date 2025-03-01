@@ -17,8 +17,6 @@ Gabon is a country located on the west coast of Central Africa, bordered by **Eq
 
 With its abundant natural resources and commitment to conservation, Gabon plays a crucial role in environmental protection and sustainable development in Africa.
 
-
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(leaflet)
 library(sf)
@@ -36,13 +34,11 @@ pal <- colorFactor(palette = "Set3", domain = gabon_sf$NAME_1)
 ###################
 ```
 
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
 library(rnaturalearth)
 
 cities <- rnaturalearth::ne_download(scale = "large", type = "populated_places", category = "cultural")
 ```
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
@@ -50,7 +46,6 @@ gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGIT
 
 ################
 
-range(gabon_cities$POP_MAX)
 
 # Create a color palette based on the population size (using both POP_MIN and POP_MAX)
 pop_palette <- colorNumeric(
@@ -128,7 +123,9 @@ Gabon boasts 13 national parks, covering nearly 11% of the country's total land 
 shapefile_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_0"
 
 # Load the shapefile
-gabon_parks_sf <- st_read(shapefile_path, quiet = TRUE)
+gabon_parks_sf <- st_read(shapefile_path,
+                          layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
+                          quiet = TRUE)
 
 
 gabon_parks_sf <- gabon_parks_sf[, c("NAME", "DESIG_TYPE", "DESIG_ENG")]
@@ -181,7 +178,7 @@ map <- map %>%
     width = 150, height = 150, 
     position = "bottomright"
   ) %>% 
-
+  
   # Add Layer Control for both the park and tile providers
   addLayersControl(
     baseGroups = c("Esri World Imagery", "Open Street Map"), # Tile providers
