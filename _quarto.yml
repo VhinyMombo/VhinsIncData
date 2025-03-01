@@ -7,9 +7,8 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
       - href: Gabon.qmd
-        text: gabon
+        text: Gabon
       
 
 format:
