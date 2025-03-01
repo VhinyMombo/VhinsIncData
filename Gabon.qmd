@@ -204,7 +204,20 @@ map <- map %>%
     baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
     overlayGroups = unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG)), # Park types
     options = layersControlOptions(collapsed = FALSE)
-  )
+  ) %>% 
+  
+  # Add toggle button to hide/show layers control
+  addEasyButton(easyButton(
+    icon = "fa-layer-group", title = "Toggle Layer Control",
+    onClick = JS("function(btn, map) {
+      var control = document.getElementsByClassName('leaflet-control-layers')[0];
+      if (control.style.display === 'none') {
+        control.style.display = 'block';
+      } else {
+        control.style.display = 'none';
+      }
+    }")
+  ))
 
 # Print the final map
 map
