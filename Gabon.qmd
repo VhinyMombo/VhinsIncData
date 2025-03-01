@@ -104,11 +104,11 @@ leaflet(gabon_sf) %>%
 
 ```
 
-# National Parks in Gabon
+## National Parks in Gabon
 
 Gabon is home to a rich diversity of natural landscapes, with lush rainforests, wildlife reserves, and coastal ecosystems. The country is known for its remarkable commitment to conservation, and a significant portion of its land area is protected within the framework of national parks and nature reserves.
 
-## Overview of Gabon's National Parks
+### Overview of Gabon's National Parks
 
 Gabon boasts 13 national parks, covering nearly 11% of the country's total land area. These parks play a crucial role in protecting the biodiversity of the region, including endangered species such as gorillas, elephants, and forest buffalo. Gabon's national parks are also home to pristine rainforests, mangroves, and savannahs, offering a diverse range of habitats for flora and fauna.
 
@@ -120,15 +120,33 @@ Gabon boasts 13 national parks, covering nearly 11% of the country's total land 
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-shapefile_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_0"
 
 # Load the shapefile
-gabon_parks_sf <- st_read(shapefile_path,
-                          layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
-                          quiet = TRUE)
 
 
-gabon_parks_sf <- gabon_parks_sf[, c("NAME", "DESIG_TYPE", "DESIG_ENG")]
+# Define the base path
+base_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_"
+
+# Generate file paths
+shapefiles <- sprintf("%s%d", base_path, 0:2)
+
+# Read and combine shapefiles
+shapelist <- lapply(shapefiles, 
+                    st_read, 
+                    layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
+                    quiet = T)
+
+
+
+combined_shapefile <- do.call(rbind, shapelist)
+
+# shapefile_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_0"
+# gabon_parks_sf <- st_read(shapefile_path,
+#                           layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
+#                           quiet = TRUE)
+
+
+gabon_parks_sf <- combined_shapefile[, c("NAME", "DESIG_TYPE", "DESIG_ENG")]
 # plot(gabon_parks_sf)
 
 library(leaflet)
@@ -141,6 +159,8 @@ park_palette_type <- colorFactor("Set2", domain = gabon_parks_sf$DESIG_TYPE)
 map <- leaflet(gabon_sf) %>% 
   addProviderTiles(providers$OpenStreetMap, group = "Open Street Map") %>% 
   addProviderTiles(providers$Esri.WorldImagery, group = "Esri World Imagery") %>% 
+  addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri World Topography") %>% 
+  
   addPolygons(
     fillColor = ~pal(COUNTRY),
     fillOpacity = 0.1,
@@ -181,14 +201,13 @@ map <- map %>%
   
   # Add Layer Control for both the park and tile providers
   addLayersControl(
-    baseGroups = c("Esri World Imagery", "Open Street Map"), # Tile providers
+    baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
     overlayGroups = unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG)), # Park types
     options = layersControlOptions(collapsed = FALSE)
   )
 
 # Print the final map
 map
-
 ```
 
 ### Notable National Parks in Gabon:
@@ -203,7 +222,7 @@ map
 
 5.  **Ivindo National Park:** Famous for the stunning Langoué Bai, a large forest clearing where gorillas, elephants, and other wildlife gather to drink, Ivindo is a true gem in Gabon's conservation efforts. The park also features the famous Kongou Falls, a spectacular waterfall that is one of the largest in Africa.
 
-## Conservation Efforts
+### Conservation Efforts
 
 Gabon has demonstrated a strong commitment to the protection of its natural heritage. In 2002, the government established the **Gabonese Agency for National Parks** to oversee the management of these protected areas. Gabon is also a key player in the **Central African Protected Areas Network** (RAPAC), which promotes cooperation among countries in the Congo Basin to conserve the region's biodiversity.
 
@@ -211,13 +230,21 @@ Gabon has demonstrated a strong commitment to the protection of its natural heri
 
 Gabon's national parks have also become focal points for ecotourism. By promoting sustainable tourism practices, Gabon aims to balance conservation efforts with local economic development. The parks offer opportunities for wildlife watching, eco-lodging, and educational programs about conservation and biodiversity.
 
-## Conclusion
 
-Gabon's national parks represent the country's ongoing efforts to preserve its rich biodiversity and stunning natural beauty. These protected areas provide sanctuary for countless species and are critical for maintaining the ecological balance of the region. By safeguarding these unique ecosystems, Gabon ensures that future generations can enjoy and benefit from the country's natural heritage.
 
-**Explore Gabon's National Parks!** Visit these incredible parks to witness nature at its most pristine, where wildlife thrives and ecosystems remain largely untouched by human development.
 
-### Evolution of Gabon's population
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+
+
+```
+
+
+
+
+## Evolution of Gabon's population
 
 The population of Gabon has experienced significant growth over the years, reflecting trends of urbanization, healthcare improvements, and socio-economic changes. From 2000 to 2023, Gabon's total population has steadily increased, with notable fluctuations depending on key national and global events.
 
@@ -376,7 +403,8 @@ ggplot_obj2
 
 ```
 
-#### Key Influencing Factors:
+### Key Influencing Factors:
+
 
 -   **Urbanization**: Gabon has seen increased urbanization, with a growing proportion of the population living in cities, especially in the capital, Libreville. This trend is typically associated with improved access to services and economic opportunities, which may drive higher birth rates.
 
