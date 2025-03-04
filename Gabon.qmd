@@ -203,7 +203,7 @@ map <- map %>%
   addLayersControl(
     baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
     overlayGroups = unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG)), # Park types
-    options = layersControlOptions(collapsed = FALSE)
+    options = layersControlOptions(collapsed = TRUE)
   )
 
 # Print the final map
@@ -232,6 +232,150 @@ Gabon's national parks have also become focal points for ecotourism. By promotin
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
+
+
+
+```
+
+
+
+## Activity Zone : Key Locations and Features 🌍
+
+This interactive map provides a detailed visualization of key locations and features in Gabon. It includes various categories such as sports facilities, cultural sites, military zones, educational institutions, residential areas, and hydrographic features. 
+
+## How to Use the Map  
+- The map starts unfilled, allowing you to **toggle layers** manually.  
+- Use the **layer control panel** (top right) to enable or disable specific categories.  
+- Click on **markers and polygons** to view additional details via popups.  
+
+## Map Features  
+- 🏅 **Sports Facilities** (e.g., stadiums, sports centers)  
+- 🎭 **Culture & Leisure** (e.g., museums, cultural centers)  
+- 🪖 **Military Zones** (restricted areas, army bases)  
+- 🎓 **Educational Institutions** (schools, universities)  
+- 🏠 **Residential Areas** (housing zones)  
+- 🌊 **Hydrography** (rivers, lakes, water bodies)  
+
+## Base Maps  
+- 🌍 **Imagery**: Satellite view from Esri  
+- 🗺️ **Open Street View**: Classic map with detailed streets  
+
+Explore the map and discover Gabon’s diverse landscape and infrastructure! 🚀  
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(leaflet)
+library(sf)
+library(leaflet.extras)
+
+# Define the path to the shapefile
+path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/I_OSM_ZONE_ACTIVITE"
+
+# List the layers available in the shapefile
+layers <- st_layers(path.osm)
+
+# Initialize the leaflet map
+map <- leaflet() %>%
+  # Add first additional tile provider (e.g., Stamen Toner)
+  addProviderTiles(providers$Esri.WorldImagery, group = "Imagery") %>%
+  
+  # Add second additional tile provider (e.g., CartoDB Positron)
+  addProviderTiles(providers$OpenStreetMap, group = "Open street view")
+
+
+gabon_sport <- st_read(path.osm, layer = "PAI_SPORT", quiet = TRUE)
+
+gabon_culture <- st_read(path.osm, layer = "PAI_CULTURE_LOISIRS", quiet = TRUE)
+
+gabon_army <- st_read(path.osm, layer = "TERRAIN_MILITAIRE", quiet = TRUE)
+
+gabon_enseignement <- st_read(path.osm, layer = "PAI_SCIENCE_ENSEIGNEMENT", quiet = TRUE)
+
+
+gabon_habitation <- st_read(path.osm, layer = "PAI_ZONE_HABITATION", quiet = TRUE)
+
+gabon_hydrographie <- st_read(path.osm, layer = "PAI_HYDROGRAPHIE", quiet = TRUE)
+
+map <- map %>% 
+  addCircleMarkers(
+    data = gabon_sport,
+    radius = 5,
+    color = "orange",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Sport", ":", NOM),
+    group = "🏅 Sport"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_culture,
+    radius = 5,
+    color = "purple",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Culture et Loisirs", ":", NOM),
+    group = "🎭 Culture et Loisirs"
+  ) %>%
+  addPolygons(
+    data = gabon_army,
+    color = "brown",
+    weight = 1,
+    fillOpacity = 0.4,
+    popup = ~paste("Army"),
+    group = "🪖 Military Zones"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_enseignement,
+    radius = 5,
+    color = "pink",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Enseignement", ":", NOM),
+    group = "🎓 Enseignement"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_habitation,
+    radius = 5,
+    color = "blue",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Habitation", ":", NOM),
+    group = "🏠 Habitation"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_hydrographie,
+    radius = 5,
+    color = "cyan",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Hydrographie", ":", NOM),
+    group = "🌊 Hydrographie"
+  ) %>%
+  
+  addMiniMap(
+    tiles = providers$OpenStreetMap, 
+    toggleDisplay = TRUE, 
+    minimized = FALSE, 
+    width = 150, height = 150, 
+    position = "bottomright"
+  ) %>% 
+  
+  
+  addLayersControl(
+    overlayGroups = c("🏅 Sport", "🎭 Culture et Loisirs", "🪖 Military Zones", "🎓 Enseignement", "🏠 Habitation", "🌊 Hydrographie"),
+    options = layersControlOptions(collapsed = TRUE),
+    baseGroups = c("Imagery", "Open street view")
+  ) %>%
+  hideGroup(c("🏅 Sport", "🎭 Culture et Loisirs", "🪖 Military Zones", 
+              "🎓 Enseignement", "🏠 Habitation", "🌊 Hydrographie")) # Hide all layers initially
+
+
+map
 
 
 
@@ -405,259 +549,3 @@ ggplot_obj2
 -   **Migration**: Gabon, as one of the more stable and economically prosperous countries in Central Africa, has attracted migration, particularly from neighboring countries. This influx of people contributes to the overall population increase.
 
 Understanding these dynamics is crucial for policymakers to plan for future infrastructure, healthcare, and social services, as the population continues to grow.
-
-## GDP of Gabon
-
-Gabon, located on the west coast of Central Africa, has a relatively small but resource-rich economy. The country's GDP (Gross Domestic Product) has been largely driven by its oil sector, which accounts for a significant portion of government revenue and export earnings. Additionally, Gabon is also known for its natural resources such as manganese, timber, and agricultural products.
-
-### GDP Growth
-
-Over the years, Gabon has experienced varying GDP growth, often linked to fluctuations in global oil prices. In periods of high oil prices, the economy has seen considerable growth, while downturns in the oil market have led to slower economic growth or contraction.
-
-### Historical GDP Trends
-
-From 1960 to 2023, Gabon's GDP has seen significant shifts. The country's economy grew rapidly in the 1970s and 1980s due to the discovery of oil, but growth has since slowed. While oil remains the dominant sector, diversification efforts have been made in recent years to expand into other sectors such as agriculture, mining, and services.
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-## GDP
-gabon_GDP <- WDI(country = "GA", indicator = "NY.GDP.MKTP.CD", start = 1960, end = 2023)
-
-
-setDT(gabon_GDP)
-setnames(gabon_GDP, "NY.GDP.MKTP.CD", "GDP")
-
-setorder(gabon_GDP, year)
-
-# gabon_GDP[, GDP := GDP]
-
-
-gabon_GDP[, variation := round((GDP - shift(GDP, 1)) / shift(GDP, 1) * 100, 2)]
-
-
-gabon_GDP[, second_variation := round((variation - shift(variation, 1)) / shift(variation, 1) * 100, 2)]
-
-
-gabon_GDP[, sign_change := sign(second_variation) != shift(sign(second_variation), 1, type = "lag")]
-
-change_years <- gabon_GDP[sign_change == TRUE, year]
-
-
-gabon_GDP$second_derivative_color <- ifelse(gabon_pop$second_variation < 0, "red", "green")
-
-
-
-ggplot_obj <- ggplot(gabon_GDP, aes(x = year, y = GDP)) + 
-  geom_line(color = "steelblue", size = 1) +  # Line plot
-  geom_point(color = "red", size = 2) +        # Points for each year
-  geom_vline(data = gabon_GDP[sign_change == TRUE], aes(xintercept = year), 
-             color = "black", linetype = "dashed", size = 1) +  # Vertical lines where acceleration changes sign
-  geom_smooth(method = "lm", formula = y ~ poly(x, 2), color = "green", se = FALSE) +  # Polynomial smoothing line
-  scale_y_continuous(labels = scales::comma) + # Format Y-axis with commas
-  labs(
-    title = "Evolution of Gabon's GDP",
-    x = "Year",
-    y = "GDP [USD]",
-    caption = "Source: World Bank"
-  ) +
-  theme_minimal() +  # Minimal theme for a clean look
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Centered bold title
-    axis.title = element_text(size = 12),  # Axis titles size
-    axis.text = element_text(size = 10)    # Axis text size
-  )
-
-
-plotly_obj <- ggplotly(ggplot_obj)
-
-plotly_obj
-```
-
-### Economic Challenges
-
-Despite its natural wealth, Gabon faces several economic challenges: - **Dependence on Oil**: The heavy reliance on oil exports makes the economy vulnerable to price fluctuations on the global market. - **Diversification**: There is an ongoing need for economic diversification to reduce reliance on oil and ensure sustainable growth. - **Income Inequality**: While the country has high GDP per capita compared to many other African nations, wealth distribution remains uneven.
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-
-ggplot_obj1 <- ggplot(gabon_GDP, aes(x = year, y = variation)) + 
-  geom_line(color = "steelblue", size = 1) +  # Line plot
-  geom_point(color = "red", size = 2) +        # Points for each year
-  geom_vline(data = gabon_GDP[sign_change == TRUE], aes(xintercept = year), 
-             color = "black", linetype = "dashed", size = 1) +  # Vertical lines where acceleration changes sign
-  # Shading the area based on the second derivative
-  scale_y_continuous(labels = scales::comma) + # Format Y-axis with commas
-  labs(
-    title = "GDP growth in Gabon (2000-2023)",  # Updated title
-    x = "Year", 
-    y = "GDP growth (%)",  # Adjusted Y-axis label
-    caption = "Source: World Bank"
-  ) + 
-  theme_minimal() +  # Minimal theme for a clean look
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),  # Centered bold title
-    axis.title = element_text(size = 12),  # Axis titles size
-    axis.text = element_text(size = 10)    # Axis text size
-  )
-
-
-ggplot_obj1 <- ggplotly(ggplot_obj1)
-ggplot_obj1
-
-```
-
-### Conclusion
-
-Gabon's GDP provides a snapshot of a country with significant natural resources but also one that must navigate challenges related to diversification and global economic shifts. As the world moves toward renewable energy and more sustainable practices, Gabon's future economic trajectory may depend on how well it adapts to these changes.
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-
-gdp_var <- na.omit(gabon_GDP$variation)
-
-
-library(fitdistrplus)
-library(MASS)
-
-
-
-# Fit different distributions
-fit_norm <- fitdistr(gdp_var, "normal")  # Normal distribution
-fit_t <- fitdistr(gdp_var, "t")    
-
-
-
-# Create a sequence of values covering the range of GDP variation
-x_vals <- seq(min(gdp_var), max(gdp_var), length.out = 100)
-
-# Compute fitted densities
-dens_norm <- dnorm(x_vals, mean = fit_norm$estimate["mean"], sd = fit_norm$estimate["sd"])
-dens_t <- dt((x_vals - fit_t$estimate["m"])/fit_t$estimate["s"], df = fit_t$estimate["df"]) / fit_t$estimate["s"]  # Adjusted Student’s t-density
-
-# Store in a data.table
-density_data <- data.table(
-  x = rep(x_vals, 2),
-  density = c(dens_norm, dens_t),
-  distribution = rep(c("Normal", "Student's t"), each = length(x_vals))
-)
-
-# Plot empirical density with fitted distributions
-
-
-ggplot_obj1 <- ggplot() +  
-  # Empirical Density (Gray Fill)  
-  
-  # Fitted Distributions with Fill  
-  geom_area(data = density_data, aes(x = x, y = density, fill = distribution), alpha = 0.3, position = "identity") +  
-  geom_line(data = density_data, aes(x = x, y = density, color = distribution), size = 1) +   
-  geom_density(data = gabon_GDP, aes(x = variation), fill = "gray", color = "black", alpha = 0.4) +   
-  
-  # Custom Colors  
-  scale_fill_manual(values = c("Normal" = "blue", "Student's t" = "red")) +  
-  scale_color_manual(values = c("Normal" = "blue", "Student's t" = "red")) +  
-  
-  # Labels & Theme  
-  labs(
-    title = "Comparison of Fitted Distributions to GDP Growth Variation in Gabon",
-    x = "GDP Growth (%)",
-    y = "Density",
-    caption = "Source: World Bank"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
-    legend.title = element_blank(),
-    legend.position = "top"
-  )
-
-# Convert to interactive plot  
-ggplot_obj1 <- ggplotly(ggplot_obj1)  
-ggplot_obj1
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-# Generate 5 future points from the fitted normal distribution
-set.seed(123)  # For reproducibility
-years <- 14
-future_variation <- rnorm(years, mean = fit_norm$estimate["mean"], sd = fit_norm$estimate["sd"])
-future_variation <- rt(years, df = fit_t$estimate["df"]) * fit_t$estimate["s"] + fit_t$estimate["m"]
-
-
-# Assign future years (2024–2028)
-future_data <- data.table(
-  year = max(gabon_GDP$year) + 1:years,
-  variation = future_variation,
-  simulated = TRUE  # Flag to differentiate real vs simulated data
-)
-
-
-
-# Compute Future GDP Sequentially
-last_known_GDP <- tail(gabon_GDP$GDP, 1)  # Get last recorded GDP
-future_data[, GDP := last_known_GDP * cumprod(1 + variation / 100)]  # Apply growth rates
-
-
-
-# Add simulated data to the original dataset
-# gabon_GDP_extended <- rbind(gabon_GDP[, .(year, variation, simulated = FALSE)], future_data)
-gabon_GDP_extended <- rbind(
-  gabon_GDP[, .(year, variation, GDP, simulated = FALSE)], 
-  future_data
-)
-
-
-
-# Plot GDP variation sequence
-ggplot_obj2 <- ggplot(gabon_GDP_extended, aes(x = year, y = variation)) +
-  geom_line(color = "steelblue", size = 1) +  # Line connecting points
-  geom_point(aes(color = simulated), size = 3) +  # Points (colored by real vs simulated)
-  
-  # Custom Colors
-  scale_color_manual(values = c("FALSE" = "red", "TRUE" = "green"), 
-                     labels = c("Historical Data", "Simulated Future Data")) +
-  
-  # Labels & Theme
-  labs(
-    title = "GDP Growth Variation in Gabon (Historical & Forecasted)",
-    x = "Year",
-    y = "GDP Growth (%)",
-    caption = "Source: World Bank | Green: Simulated values (2024-2028)"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
-    legend.title = element_blank(),
-    legend.position = "top"
-  )
-
-# Convert to interactive plot
-ggplot_obj2 <- ggplotly(ggplot_obj2)
-ggplot_obj2
-```
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
-
-
-ggplot_obj3 <- ggplot(gabon_GDP_extended, aes(x = year, y = GDP)) +
-  geom_line(color = "steelblue", size = 1) +  # Line connecting points
-  geom_point(aes(color = simulated), size = 3) +  # Points (colored by real vs simulated)
-  
-  # Custom Colors
-  scale_color_manual(values = c("FALSE" = "red", "TRUE" = "green"), 
-                     labels = c("Historical GDP", "Projected GDP")) +
-  
-  # Labels & Theme
-  labs(
-    title = "GDP Evolution in Gabon (Historical & Forecasted)",
-    x = "Year",
-    y = "GDP (USD)",
-    caption = "Source: World Bank | Green: Simulated GDP (2024-2028)"
-  ) +
-  theme_minimal() +
-  theme(
-    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
-    legend.title = element_blank(),
-    legend.position = "top"
-  )
-
-
-ggplot_obj3 <- ggplotly(ggplot_obj3)
-ggplot_obj3
-```

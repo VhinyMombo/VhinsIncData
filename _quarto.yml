@@ -5,10 +5,10 @@ website:
   title: "VhinsIncData"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
       - href: Gabon.qmd
         text: Gabon
+      - href: Economy.qmd
+        text: Economy
       
 
 format:
