@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Gabon"
-author: "Vhiny"
+author: "VhinsInc."
 ---
 
 ## Overview of Gabon
@@ -204,20 +204,7 @@ map <- map %>%
     baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
     overlayGroups = unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG)), # Park types
     options = layersControlOptions(collapsed = FALSE)
-  ) %>% 
-  
-  # Add toggle button to hide/show layers control
-  addEasyButton(easyButton(
-    icon = "fa-layer-group", title = "Toggle Layer Control",
-    onClick = JS("function(btn, map) {
-      var control = document.getElementsByClassName('leaflet-control-layers')[0];
-      if (control.style.display === 'none') {
-        control.style.display = 'block';
-      } else {
-        control.style.display = 'none';
-      }
-    }")
-  ))
+  )
 
 # Print the final map
 map
@@ -243,19 +230,12 @@ Gabon has demonstrated a strong commitment to the protection of its natural heri
 
 Gabon's national parks have also become focal points for ecotourism. By promoting sustainable tourism practices, Gabon aims to balance conservation efforts with local economic development. The parks offer opportunities for wildlife watching, eco-lodging, and educational programs about conservation and biodiversity.
 
-
-
-
-
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
 
 
 
 ```
-
-
-
 
 ## Evolution of Gabon's population
 
@@ -417,7 +397,6 @@ ggplot_obj2
 ```
 
 ### Key Influencing Factors:
-
 
 -   **Urbanization**: Gabon has seen increased urbanization, with a growing proportion of the population living in cities, especially in the capital, Libreville. This trend is typically associated with improved access to services and economic opportunities, which may drive higher birth rates.
 
