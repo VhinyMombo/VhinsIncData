@@ -6,9 +6,11 @@ website:
   navbar:
     left:
       - href: Gabon.qmd
-        text: Gabon
+        text: Home
       - href: Economy.qmd
         text: Economy
+      - href: electricity.qmd
+        text: Energie
       
 
 format:

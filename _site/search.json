@@ -110,5 +110,19 @@
     "title": "Analysis of Gabon",
     "section": "Base Maps",
     "text": "Base Maps\n\n🌍 Imagery: Satellite view from Esri\n\n🗺️ Open Street View: Classic map with detailed streets\n\nExplore the map and discover Gabon’s diverse landscape and infrastructure! 🚀"
+  },
+  {
+    "objectID": "electricity.html",
+    "href": "electricity.html",
+    "title": "VhinsIncData",
+    "section": "",
+    "text": "This map displays the electricity infrastructure in Gabon, including both the electrical lines and the pylon locations. The data is sourced from OpenStreetMap (OSM) and includes the following key elements:\n\n\n\nElectricity Lines: Represented as red lines on the map, these indicate the various electrical power transmission lines across the country. The lines are color-coded to represent their voltage level. Hovering over the lines will show the voltage level in volts (V).\nPylons: These blue circle markers show the locations of pylons. These pylons are essential for the transmission and distribution of electrical power. When you click on a marker, you will see the label “Crossing”, which refers to the associated pylon crossing.\n\n\n\n\n\nInteractive Layers: The map allows users to interact with both the electricity lines and pylons, providing detailed information when clicked.\nPopup Information: Each feature on the map (both the lines and pylons) is linked to a popup that displays relevant information about the element, such as the voltage of the electricity line or a simple label for pylons.\nLayer Control: The map includes an interactive layers control option, allowing users to toggle between different features, such as electricity lines and pylons.\n\nThis map provides valuable insights into the electricity infrastructure of Gabon, making it easier to understand the layout and the critical locations of energy transmission across the country.\n\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE"
+  },
+  {
+    "objectID": "electricity.html#electricity-infrastructure-in-gabon",
+    "href": "electricity.html#electricity-infrastructure-in-gabon",
+    "title": "VhinsIncData",
+    "section": "",
+    "text": "This map displays the electricity infrastructure in Gabon, including both the electrical lines and the pylon locations. The data is sourced from OpenStreetMap (OSM) and includes the following key elements:\n\n\n\nElectricity Lines: Represented as red lines on the map, these indicate the various electrical power transmission lines across the country. The lines are color-coded to represent their voltage level. Hovering over the lines will show the voltage level in volts (V).\nPylons: These blue circle markers show the locations of pylons. These pylons are essential for the transmission and distribution of electrical power. When you click on a marker, you will see the label “Crossing”, which refers to the associated pylon crossing.\n\n\n\n\n\nInteractive Layers: The map allows users to interact with both the electricity lines and pylons, providing detailed information when clicked.\nPopup Information: Each feature on the map (both the lines and pylons) is linked to a popup that displays relevant information about the element, such as the voltage of the electricity line or a simple label for pylons.\nLayer Control: The map includes an interactive layers control option, allowing users to toggle between different features, such as electricity lines and pylons.\n\nThis map provides valuable insights into the electricity infrastructure of Gabon, making it easier to understand the layout and the critical locations of energy transmission across the country.\n\n\nLinking to GEOS 3.11.0, GDAL 3.5.3, PROJ 9.1.0; sf_use_s2() is TRUE"
   }
 ]
