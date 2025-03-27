@@ -18,8 +18,8 @@ jobs:
         run: Rscript -e 'install.packages("renv")'
       
       - name: Restore R Environment
-        run: Rscript -e 'install.packages("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT","rnaturalearth", "leaflet.extras",  "WDI", "jsonlite", "patchwork")'
-      
+        run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT","rnaturalearth", "leaflet.extras",  "WDI", "jsonlite", "patchwork"))' 
+        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
       
