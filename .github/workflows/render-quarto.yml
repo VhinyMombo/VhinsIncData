@@ -41,5 +41,6 @@ jobs:
           remote_path: ~/domains/labinc.ogoouestat.com/public_html/
           remote_host: ${{ secrets.HOSTINGER_HOST }}
           remote_user: ${{ secrets.HOSTINGER_USER }}
-          remote_user: ${{ secrets.HOSTINGER_PORT }}
+          remote_port: ${{ secrets.HOSTINGER_PORT }}
           remote_key: ${{ secrets.HOSTINGER_SSH_KEY }}
+          
