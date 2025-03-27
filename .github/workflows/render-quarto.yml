@@ -14,15 +14,19 @@ jobs:
         with:
           r-version: '4.3.1' # Specify the version of R you need
       
-      - name: Install RMarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Install renv
+        run: Rscript -e 'install.packages("renv")'
+      
+      - name: Restore R Environment
+        run: Rscript -e 'renv::restore()'
       
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
       
-      - name: Render Quarto Project
-        run: quarto render
-      
+      - name: Render Quarto Project with Detailed Logging
+        run: |
+          quarto render || (cat _quarto.log && exit 1)
+
       - name: Deploy to Hostinger
         uses: burnett01/rsync-deployments@5.2
         with:
