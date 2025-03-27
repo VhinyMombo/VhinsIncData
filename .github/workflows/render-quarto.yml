@@ -23,8 +23,8 @@ jobs:
           sudo apt-get install -y libudunits2-dev libgdal-dev libpng-dev pandoc gdal-bin
 
       - name: Restore R Environment
-        run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT", "rnaturalearth", "leaflet.extras", "WDI", "jsonlite", "patchwork", "fitdistrplus"))'
-
+        run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT", "rnaturalearth", "leaflet.extras", "WDI", "jsonlite", "patchwork", "formattable"))'
+        
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
@@ -43,4 +43,9 @@ jobs:
           remote_user: ${{ secrets.HOSTINGER_USER }}
           remote_port: ${{ secrets.HOSTINGER_PORT }}
           remote_key: ${{ secrets.HOSTINGER_SSH_KEY }}
-          
+        env:
+          GITHUB_TOKEN: ${{ secrets.GB_TOKEN }} # Ensure this is set if needed for permissions
+
+      - name: Verify SSH Key Configuration
+        run: |
+          ssh -i ${{ secrets.HOSTINGER_SSH_KEY }} -p ${{ secrets.HOSTINGER_PORT }} ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} "echo 'SSH connection successful'"
