@@ -23,14 +23,14 @@ jobs:
           sudo apt-get install -y libudunits2-dev libgdal-dev libpng-dev pandoc gdal-bin
 
       - name: Restore R Environment
-        run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT", "rnaturalearth", "leaflet.extras", "WDI", "jsonlite", "patchwork"))'
+        run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT", "rnaturalearth", "leaflet.extras", "WDI", "jsonlite", "patchwork", "fitdistrplus"))'
 
       - name: Set up Quarto
         uses: quarto-dev/quarto-actions/setup@v2
 
       - name: Render Quarto Project with Detailed Logging
         run: |
-          quarto render || (cat _quarto.log && exit 1)
+          quarto render
 
       - name: Deploy to Hostinger
         uses: burnett01/rsync-deployments@5.2
