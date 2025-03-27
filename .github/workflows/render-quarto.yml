@@ -22,7 +22,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libudunits2-dev libgdal-dev libpng-dev pandoc gdal-bin
 
-      - name: Restore R Environment
+      - name: Restore R Environment 
         run: Rscript -e 'install.packages(c("sf", "leaflet", "RColorBrewer", "dplyr", "ggplot2", "data.table", "plotly", "DT", "rnaturalearth", "leaflet.extras", "WDI", "jsonlite", "patchwork", "fitdistrplus"))'        
       
       - name: Set up Quarto
