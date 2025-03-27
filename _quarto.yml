@@ -1,9 +1,10 @@
 project:
   type: website
-
 website:
-  title: "LabInc"
+  title: ""
   navbar:
+    logo: "logo/logo-files-2/logo.png"
+    home-button: Gabon.qmd
     left:
       - href: Gabon.qmd
         text: Home
@@ -13,17 +14,11 @@ website:
         text: Energie
       - href: Routes.qmd
         text: Roads
-
 format:
   html:
     theme: cosmo
     css: styles.css
     toc: true
-
 editor: visual
-
 execute:
   freeze: false
-
-
-

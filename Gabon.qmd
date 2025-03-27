@@ -1,6 +1,5 @@
 ---
 title: "Analysis of Gabon"
-author: "LabInc"
 ---
 
 ## Overview of Gabon
