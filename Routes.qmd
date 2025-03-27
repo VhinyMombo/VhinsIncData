@@ -1,0 +1,226 @@
+---
+title: "Reseau Routier"
+---
+
+```{r, echo=FALSE, warning=FALSE, include=FALSE}
+library(sf)
+library(leaflet)
+library(RColorBrewer)
+library(dplyr)
+library(ggplot2)
+library(data.table)
+library(plotly)
+library(DT)
+
+```
+
+
+```{r, echo=FALSE, warning=FALSE}
+# Définir le chemin du fichier OSM
+path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/A_OSM_RESEAU_ROUTIER/"
+
+# Charger les données des routes
+gabon_elec_sf <- st_read(path.osm, layer = "ROUTE", quiet = TRUE)
+
+# Simplifier les géométries pour améliorer la performance
+gabon_elec_sf <- st_simplify(gabon_elec_sf, dTolerance = 0.001)
+
+# Vérifier que la colonne "NATURE" existe et supprimer les valeurs manquantes
+if (!"NATURE" %in% names(gabon_elec_sf)) stop("La colonne 'NATURE' est absente du fichier shapefile.")
+gabon_elec_sf <- gabon_elec_sf[!is.na(gabon_elec_sf$NATURE), ]
+
+
+
+# Compter les occurrences de chaque type de route et calculer les pourcentages
+road_counts <- gabon_elec_sf %>%
+  count(NATURE) %>%
+  mutate(percentage = round(100 * n / sum(n), 1))  # Calcul des pourcentages
+
+road_counts <- road_counts |> data.table()
+road_counts <- road_counts[, .(NATURE, percentage)]
+
+road_counts |> setorderv("percentage", order = -1)
+```
+
+
+
+# 🚗 Analyse du Réseau Routier au Gabon
+
+Le réseau routier du Gabon joue un rôle crucial dans la connectivité du pays, reliant les principales villes, zones rurales et infrastructures économiques. Cette analyse s’appuie sur des données OpenStreetMap (OSM) pour visualiser et quantifier les différentes catégories de routes présentes sur le territoire.
+
+---
+
+
+
+## 📊 Répartition des Types de Routes
+
+```{r, echo=FALSE, warning=FALSE}
+road_counts$NATURE <- factor(road_counts$NATURE, levels = road_counts$NATURE[order(road_counts$percentage)])
+# Assuming your data frame 'road_counts' is already loaded
+
+# Manually define a color palette for each road type (you can choose any colors you like)
+custom_colors <- c(
+  "Chemin carrossable" = "#FF6347", 
+  "Route résidentielle" = "#4682B4", 
+  "Route d accès" = "#32CD32", 
+  "Route non classifiée" = "#FFD700", 
+  "Route tertiaire" = "#8A2BE2", 
+  "Route secondaire" = "#FF1493", 
+  "Route primaire" = "#00CED1", 
+  "Voie rapide" = "#D2691E", 
+  "Voie piétonne" = "#7FFF00", 
+  "Chemin non carrossable" = "#DC143C", 
+  "Bretelle voie rapide" = "#C71585", 
+  "Bretelle route primaire" = "#20B2AA", 
+  "Bretelle route secondaire" = "#B0E0E6", 
+  "Bretelle route tertiaire" = "#ADFF2F", 
+  "Route en construction" = "#F4A460", 
+  "Autoroute" = "#A52A2A", 
+  "Escaliers" = "#DCDCDC", 
+  "Piste de circuit" = "#F0E68C", 
+  "Rue piétonne" = "#F08080", 
+  "Voie cyclable" = "#90EE90", 
+  "Zone de rencontre" = "#B22222"
+)
+
+# Create the bar plot
+roundbarplot <- ggplot(road_counts, aes(x = NATURE, y = percentage, fill = NATURE)) + 
+  geom_bar(stat = "identity") + 
+  theme_minimal() + 
+  labs(
+    title = "Distribution of road types in Gabon",
+    x = "Type of road",
+    y = "Percentage (%)",
+    fill = "Road type"
+  ) + 
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotates x-axis labels for better readability
+  scale_fill_manual(values = custom_colors) +  # Apply custom colors
+  guides(fill = guide_legend(ncol = 2))  # Display legend in two columns
+  # Apply custom colors
+
+# Convert to interactive plot with ggplotly
+ggplot_obj3 <- ggplotly(roundbarplot)
+
+# Show the plot
+ggplot_obj3
+```
+
+
+
+### Road Types and Definitions
+
+```{r, echo=FALSE, warning=FALSE}
+library(DT)
+
+# Create a data frame with road types and their definitions
+road_data <- data.frame(
+  Road_Type = c(
+    "Chemin carrossable", "Route résidentielle", "Route d'accès", 
+    "Route non classifiée", "Route tertiaire", "Route secondaire", 
+    "Route primaire", "Voie rapide", "Voie piétonne", 
+    "Chemin non carrossable", "Bretelle voie rapide", 
+    "Bretelle route primaire", "Bretelle route secondaire", 
+    "Bretelle route tertiaire", "Route en construction", 
+    "Autoroute", "Escaliers", "Piste de circuit", 
+    "Rue piétonne", "Voie cyclable", "Zone de rencontre"
+  ),
+  Definition = c(
+    "A dirt or gravel road that is passable by vehicles, typically in rural or less developed areas.",
+    "A road primarily found within residential neighborhoods, typically narrower and designed for low-speed traffic.",
+    "A road designed to provide access to a specific area such as a business, residential development, or industrial facility.",
+    "A road that does not fall under any specific classification and may be poorly maintained.",
+    "A road that serves as a minor road in the overall hierarchy, connecting smaller towns or rural areas to main roads.",
+    "A road that serves as an intermediate connection between major roads and local roads.",
+    "A major road or highway designed for long-distance travel, typically connecting cities or regions.",
+    "A high-capacity urban road designed for fast-moving traffic with controlled access.",
+    "A pathway designed exclusively for pedestrians, may be a sidewalk or a separate pedestrian-only pathway.",
+    "A road that cannot support regular vehicle traffic due to poor conditions or rough terrain.",
+    "A short road or ramp providing access to or from an expressway or highway.",
+    "A short connecting road or ramp between a primary road and another road type.",
+    "A connecting ramp designed to link secondary roads to other major roads.",
+    "A connecting ramp for minor tertiary roads linking with other roads.",
+    "A road that is under construction and may be temporarily closed or hazardous.",
+    "A major road designed for high-speed, long-distance travel with multiple lanes.",
+    "A set of steps or stairs serving as pedestrian access, usually in urban settings.",
+    "A specially designed track for racing, found in motorsports, usually for high-performance vehicles.",
+    "A street exclusively for pedestrians, typically found in urban centers with shops and entertainment.",
+    "A designated lane for bicycles, separated from motor vehicle traffic to ensure cyclist safety.",
+    "A shared road where pedestrians, cyclists, and motor vehicles share the space in low-speed areas."
+  )
+)
+
+# Create the datatable
+datatable(road_data, options = list(pageLength = 5))  # Display first 5 rows per page
+```
+
+
+
+---
+
+## 🌍 Visualisation cartographique
+
+Une carte interactive a été développée pour faciliter l’exploration du réseau routier. Celle-ci propose :
+✅ Une **superposition de plusieurs fonds de carte** (Esri Satellite, Esri Street, OpenStreetMap).  
+✅ Un **contrôle interactif** permettant d’activer/désactiver l’affichage des routes par catégorie.  
+✅ Un **système de légende dynamique**, affichant les pourcentages de chaque type de route.  
+
+L’intégration des pourcentages dans la légende permet une meilleure interprétation des proportions de chaque type de route dans l’ensemble du réseau.
+
+
+
+```{r, echo=FALSE, warning=FALSE}
+
+# Liste des types uniques de routes
+unique_types <- unique(gabon_elec_sf$NATURE)
+
+# Palette de couleurs (max 8 couleurs pour éviter les erreurs)
+nb_colors <- min(length(unique_types), 8)
+pal <- colorFactor(brewer.pal(nb_colors, "Set1"), domain = gabon_elec_sf$NATURE)
+
+# Initialiser la carte (VIDE AU DÉPART)
+map <- leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery, group = "Esri Satellite") %>%
+  addProviderTiles(providers$Esri.WorldStreetMap, group = "Esri Street") %>%
+  addProviderTiles(providers$OpenStreetMap, group = "OpenStreetMap") %>%
+  addLayersControl(
+    baseGroups = c("Esri Satellite", "Esri Street", "OpenStreetMap"),
+    overlayGroups = unique_types,  # Liste des types de routes
+    options = layersControlOptions(collapsed = TRUE)  # Collapsé par défaut
+  ) %>%
+  addLegend(
+    pal = pal,
+    values = gabon_elec_sf$NATURE,
+    title = "Type de Route",
+    opacity = 1
+  )
+
+# Ajouter les couches de routes (mais **cachées par défaut**)
+for (route_type in unique_types) {
+  map <- map %>%
+    addPolylines(
+      data = gabon_elec_sf[gabon_elec_sf$NATURE == route_type, ], 
+      color = ~pal(NATURE), 
+      weight = 3, 
+      opacity = 0.8, 
+      popup = ~paste("Type:", NATURE, "<br>Date Maj:", DATE_MAJ), 
+      group = route_type,  # Associer chaque type de route à un groupe
+      options = pathOptions(pane = "overlayPane")  # Assurer la gestion des couches
+    )
+}
+
+# Afficher la carte
+map
+```
+
+
+---
+
+## 🚀 Conclusion
+
+L’analyse du réseau routier gabonais met en évidence la répartition des infrastructures de transport et leur importance pour la mobilité. Une étude approfondie de ces données pourrait permettre d’identifier les zones nécessitant des améliorations en termes d’accessibilité et de connectivité.
+
+💡 **Perspectives** : Ces résultats pourraient être croisés avec d’autres données (densité de population, trafic, infrastructures économiques) afin d’optimiser la planification des routes et le développement des transports au Gabon.
+
+
+
+
