@@ -45,7 +45,3 @@ jobs:
           remote_key: ${{ secrets.HOSTINGER_SSH_KEY }}
         env:
           GITHUB_TOKEN: ${{ secrets.GB_TOKEN }} # Ensure this is set if needed for permissions
-
-      - name: Verify SSH Key Configuration
-        run: |
-          ssh -i ${{ secrets.HOSTINGER_SSH_KEY }} -p ${{ secrets.HOSTINGER_PORT }} ${{ secrets.HOSTINGER_USER }}@${{ secrets.HOSTINGER_HOST }} "echo 'SSH connection successful'"
