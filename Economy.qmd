@@ -3,7 +3,8 @@ title: "Economy"
 author: "@VhinsInc."
 ---
 
-# Economy 
+# Economy
+
 ## GDP of Gabon
 
 Gabon, located on the west coast of Central Africa, has a relatively small but resource-rich economy. The country's GDP (Gross Domestic Product) has been largely driven by its oil sector, which accounts for a significant portion of government revenue and export earnings. Additionally, Gabon is also known for its natural resources such as manganese, timber, and agricultural products.

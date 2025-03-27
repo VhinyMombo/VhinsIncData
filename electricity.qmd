@@ -2,26 +2,23 @@
 title: ""
 ---
 
-
-
-
 ## Electricity Infrastructure in Gabon
 
 This map displays the **electricity infrastructure** in Gabon, including both the **electrical lines** and the **pylon locations**. The data is sourced from OpenStreetMap (OSM) and includes the following key elements:
 
 ### Key Features:
 
-- **Electricity Lines**: Represented as red lines on the map, these indicate the various electrical power transmission lines across the country. The lines are color-coded to represent their voltage level. Hovering over the lines will show the **voltage level** in volts (V).
+-   **Electricity Lines**: Represented as red lines on the map, these indicate the various electrical power transmission lines across the country. The lines are color-coded to represent their voltage level. Hovering over the lines will show the **voltage level** in volts (V).
 
-- **Pylons**: These blue circle markers show the locations of pylons. These pylons are essential for the transmission and distribution of electrical power. When you click on a marker, you will see the label "Crossing", which refers to the associated pylon crossing.
+-   **Pylons**: These blue circle markers show the locations of pylons. These pylons are essential for the transmission and distribution of electrical power. When you click on a marker, you will see the label "Crossing", which refers to the associated pylon crossing.
 
 ### Map Features:
 
-- **Interactive Layers**: The map allows users to interact with both the electricity lines and pylons, providing detailed information when clicked.
+-   **Interactive Layers**: The map allows users to interact with both the electricity lines and pylons, providing detailed information when clicked.
 
-- **Popup Information**: Each feature on the map (both the lines and pylons) is linked to a popup that displays relevant information about the element, such as the voltage of the electricity line or a simple label for pylons.
+-   **Popup Information**: Each feature on the map (both the lines and pylons) is linked to a popup that displays relevant information about the element, such as the voltage of the electricity line or a simple label for pylons.
 
-- **Layer Control**: The map includes an interactive layers control option, allowing users to toggle between different features, such as electricity lines and pylons.
+-   **Layer Control**: The map includes an interactive layers control option, allowing users to toggle between different features, such as electricity lines and pylons.
 
 This map provides valuable insights into the **electricity infrastructure** of Gabon, making it easier to understand the layout and the critical locations of energy transmission across the country.
 
@@ -88,9 +85,6 @@ masp
 
 ```
 
-
-
 ```{r}
 
 ```
-

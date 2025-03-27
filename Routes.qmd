@@ -14,7 +14,6 @@ library(DT)
 
 ```
 
-
 ```{r, echo=FALSE, warning=FALSE}
 # Définir le chemin du fichier OSM
 path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/A_OSM_RESEAU_ROUTIER/"
@@ -42,15 +41,11 @@ road_counts <- road_counts[, .(NATURE, percentage)]
 road_counts |> setorderv("percentage", order = -1)
 ```
 
-
-
 # 🚗 Analyse du Réseau Routier au Gabon
 
-Le réseau routier du Gabon joue un rôle crucial dans la connectivité du pays, reliant les principales villes, zones rurales et infrastructures économiques. Cette analyse s’appuie sur des données OpenStreetMap (OSM) pour visualiser et quantifier les différentes catégories de routes présentes sur le territoire.
+Le réseau routier du Gabon joue un rôle crucial dans la connectivité du pays, reliant les principales villes, zones rurales et infrastructures économiques. Cette analyse s'appuie sur des données OpenStreetMap (OSM) pour visualiser et quantifier les différentes catégories de routes présentes sur le territoire.
 
----
-
-
+------------------------------------------------------------------------
 
 ## 📊 Répartition des Types de Routes
 
@@ -105,8 +100,6 @@ ggplot_obj3 <- ggplotly(roundbarplot)
 ggplot_obj3
 ```
 
-
-
 ### Road Types and Definitions
 
 ```{r, echo=FALSE, warning=FALSE}
@@ -153,20 +146,15 @@ road_data <- data.frame(
 datatable(road_data, options = list(pageLength = 5))  # Display first 5 rows per page
 ```
 
-
-
----
+------------------------------------------------------------------------
 
 ## 🌍 Visualisation cartographique
 
-Une carte interactive a été développée pour faciliter l’exploration du réseau routier. Celle-ci propose :
-✅ Une **superposition de plusieurs fonds de carte** (Esri Satellite, Esri Street, OpenStreetMap).  
-✅ Un **contrôle interactif** permettant d’activer/désactiver l’affichage des routes par catégorie.  
-✅ Un **système de légende dynamique**, affichant les pourcentages de chaque type de route.  
+Une carte interactive a été développée pour faciliter l'exploration du réseau routier. Celle-ci propose : ✅ Une **superposition de plusieurs fonds de carte** (Esri Satellite, Esri Street, OpenStreetMap).\
+✅ Un **contrôle interactif** permettant d'activer/désactiver l'affichage des routes par catégorie.\
+✅ Un **système de légende dynamique**, affichant les pourcentages de chaque type de route.
 
-L’intégration des pourcentages dans la légende permet une meilleure interprétation des proportions de chaque type de route dans l’ensemble du réseau.
-
-
+L'intégration des pourcentages dans la légende permet une meilleure interprétation des proportions de chaque type de route dans l'ensemble du réseau.
 
 ```{r, echo=FALSE, warning=FALSE}
 
@@ -212,15 +200,10 @@ for (route_type in unique_types) {
 map
 ```
 
-
----
+------------------------------------------------------------------------
 
 ## 🚀 Conclusion
 
-L’analyse du réseau routier gabonais met en évidence la répartition des infrastructures de transport et leur importance pour la mobilité. Une étude approfondie de ces données pourrait permettre d’identifier les zones nécessitant des améliorations en termes d’accessibilité et de connectivité.
+L'analyse du réseau routier gabonais met en évidence la répartition des infrastructures de transport et leur importance pour la mobilité. Une étude approfondie de ces données pourrait permettre d'identifier les zones nécessitant des améliorations en termes d'accessibilité et de connectivité.
 
-💡 **Perspectives** : Ces résultats pourraient être croisés avec d’autres données (densité de population, trafic, infrastructures économiques) afin d’optimiser la planification des routes et le développement des transports au Gabon.
-
-
-
-
+💡 **Perspectives** : Ces résultats pourraient être croisés avec d'autres données (densité de population, trafic, infrastructures économiques) afin d'optimiser la planification des routes et le développement des transports au Gabon.
