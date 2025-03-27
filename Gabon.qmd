@@ -1,6 +1,6 @@
 ---
 title: "Analysis of Gabon"
-author: "VhinsInc."
+author: "LabInc"
 ---
 
 ## Overview of Gabon
