@@ -18,8 +18,21 @@ Gabon is a country located on the west coast of Central Africa, bordered by **Eq
 With its abundant natural resources and commitment to conservation, Gabon plays a crucial role in environmental protection and sustainable development in Africa.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(leaflet)
 library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(dplyr)
+library(leaflet.extras)
+
+library(WDI)
+library(jsonlite)
+library(ggplot2)
+library(plotly)
+
+
+library(data.table)
+library(patchwork)
+
 
 # Replace with your shapefile path
 shapefile_path <- "data/Gabon2.gpkg"
@@ -35,7 +48,6 @@ pal <- colorFactor(palette = "Set3", domain = gabon_sf$NAME_1)
 ```
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
-library(rnaturalearth)
 
 cities <- rnaturalearth::ne_download(scale = "large", type = "populated_places", category = "cultural")
 ```
@@ -149,8 +161,7 @@ combined_shapefile <- do.call(rbind, shapelist)
 gabon_parks_sf <- combined_shapefile[, c("NAME", "DESIG_TYPE", "DESIG_ENG")]
 # plot(gabon_parks_sf)
 
-library(leaflet)
-library(dplyr)
+
 
 # Create a color palette
 park_palette_type <- colorFactor("Set2", domain = gabon_parks_sf$DESIG_TYPE)
@@ -265,9 +276,6 @@ Explore the map and discover Gabon’s diverse landscape and infrastructure! �
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 
-library(leaflet)
-library(sf)
-library(leaflet.extras)
 
 # Define the path to the shapefile
 path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/I_OSM_ZONE_ACTIVITE"
@@ -390,18 +398,13 @@ The line chart below shows the total population of Gabon from 2000 to 2023, with
 By visualizing the data, we can identify key periods of population increase and analyze them in the context of national policies, economic growth, and demographic shifts. These insights are valuable for planning resources and predicting future trends in the country's development.
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
-library(WDI)
-library(jsonlite)
-library(ggplot2)
-library(plotly)
+
 # Récupérer les données de population du Gabon
 gabon_pop <- WDI(country = "GA", indicator = "SP.POP.TOTL", start = 1960, end = 2023)
 
 
 
 
-library(data.table)
-library(patchwork)
 gabon_pop <- setDT(gabon_pop)
 
 setnames(gabon_pop, "SP.POP.TOTL", "population")

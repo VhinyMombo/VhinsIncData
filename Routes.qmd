@@ -12,6 +12,22 @@ library(data.table)
 library(plotly)
 library(DT)
 
+
+library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(dplyr)
+library(leaflet.extras)
+
+library(WDI)
+library(jsonlite)
+library(ggplot2)
+library(plotly)
+
+
+library(data.table)
+library(patchwork)
+
 ```
 
 ```{r, echo=FALSE, warning=FALSE}
