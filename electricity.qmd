@@ -26,7 +26,7 @@ This map provides valuable insights into the **electricity infrastructure** of G
 library(leaflet)
 library(sf)
 
-path.osm <- "/Users/vhinymombo/Downloads/202303_OSM2IGEO_GABON_SHP_WGS84_4326/C_OSM_TRANSPORT_ENERGIE/"
+path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/C_OSM_TRANSPORT_ENERGIE/"
 
 
 
