@@ -1,5 +1,12 @@
 ---
-title: "LabInc"
+pagetitle: "LabInc"
+page-layout: custom
+section-divs: false
+editor: source
+sidebar: false
+search: false
+repo-actions: false
+toc: false
 ---
 
 

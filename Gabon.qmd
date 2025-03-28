@@ -1,5 +1,13 @@
 ---
-title: "Analysis of Gabon"
+pagetitle: "Analysis of Gabon"
+page-layout: custom
+section-divs: false
+editor: source
+sidebar: false
+search: false
+repo-actions: false
+toc: false
+
 ---
 
 ## Overview of Gabon
