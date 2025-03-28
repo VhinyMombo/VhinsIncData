@@ -283,25 +283,27 @@ LabInc asks, 'What are the current situation of energy sector in Gabon?'
 <!-- ::: -->
 <!-- ::: {.g-col-12 .g-col-md-2} -->
 <!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ### About us -->
-<!-- [Our aims](about-rwds.qmd)\ -->
-<!-- [Our team](/viewpoints/editors-blog/posts/2022/10/18/meet-the-team.qmd)\ -->
-<!-- [Partners and funders](rwds-partners.qmd)\ -->
-<!-- [Contact us](contact.qmd) -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ### Contribute -->
-<!-- [Call for contributions](/contributor-docs/call-for-contributions.qmd)\ -->
-<!-- [Contributor guidelines](/contributor-docs/contributor-guidelines.qmd)\ -->
-<!-- [Style guide](/contributor-docs/style-guide.qmd) -->
-<!-- ::: -->
+::: {.g-col-12 .g-col-md-2}
+### About us
+[Our aims](about-rwds.qmd)\
+[Our team](/viewpoints/editors-blog/posts/2022/10/18/meet-the-team.qmd)\
+[Partners and funders](rwds-partners.qmd)\
+[Contact us](contact.qmd)
+:::
+
+::: {.g-col-12 .g-col-md-2}
+
+### Contribute
+[Call for contributions](/contributor-docs/call-for-contributions.qmd)\
+[Contributor guidelines](/contributor-docs/contributor-guidelines.qmd)\
+[Style guide](/contributor-docs/style-guide.qmd)
+:::
 
 
-<!-- <!-- ::: {.g-col-12 .g-col-md-12} -->
-<!-- ### Our partners -->
-<!-- logos to go here -->
-<!-- ::: --> -->
+<!-- ::: {.g-col-12 .g-col-md-12}
+### Our partners
+logos to go here
+::: -->
 
 <!-- ::: -->
 <!-- ::: -->
