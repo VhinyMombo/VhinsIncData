@@ -1,11 +1,22 @@
 project:
   type: website
+  
 website:
-  title: ""
+  title: "Ogooue Stat"
+  image: "logo/logo-files-2/logo.png"
+  favicon: "logo/logo-files-2/favicon-32x32.png"
+  open-graph: true
+  site-url: https://labinc.ogoouestat.com
+  
   navbar:
     logo: "logo/logo-files-2/logo.png"
-    home-button: Gabon.qmd
-    left:
+    toggle-position: right
+    background: "#f0eeeb"
+    logo-alt: "Ogooue Stat brand" 
+    title: false
+    collapse-below: lg
+    
+    right:
       - href: Gabon.qmd
         text: Home
       - href: Economy.qmd
@@ -14,11 +25,54 @@ website:
         text: Energie
       - href: Routes.qmd
         text: Roads
+        
+  sidebar: 
+    - title: "About us"
+      contents:
+        - about-rwds.qmd
+        - viewpoints/editors-blog/posts/2022/10/18/meet-the-team.qmd
+        - rwds-partners.qmd
+        - contact.qmd
+        - ts-and-cs.qmd
+        - CODE_OF_CONDUCT.md
+        - LICENCE.md
+        
+    - title: "Call for contributions"
+    - title: "Careers"
+    - title: "Ideas"
+    - title: "Viewpoints"
+  
+  page-navigation: true
+
+  back-to-top-navigation: false
+  
+  page-footer:
+    background: "#000000"
+    left: |
+      [Copyright &copy; 2024 Royal Statistical Society](/LICENCE.md)
+    center:
+      - href: https://twitter.com/rwdatasci
+        icon: twitter-x
+        aria-label: Twitter/X
+      - href: https://fosstodon.org/@rwdatasci
+        icon: mastodon
+        aria-label: Mastodon
+      - href: feeds.html
+        icon: rss
+        aria-label: RWDS rss
+
+    right: |
+      [Terms & Conditions](/ts-and-cs.qmd)
+      
 format:
   html:
-    theme: cosmo
-    css: styles.css
+    theme: [lux, rwds.scss]
+    css: rwds.css
     toc: true
-editor: visual
-execute:
-  freeze: false
+    grid:
+      sidebar-width: 0px
+      body-width: 1000px
+      margin-width: 250px
+
+execute: 
+  freeze: auto

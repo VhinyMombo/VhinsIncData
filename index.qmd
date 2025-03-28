@@ -1,0 +1,309 @@
+---
+pagetitle: "Real World Data Science"
+page-layout: custom
+section-divs: false
+editor: source
+sidebar: false
+search: false
+repo-actions: false
+description: | 
+  A showcase for data science in action, brought to you by the Royal Statistical Society in partnership with the American Statistical Association.
+image: images/rwds-logo-150px.png
+listing:
+  - id: latest-content
+    contents: 
+    - /case-studies
+    - /ideas
+    - /careers
+    - /viewpoints
+    - "!index.qmd"
+    - "!development-plan-2.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+
+  - id: case-studies
+    contents: 
+    - /case-studies
+    - "!index.qmd"
+    - "!what-is-CDE-2.qmd"
+    - "!policy-problem.qmd"
+    - "!use-case-2.qmd"
+    - "!development-plan-2.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+
+  - id: ideas
+    contents: 
+    - /ideas
+    - "!index.qmd"
+    - "!machine-learning-nobel-prizes.qmd"
+    - "!digital-gender-gap.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+
+  - id: careers
+    contents: 
+    - /careers
+    - "!index.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+
+  - id: viewpoints
+    contents: 
+    - /viewpoints
+    - "!index.qmd"
+    - "!editors-note.qmd"
+    - "!RWDS-journal.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
+
+  # - id: editors-blog
+  #   contents: 
+  #   - /viewpoints/editors-blog
+  #   - "!index.qmd"
+  #   sort: "date desc"
+  #   type: grid
+  #   categories: false
+  #   sort-ui: false
+  #   filter-ui: false
+  #   max-items: 3
+  #   feed: false
+
+  # - id: datasciencebites
+  #   contents: 
+  #   - /ideas/datasciencebites
+  #   - "!index.qmd"
+  #   sort: "date desc"
+  #   type: grid
+  #   categories: false
+  #   sort-ui: false
+  #   filter-ui: false
+  #   max-items: 3
+  #   feed: false
+
+  # - id: interviews
+  #   contents: 
+  #   - /viewpoints/interviews
+  #   - "!index.qmd"
+  #   - "!politics-of-modelling.qmd"
+  #   sort: "date desc"
+  #   type: grid
+  #   categories: false
+  #   sort-ui: false
+  #   filter-ui: false
+  #   max-items: 3
+  #   feed: false
+
+  # - id: career-profiles
+  #   contents: 
+  #   - /careers/career-profiles
+  #   - "!index.qmd"
+  #   sort: "date desc"
+  #   type: grid
+  #   categories: false
+  #   sort-ui: false
+  #   filter-ui: false
+  #   max-items: 3
+  #   feed: false
+
+toc: false
+---
+::: {.content-container}
+::: {.top-story .purple-background}
+<a href="/case-studies/posts/2024/11/22/development-plan-2.qmd">
+
+::: grid
+::: {.g-col-12 .g-col-lg-4 .top-story-text}
+## Defining Purposes and Uses to Support the Development of Statistical Products in a 21^st^ Century Census Curated Data Enterprise Environment
+Learn about researchers’ plans to develop the Curated Data Enterprise through a use case research program.  
+:::
+::: {.g-col-12 .g-col-lg-8 .top-story-img}
+![](case-studies/posts/2024/11/22/images/figure-1.png)
+:::
+:::
+
+</a>
+
+:::
+:::
+
+::: {.header-text} 
+::: {.content-container}
+::: {.header-block}
+Welcome to **Ogooue Stat** is an exciting new initiative from [LabInc](https://rss.org.uk/), in partnership with the [American Statistical Association](https://www.amstat.org/). Our mission is to unite **data science students, practitioners, leaders, and educators** to share knowledge, exchange ideas, and draw inspiration from real-world applications of data science.  
+
+Through collaboration and innovation, we aim to empower decision-makers in **Gabon** by transforming data into actionable insights that drive progress and sustainable development.
+
+:::
+:::
+:::
+
+::: {.content-container}
+::: {.listing-block}
+<a href="latest-content.qmd">
+
+## Latest content 
+</a>
+
+::: {#latest-content}
+:::
+
+:::
+:::
+
+::: {.pullout-text}
+::: {.pullout-container}
+::: {.pullout-block .black-background}
+![](images/quote-purple.png){width="100px"}
+
+## Is the energy sector in Gabon on the brink of a data-driven revolution? Or is it (as some suggest) a continuation of established practices, now enhanced by modern analytical tools?  
+
+In this article, we explore how advanced statistical methods and data science techniques are transforming the **energy landscape in Gabon**—from optimizing resource management to shaping sustainable energy policies. Through real-world case studies, we analyze key trends, uncover insights, and examine how data-driven approaches are redefining decision-making in the energy sector. **LabInc** invites you to dive into the intersection of **data science** and **energy policy**—where innovation meets practical solutions for a more sustainable future in **Gabon**.
+
+LabInc asks, 'What are the current situation of energy sector in Gabon?'
+
+::: {.button}
+[Read their analysis](ideas/posts/2024/02/19/what-is-data-science.qmd)
+:::
+
+:::
+:::
+:::
+
+<!-- ::: {.content-container} -->
+<!-- ::: {.listing-block} -->
+<!-- <a href="viewpoints/index.qmd"> -->
+
+<!-- ## Viewpoints  -->
+<!-- </a> -->
+
+<!-- ::: {#viewpoints} -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.content-container} -->
+<!-- ::: {.listing-block} -->
+<!-- <a href="case-studies/index.qmd"> -->
+
+<!-- ## Case Studies -->
+<!-- </a>  -->
+
+<!-- ::: {#case-studies} -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.pullout-text} -->
+<!-- ::: {.pullout-container} -->
+<!-- ::: {.pullout-block .black-background} -->
+<!-- ![](images/quote-purple.png){width="100px"} -->
+
+<!-- ## Generative AI is based on neural networks, which are so-called ‘black boxes’. This makes it difficult or impossible to explain the inner workings of the model which has potential implications if in the future you are challenged to justify decisioning or guidance based on the model. -->
+<!-- Excerpt from the UK government's framework for the use of generative AI -->
+
+<!-- ::: {.button} -->
+<!-- [Read our key takeaways](viewpoints/editors-blog/posts/2024/01/22/gen-ai-framework.qmd) -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.content-container} -->
+<!-- ::: {.listing-block} -->
+<!-- <a href="ideas/index.qmd"> -->
+
+<!-- ## Ideas -->
+<!-- </a>  -->
+
+<!-- ::: {#ideas} -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.content-container} -->
+<!-- ::: {.listing-block} -->
+<!-- <a href="careers/index.qmd"> -->
+
+<!-- ## Careers  -->
+<!-- </a> -->
+
+<!-- ::: {#careers} -->
+<!-- ::: -->
+
+<!-- ::: -->
+<!-- ::: -->
+
+<!-- ::: {.footer-text} -->
+<!-- ::: {.footer-container .black-background} -->
+<!-- ::: {.footer-block} -->
+<!-- ::: grid -->
+
+
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ### Published by -->
+<!-- [![](images/rss-footer-new.png){fig-align="left"}](https://rss.org.uk/) -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ### Our partners -->
+<!-- [![](images/asa-footer-new.png){fig-align="left"}](https://www.amstat.org/) -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ### With support from  -->
+<!-- [![](images/ati-footer-new.png){fig-align="left"}](https://www.turing.ac.uk/) -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ### About us -->
+<!-- [Our aims](about-rwds.qmd)\ -->
+<!-- [Our team](/viewpoints/editors-blog/posts/2022/10/18/meet-the-team.qmd)\ -->
+<!-- [Partners and funders](rwds-partners.qmd)\ -->
+<!-- [Contact us](contact.qmd) -->
+<!-- ::: -->
+<!-- ::: {.g-col-12 .g-col-md-2} -->
+<!-- ### Contribute -->
+<!-- [Call for contributions](/contributor-docs/call-for-contributions.qmd)\ -->
+<!-- [Contributor guidelines](/contributor-docs/contributor-guidelines.qmd)\ -->
+<!-- [Style guide](/contributor-docs/style-guide.qmd) -->
+<!-- ::: -->
+
+
+<!-- <!-- ::: {.g-col-12 .g-col-md-12} -->
+<!-- ### Our partners -->
+<!-- logos to go here -->
+<!-- ::: --> -->
+
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->
+<!-- ::: -->

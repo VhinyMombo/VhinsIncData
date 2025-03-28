@@ -1,6 +1,5 @@
 ---
 title: "Economy"
-author: "@VhinsInc."
 ---
 
 # Economy
