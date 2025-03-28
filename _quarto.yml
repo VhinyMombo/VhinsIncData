@@ -3,13 +3,13 @@ project:
   
 website:
   title: "Ogooue Stat"
-  image: "logo/logo-files-7/logo.png"
-  favicon: "logo/logo-files-7/favicon-32x32.png"
+  image: "logo/logo-files-8/logo.png"
+  favicon: "logo/logo-files-8/favicon-32x32.png"
   open-graph: true
   site-url: https://labinc.ogoouestat.com
   
   navbar:
-    logo: "logo/logo-files-2/logo.png"
+    logo: "logo/logo-files-7/logo.png"
     toggle-position: right
     background: "#f0eeeb"
     logo-alt: "Ogooue Stat brand" 
@@ -17,14 +17,20 @@ website:
     collapse-below: lg
     
     right:
-      - href: Gabon.qmd
-        text: Home
-      - href: Economy.qmd
-        text: Economy
-      - href: electricity.qmd
-        text: Energie
-      - href: Routes.qmd
-        text: Roads
+      - case-studies/index.qmd
+      - Ideas/index.qmd
+      - Parcours/index.qmd 
+      - Opinions/index.qmd
+      - text: "About LIOS"
+        menu:
+        - href: Gabon.qmd
+          text: Home
+        - href: Economy.qmd
+          text: Economy
+        - href: electricity.qmd
+          text: Energie
+        - href: Routes.qmd
+          text: Roads
         
   sidebar: 
     - title: "About us"

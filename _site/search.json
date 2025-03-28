@@ -50,6 +50,27 @@
     ]
   },
   {
+    "objectID": "LICENSE.html",
+    "href": "LICENSE.html",
+    "title": "Licence",
+    "section": "",
+    "text": "The website labInc.Ogoouestat.com (“the website”) and the “Ogoouestat” and “LIOS” brands and logos are copyright © Royal Statistical Society.\nCopyright and licence terms for published articles and any associated videos, images, or other material can be found at the end of each article page, e.g.:\n\n\n\nExample of copyright and licence information from an LIOS article.\n\n\nWe make every reasonable effort to locate, contact and acknowledge copyright owners and wish to be informed by any copyright owners who are not properly identified and acknowledged so that we may make any necessary corrections.\nWhere licence terms for individual articles, videos, images and other published content permit republication, you may do so in accordance with the stated terms of the respective licence(s).\nYou are not permitted to republish the website in its entirety."
+  },
+  {
+    "objectID": "LICENSE.html#content",
+    "href": "LICENSE.html#content",
+    "title": "Licence",
+    "section": "",
+    "text": "The website labInc.Ogoouestat.com (“the website”) and the “Ogoouestat” and “LIOS” brands and logos are copyright © Royal Statistical Society.\nCopyright and licence terms for published articles and any associated videos, images, or other material can be found at the end of each article page, e.g.:\n\n\n\nExample of copyright and licence information from an LIOS article.\n\n\nWe make every reasonable effort to locate, contact and acknowledge copyright owners and wish to be informed by any copyright owners who are not properly identified and acknowledged so that we may make any necessary corrections.\nWhere licence terms for individual articles, videos, images and other published content permit republication, you may do so in accordance with the stated terms of the respective licence(s).\nYou are not permitted to republish the website in its entirety."
+  },
+  {
+    "objectID": "LICENSE.html#software-and-services",
+    "href": "LICENSE.html#software-and-services",
+    "title": "Licence",
+    "section": "Software and services",
+    "text": "Software and services\nThe website is built using Quarto, an open-source scientific and technical publishing system developed by Posit. Quarto source code and software licences are available from GitHub.\nReal World Data Science is hosted by GitHub Pages.\nThe website uses Google Analytics 4 for web analytics reporting.\nFonts used on LIOS are served by the Google Fonts API. This is to improve site loading speeds and font compatibility across devices. Review the Google Fonts Privacy and Data Collection statement.\nUser comments and reaction functionality is provided by giscus, a comments system powered by GitHub Discussions. Use of this comment functionality is governed by the Contributor Covenant Code of Conduct."
+  },
+  {
     "objectID": "about.html",
     "href": "about.html",
     "title": "Analysis of Gabon",
@@ -128,26 +149,5 @@
     "crumbs": [
       "Analysis of Gabon"
     ]
-  },
-  {
-    "objectID": "LICENSE.html",
-    "href": "LICENSE.html",
-    "title": "Licence",
-    "section": "",
-    "text": "The website labInc.Ogoouestat.com (“the website”) and the “Ogoouestat” and “LIOS” brands and logos are copyright © Royal Statistical Society.\nCopyright and licence terms for published articles and any associated videos, images, or other material can be found at the end of each article page, e.g.:\n\n\n\nExample of copyright and licence information from an LIOS article.\n\n\nWe make every reasonable effort to locate, contact and acknowledge copyright owners and wish to be informed by any copyright owners who are not properly identified and acknowledged so that we may make any necessary corrections.\nWhere licence terms for individual articles, videos, images and other published content permit republication, you may do so in accordance with the stated terms of the respective licence(s).\nYou are not permitted to republish the website in its entirety."
-  },
-  {
-    "objectID": "LICENSE.html#content",
-    "href": "LICENSE.html#content",
-    "title": "Licence",
-    "section": "",
-    "text": "The website labInc.Ogoouestat.com (“the website”) and the “Ogoouestat” and “LIOS” brands and logos are copyright © Royal Statistical Society.\nCopyright and licence terms for published articles and any associated videos, images, or other material can be found at the end of each article page, e.g.:\n\n\n\nExample of copyright and licence information from an LIOS article.\n\n\nWe make every reasonable effort to locate, contact and acknowledge copyright owners and wish to be informed by any copyright owners who are not properly identified and acknowledged so that we may make any necessary corrections.\nWhere licence terms for individual articles, videos, images and other published content permit republication, you may do so in accordance with the stated terms of the respective licence(s).\nYou are not permitted to republish the website in its entirety."
-  },
-  {
-    "objectID": "LICENSE.html#software-and-services",
-    "href": "LICENSE.html#software-and-services",
-    "title": "Licence",
-    "section": "Software and services",
-    "text": "Software and services\nThe website is built using Quarto, an open-source scientific and technical publishing system developed by Posit. Quarto source code and software licences are available from GitHub.\nReal World Data Science is hosted by GitHub Pages.\nThe website uses Google Analytics 4 for web analytics reporting.\nFonts used on LIOS are served by the Google Fonts API. This is to improve site loading speeds and font compatibility across devices. Review the Google Fonts Privacy and Data Collection statement.\nUser comments and reaction functionality is provided by giscus, a comments system powered by GitHub Discussions. Use of this comment functionality is governed by the Contributor Covenant Code of Conduct."
   }
 ]

@@ -1,6 +1,22 @@
 [
   {
+    "listing": "/case-studies/index.html",
+    "items": []
+  },
+  {
+    "listing": "/Opinions/index.html",
+    "items": []
+  },
+  {
+    "listing": "/Parcours/index.html",
+    "items": []
+  },
+  {
     "listing": "/index.html",
+    "items": []
+  },
+  {
+    "listing": "/Ideas/index.html",
     "items": []
   }
 ]

@@ -1,5 +1,5 @@
 ---
-pagetitle: "Ogooue Stat"
+pagetitle: "Ogoouee Stat"
 page-layout: custom
 section-divs: false
 editor: source
@@ -7,15 +7,15 @@ sidebar: false
 search: false
 repo-actions: false
 description: | 
-  A showcase for data science in action, brought to you by the Royal Statistical Society in partnership with the American Statistical Association.
+  A showcase for data science in action, brought to you by LabInc.
 image: logo/logo-files-7/logo.png
 listing:
   - id: latest-content
     contents: 
     - /case-studies
-    - /ideas
-    - /careers
-    - /viewpoints
+    - /Ideas
+    - /Parcours
+    - /Opinions
     - "!index.qmd"
     - "!development-plan-2.qmd"
     sort: "date desc"
@@ -44,7 +44,7 @@ listing:
 
   - id: ideas
     contents: 
-    - /ideas
+    - /Ideas
     - "!index.qmd"
     - "!machine-learning-nobel-prizes.qmd"
     - "!digital-gender-gap.qmd"
@@ -56,9 +56,9 @@ listing:
     max-items: 3
     feed: false
 
-  - id: careers
+  - id: Parcours
     contents: 
-    - /careers
+    - /Parcours
     - "!index.qmd"
     sort: "date desc"
     type: grid
@@ -68,12 +68,12 @@ listing:
     max-items: 3
     feed: false
 
-  - id: viewpoints
+  - id: Opinions
     contents: 
-    - /viewpoints
+    - /Opinions
     - "!index.qmd"
     - "!editors-note.qmd"
-    - "!RWDS-journal.qmd"
+    - "!LIOS-journal.qmd"
     sort: "date desc"
     type: grid
     categories: false
@@ -143,7 +143,7 @@ toc: false
 Découvrez les projets des chercheurs visant à développer l'Entreprise de Données organisées à travers un programme de recherche basé sur des cas d'utilisation.
 :::
 ::: {.g-col-12 .g-col-lg-8 .top-story-img}
-![](case-studies/posts/2024/11/22/images/figure-1.png)
+![](images/intro.png)
 :::
 :::
 
