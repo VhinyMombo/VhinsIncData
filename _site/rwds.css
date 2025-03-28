@@ -989,3 +989,9 @@ body:not(.floating) .nav-footer {
 pre code:not(.sourceCode) {
   background-color: #F8F8F8;
 }
+
+.navbar-brand-container img {
+    max-height: 75px;  /* Maximum height of the logo */
+    width: auto;       /* Maintain aspect ratio */
+    object-fit: contain;
+}

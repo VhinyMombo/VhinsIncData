@@ -1,5 +1,4 @@
 /* Custom CSS for LabInc Website */
-
 :root {
     /* Color Palette */
     --primary-color: #2c3e50;
@@ -8,12 +7,10 @@
     --text-color: #333;
     --background-color: #f4f6f7;
     --white: #ffffff;
-
     /* Typography */
     --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
     --font-family-heading: 'Montserrat', sans-serif;
 }
-
 /* Global Reset and Base Styles */
 body {
     font-family: var(--font-family-base);
@@ -25,7 +22,6 @@ body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
 /* Typography */
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-heading);
@@ -34,61 +30,51 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0.75rem;
     line-height: 1.2;
 }
-
 h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.75rem; }
 h4 { font-size: 1.5rem; }
 h5 { font-size: 1.25rem; }
 h6 { font-size: 1rem; }
-
 /* Navbar Customization */
 .navbar {
     background-color: var(--white);
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     padding: 1rem 2rem;
 }
-
 .navbar-brand {
     font-family: var(--font-family-heading);
     font-weight: 700;
     color: var(--primary-color) !important;
 }
-
 .navbar-nav .nav-link {
     color: var(--primary-color);
     font-weight: 500;
     transition: color 0.3s ease;
 }
-
 .navbar-nav .nav-link:hover {
     color: var(--secondary-color);
 }
-
 /* Button Styles */
 .btn-primary {
     background-color: var(--secondary-color);
     border-color: var(--secondary-color);
     transition: all 0.3s ease;
 }
-
 .btn-primary:hover {
     background-color: #2980b9;
     border-color: #2980b9;
 }
-
 /* Form Styles */
 .form-control {
     border-radius: 4px;
     border-color: #ced4da;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-
 .form-control:focus {
     border-color: var(--secondary-color);
     box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
 }
-
 /* Card Styles */
 .card {
     border: none;
@@ -96,50 +82,41 @@ h6 { font-size: 1rem; }
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
-
 /* Grid and Layout */
 .grid {
     display: grid;
     gap: 1.5rem;
 }
-
 /* Responsive Typography */
 @media (max-width: 768px) {
     body {
         font-size: 16px;
     }
-
     h1 { font-size: 2rem; }
     h2 { font-size: 1.75rem; }
     h3 { font-size: 1.5rem; }
 }
-
 /* Utility Classes */
 .bg-light {
     background-color: var(--background-color) !important;
 }
-
 .text-primary {
     color: var(--secondary-color) !important;
 }
-
 /* Smooth Scrolling */
 html {
     scroll-behavior: smooth;
 }
-
 /* Footer Styles */
 .site-footer {
     background-color: var(--primary-color);
     color: var(--white);
     padding: 2rem 0;
 }
-
 /* Code Blocks */
 pre {
     background-color: #f4f4f4;
@@ -147,52 +124,42 @@ pre {
     padding: 1rem;
     overflow-x: auto;
 }
-
 /* Accessibility Improvements */
 a {
     transition: color 0.3s ease;
 }
-
 a:focus {
     outline: 2px solid var(--secondary-color);
     outline-offset: 2px;
 }
-
 /* Panel Tabset Customization */
 .panel-tabset .nav-tabs {
     border-bottom: 2px solid var(--secondary-color);
 }
-
 .panel-tabset .nav-link {
     color: var(--primary-color);
     transition: all 0.3s ease;
 }
-
 .panel-tabset .nav-link.active {
     color: var(--secondary-color);
     border-bottom: 2px solid var(--secondary-color);
 }
-
 /* Image Responsiveness */
 img {
     max-width: 100%;
     height: auto;
 }
-
 /* Scrollbar Customization (Webkit Browsers) */
 ::-webkit-scrollbar {
     width: 10px;
 }
-
 ::-webkit-scrollbar-track {
     background: #f1f1f1;
 }
-
 ::-webkit-scrollbar-thumb {
     background: var(--secondary-color);
     border-radius: 5px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
     background: #2980b9;
 }

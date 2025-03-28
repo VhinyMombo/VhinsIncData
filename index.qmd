@@ -1,5 +1,5 @@
 ---
-pagetitle: "Real World Data Science"
+pagetitle: "Ogooue Stat"
 page-layout: custom
 section-divs: false
 editor: source
@@ -8,7 +8,7 @@ search: false
 repo-actions: false
 description: | 
   A showcase for data science in action, brought to you by the Royal Statistical Society in partnership with the American Statistical Association.
-image: images/rwds-logo-150px.png
+image: logo/logo-files-7/logo.png
 listing:
   - id: latest-content
     contents: 
@@ -139,8 +139,8 @@ toc: false
 
 ::: grid
 ::: {.g-col-12 .g-col-lg-4 .top-story-text}
-## Defining Purposes and Uses to Support the Development of Statistical Products in a 21^st^ Century Census Curated Data Enterprise Environment
-Learn about researchers’ plans to develop the Curated Data Enterprise through a use case research program.  
+## Définir les objectifs et les utilisations pour soutenir le développement de produits statistiques dans un environnement de données organisées pour un recensement du XXIᵉ siècle
+Découvrez les projets des chercheurs visant à développer l'Entreprise de Données organisées à travers un programme de recherche basé sur des cas d'utilisation.
 :::
 ::: {.g-col-12 .g-col-lg-8 .top-story-img}
 ![](case-studies/posts/2024/11/22/images/figure-1.png)
@@ -155,9 +155,8 @@ Learn about researchers’ plans to develop the Curated Data Enterprise through 
 ::: {.header-text} 
 ::: {.content-container}
 ::: {.header-block}
-Welcome to **Ogooue Stat** is an exciting new initiative from [LabInc](https://rss.org.uk/), in partnership with the [American Statistical Association](https://www.amstat.org/). Our mission is to unite **data science students, practitioners, leaders, and educators** to share knowledge, exchange ideas, and draw inspiration from real-world applications of data science.  
-
-Through collaboration and innovation, we aim to empower decision-makers in **Gabon** by transforming data into actionable insights that drive progress and sustainable development.
+Bienvenue sur  **Ogooue Stat**,  une initiative passionnante lancée par [LabInc](https://rss.org.uk/), en partenariat avec l'[Association Américaine de Statistiques](https://www.amstat.org/). Notre mission est de réunir des **experts en data science et statistiques, praticiens, leaders et éducateurs** pour partager des connaissances, échanger des idées et s'inspirer des applications concrètes de la data science et de l'intelligence artificielle.
+À travers la collaboration et l'innovation, nous visons à responsabiliser les décideurs au **Gabon** en transformant les données en perspectives exploitables qui stimulent le progrès et le développement durable.
 
 :::
 :::
@@ -167,7 +166,7 @@ Through collaboration and innovation, we aim to empower decision-makers in **Gab
 ::: {.listing-block}
 <a href="latest-content.qmd">
 
-## Latest content 
+## Dernière publication 
 </a>
 
 ::: {#latest-content}
@@ -181,14 +180,12 @@ Through collaboration and innovation, we aim to empower decision-makers in **Gab
 ::: {.pullout-block .black-background}
 ![](images/quote-purple.png){width="100px"}
 
-## Is the energy sector in Gabon on the brink of a data-driven revolution? Or is it (as some suggest) a continuation of established practices, now enhanced by modern analytical tools?  
+## Le secteur de l'énergie au Gabon est-il à l’aube d’une révolution axée sur les données ? Ou bien est-ce (comme certains le suggèrent) une continuation des pratiques établies, désormais renforcées par des outils analytiques modernes ?  Dans cet article, nous explorons comment les méthodes statistiques avancées et les techniques de science des données peuvent aider à transformer le **paysage énergétique au Gabon**—de l’optimisation de la gestion des ressources à l’élaboration de politiques énergétiques durables.  À travers des études de cas concrètes, nous analysons les tendances clés, révélons des informations cruciales et examinons comment les approches fondées sur les données redéfinissent la prise de décision dans le secteur de l’énergie.  **LabInc** vous invite à plonger au cœur de l’intersection entre la **science des données** et la **politique énergétique**—là où l’innovation rencontre des solutions concrètes pour un avenir plus durable au **Gabon**.  
 
-In this article, we explore how advanced statistical methods and data science techniques are transforming the **energy landscape in Gabon**—from optimizing resource management to shaping sustainable energy policies. Through real-world case studies, we analyze key trends, uncover insights, and examine how data-driven approaches are redefining decision-making in the energy sector. **LabInc** invites you to dive into the intersection of **data science** and **energy policy**—where innovation meets practical solutions for a more sustainable future in **Gabon**.
-
-LabInc asks, 'What are the current situation of energy sector in Gabon?'
+**LabInc** pose la question : _"Quelle est la situation actuelle du secteur de l'énergie au Gabon ?"_
 
 ::: {.button}
-[Read their analysis](ideas/posts/2024/02/19/what-is-data-science.qmd)
+[Lire l'analyse ici](posts/200324/electricity.qmd)
 :::
 
 :::
@@ -263,26 +260,30 @@ LabInc asks, 'What are the current situation of energy sector in Gabon?'
 <!-- ::: -->
 <!-- ::: -->
 
-<!-- ::: {.footer-text} -->
-<!-- ::: {.footer-container .black-background} -->
-<!-- ::: {.footer-block} -->
-<!-- ::: grid -->
+::: {.footer-text}
+::: {.footer-container .black-background}
+::: {.footer-block}
+::: grid
 
 
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ### Published by -->
-<!-- [![](images/rss-footer-new.png){fig-align="left"}](https://rss.org.uk/) -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ### Our partners -->
-<!-- [![](images/asa-footer-new.png){fig-align="left"}](https://www.amstat.org/) -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ### With support from  -->
-<!-- [![](images/ati-footer-new.png){fig-align="left"}](https://www.turing.ac.uk/) -->
-<!-- ::: -->
-<!-- ::: {.g-col-12 .g-col-md-2} -->
-<!-- ::: -->
+::: {.g-col-12 .g-col-md-2}
+### Published by
+[![](images/rss-footer-new.png){fig-align="left"}](https://rss.org.uk/)
+:::
+
+::: {.g-col-12 .g-col-md-2}
+### Our partners
+[![](images/asa-footer-new.png){fig-align="left"}](https://www.amstat.org/)
+:::
+
+::: {.g-col-12 .g-col-md-2}
+### With support from
+[![](images/ati-footer-new.png){fig-align="left"}](https://www.turing.ac.uk/)
+:::
+
+::: {.g-col-12 .g-col-md-2}
+:::
+
 ::: {.g-col-12 .g-col-md-2}
 ### About us
 [Our aims](about-rwds.qmd)\

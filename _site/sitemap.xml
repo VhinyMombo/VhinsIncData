@@ -1,23 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://labinc.ogoouestat.com/Routes.html</loc>
-    <lastmod>2025-03-27T16:02:13.221Z</lastmod>
-  </url>
-  <url>
-    <loc>https://labinc.ogoouestat.com/Gabon.html</loc>
-    <lastmod>2025-03-28T12:24:25.820Z</lastmod>
-  </url>
-  <url>
-    <loc>https://labinc.ogoouestat.com/Economy.html</loc>
-    <lastmod>2025-03-28T12:37:48.063Z</lastmod>
+    <loc>https://labinc.ogoouestat.com/ts-and-cs.html</loc>
+    <lastmod>2025-03-28T15:19:18.228Z</lastmod>
   </url>
   <url>
     <loc>https://labinc.ogoouestat.com/electricity.html</loc>
     <lastmod>2025-03-28T12:37:13.512Z</lastmod>
   </url>
   <url>
+    <loc>https://labinc.ogoouestat.com/about.html</loc>
+    <lastmod>2025-03-27T22:25:37.571Z</lastmod>
+  </url>
+  <url>
+    <loc>https://labinc.ogoouestat.com/Gabon.html</loc>
+    <lastmod>2025-03-28T12:24:25.820Z</lastmod>
+  </url>
+  <url>
+    <loc>https://labinc.ogoouestat.com/LICENSE.html</loc>
+    <lastmod>2025-03-28T15:26:00.199Z</lastmod>
+  </url>
+  <url>
+    <loc>https://labinc.ogoouestat.com/posts/200324/electricity.html</loc>
+    <lastmod>2025-03-28T15:06:50.526Z</lastmod>
+  </url>
+  <url>
     <loc>https://labinc.ogoouestat.com/index.html</loc>
-    <lastmod>2025-03-28T12:11:05.357Z</lastmod>
+    <lastmod>2025-03-28T15:52:31.840Z</lastmod>
+  </url>
+  <url>
+    <loc>https://labinc.ogoouestat.com/Economy.html</loc>
+    <lastmod>2025-03-28T12:37:48.063Z</lastmod>
+  </url>
+  <url>
+    <loc>https://labinc.ogoouestat.com/Routes.html</loc>
+    <lastmod>2025-03-28T12:37:00.801Z</lastmod>
   </url>
 </urlset>
