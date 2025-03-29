@@ -18,13 +18,13 @@ website:
     
     right:
       - text: "Case studies"
-        href: case-studies/index.qmd
+        href: case-studies/index.html
       - text: "Ideas"
-        href: Ideas/index.qmd
+        href: Ideas/index.html
       - text: "Parcours"
-        href: Parcours/index.qmd 
+        href: Parcours/index.html
       - text: "Opinions"
-        href: Opinions/index.qmd
+        href: Opinions/index.html
       - text: "About LIOS"
         menu:
         - href: Gabon.qmd
