@@ -30,10 +30,6 @@ listing:
     contents: 
     - /case-studies
     - "!index.qmd"
-    - "!what-is-CDE-2.qmd"
-    - "!policy-problem.qmd"
-    - "!use-case-2.qmd"
-    - "!development-plan-2.qmd"
     sort: "date desc"
     type: grid
     categories: false
@@ -46,8 +42,6 @@ listing:
     contents: 
     - /Ideas
     - "!index.qmd"
-    - "!machine-learning-nobel-prizes.qmd"
-    - "!digital-gender-gap.qmd"
     sort: "date desc"
     type: grid
     categories: false
@@ -119,17 +113,17 @@ listing:
   #   max-items: 3
   #   feed: false
 
-  # - id: career-profiles
-  #   contents: 
-  #   - /careers/career-profiles
-  #   - "!index.qmd"
-  #   sort: "date desc"
-  #   type: grid
-  #   categories: false
-  #   sort-ui: false
-  #   filter-ui: false
-  #   max-items: 3
-  #   feed: false
+  - id: career-profiles
+    contents:
+    - /careers/career-profiles
+    - "!index.qmd"
+    sort: "date desc"
+    type: grid
+    categories: false
+    sort-ui: false
+    filter-ui: false
+    max-items: 3
+    feed: false
 
 toc: false
 ---

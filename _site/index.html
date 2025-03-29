@@ -80,9 +80,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -108,9 +108,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: [],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -199,6 +199,34 @@ ul.task-list li input[type="checkbox"] {
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-Opinions'] = new List('listing-Opinions', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-career-profiles .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: [{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: [],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-career-profiles'] = new List('listing-career-profiles', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -352,7 +380,56 @@ window.Quarto = {
 </a><p><a href="latest-content.qmd"></a></p>
 <div id="listing-latest-content" class="quarto-listing quarto-listing-container-grid">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="SW5mcmFzdHJ1Y3R1cmUlMkNHRFAlMkNEZXZlbG9wcGVtZW50" data-listing-date-sort="1743278416000" data-listing-file-modified-sort="1743278416044" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2114">
+<a href="./case-studies/posts/20250329/Routes.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./case-studies/posts/20250329/images/roads.png" class="thumbnail-image card-img" style="height: 150px;" alt="provides a description of the image for screen readers">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Etudes du reseau routier gabonais
+</h5>
+<div class="card-text listing-description">
+<p>Description du reseau routier.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+LabInc.
+</div>
+<div class="listing-date">
+Mar 29, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="V29ybGQlMjBiYW5rJTJDR0RQJTJDRWNvbm9teQ==" data-listing-date-sort="1743278127000" data-listing-file-modified-sort="1743278127102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1762">
+<a href="./case-studies/posts/20250329/Economy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./case-studies/posts/20250329/images/test.png" class="thumbnail-image card-img" style="height: 150px;" alt="provides a description of the image for screen readers">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Economy of Gabon
+</h5>
+<div class="card-text listing-description">
+<p>Evolution of the economy of gabon and perspectives.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+LabInc.
+</div>
+<div class="listing-date">
+Mar 29, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -900,7 +977,56 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <div class="quarto-listing quarto-listing-container-grid" id="listing-case-studies">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="SW5mcmFzdHJ1Y3R1cmUlMkNHRFAlMkNEZXZlbG9wcGVtZW50" data-listing-date-sort="1743278416000" data-listing-file-modified-sort="1743278416044" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="11" data-listing-word-count-sort="2114">
+<a href="./case-studies/posts/20250329/Routes.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./case-studies/posts/20250329/images/roads.png" class="thumbnail-image card-img" style="height: 150px;" alt="provides a description of the image for screen readers">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Etudes du reseau routier gabonais
+</h5>
+<div class="card-text listing-description">
+<p>Description du reseau routier.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+LabInc.
+</div>
+<div class="listing-date">
+Mar 29, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="V29ybGQlMjBiYW5rJTJDR0RQJTJDRWNvbm9teQ==" data-listing-date-sort="1743278127000" data-listing-file-modified-sort="1743278127102" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1762">
+<a href="./case-studies/posts/20250329/Economy.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="./case-studies/posts/20250329/images/test.png" class="thumbnail-image card-img" style="height: 150px;" alt="provides a description of the image for screen readers">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Economy of Gabon
+</h5>
+<div class="card-text listing-description">
+<p>Evolution of the economy of gabon and perspectives.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+LabInc.
+</div>
+<div class="listing-date">
+Mar 29, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
@@ -920,6 +1046,13 @@ No matching items
 No matching items
 </div>
 </div><div class="quarto-listing quarto-listing-container-grid" id="listing-Opinions">
+<div class="list grid quarto-listing-cols-3">
+
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div><div class="quarto-listing quarto-listing-container-grid" id="listing-career-profiles">
 <div class="list grid quarto-listing-cols-3">
 
 </div>
