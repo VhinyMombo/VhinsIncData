@@ -17,10 +17,14 @@ website:
     collapse-below: lg
     
     right:
-      - case-studies/index.qmd
-      - Ideas/index.qmd
-      - Parcours/index.qmd 
-      - Opinions/index.qmd
+      - text: "Case studies"
+        href: case-studies/index.qmd
+      - text: "Ideas"
+        href: Ideas/index.qmd
+      - text: "Parcours"
+        href: Parcours/index.qmd 
+      - text: "Opinions"
+        href: Opinions/index.qmd
       - text: "About LIOS"
         menu:
         - href: Gabon.qmd
