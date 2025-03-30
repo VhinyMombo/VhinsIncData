@@ -332,11 +332,9 @@ Une telle démarche pourrait contribuer à améliorer l'accessibilité, réduire
 
 ::: {.g-col-12 .g-col-sm-6}
 ::: nav-btn
-[Part 3: Infrastructures : 60 ans apres l'indépendance  &rarr;](/case-studies/posts/20250329/Infrastructures.qmd)
+[Part 3: Infrastructures : plus de 60 ans apres l'indépendance →](/case-studies/posts/20250329/Infrastructures.qmd)
 :::
 :::
-
-
 :::
 :::
 

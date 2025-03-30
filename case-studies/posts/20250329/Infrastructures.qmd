@@ -1,5 +1,5 @@
 ---
-title: "Infrastructures et Loisirs au Gabon : Quelles Perspectives ?"
+title:  "Infrastructures : plus de 60 ans apres l'indépendance"
 description: | 
   Explorez comment le Gabon utilise ses ressources naturelles pour façonner son développement économique et social.
 categories: 
@@ -17,7 +17,7 @@ execute:
   messages: false
   error: false
   warning: false
-image: images/infra.png
+image: images/infras.png
 image-alt: "Vue satellite du Gabon"
 ---
 
@@ -450,7 +450,7 @@ En définitive, bien que le Gabon ait fait des progrès significatifs dans le d�
 ::: grid
 ::: {.g-col-12 .g-col-sm-6}
 ::: nav-btn
-[Part 2: Etudes du reseaux routiers &rarr;](/case-studies/posts/20250329/Routes.qmd)
+[&larr; Part 2: Etudes du reseaux routiers](/case-studies/posts/20250329/Routes.qmd)
 :::
 :::
 
