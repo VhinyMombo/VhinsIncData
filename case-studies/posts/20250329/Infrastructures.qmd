@@ -478,7 +478,7 @@ sport <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
                                "Semi-prioritaire" = "#874116", 
-                               "Modéré" = "steelblue")) +
+                               "Modérée" = "steelblue")) +
   labs(title = "Priorité dans l'enseignement par villes",
        subtitle = "Scores de priorité basés sur la densité de population et la proximité des installations éducatives.",
        x = "Ville",
@@ -545,7 +545,7 @@ culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
                                "Semi-prioritaire" = "#874116", 
-                               "Modéré" = "steelblue")) +
+                               "Modérée" = "steelblue")) +
   labs(title = "Priorité d'accès en terme de lieu de culture et loisirs",
        subtitle = "Identification des villes clés en fonction de l'accès aux infrastructures culturelles. Les trois premières sont mises en évidence.",
        x = "Ville",
