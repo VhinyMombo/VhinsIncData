@@ -1,68 +1,66 @@
 ---
-title: "Terms and conditions"
+title: "Conditions générales d'utilisation"
 page-layout: article
 sidebar: false
 toc: true
 title-block-banner: true
 ---
-## Legal disclaimer
-Statements of fact and opinion published on this website are those of the respective authors and contributors and not necessarily those of Real World Data Science (RWDS), its editors, the Royal Statistical Society (RSS), or other partners and funders. 
 
-RWDS has prepared the content of this website responsibly and carefully. However, RWDS, its editors, the RSS, or other partners and funders disclaim all warranties, express or implied, as to the accuracy of the information contained in any of the materials on this website or on other linked websites or on any subsequent links. This includes, but is not by way of limitation: 
+## Avertissement légal
 
-- any implied warranties of merchantability and fitness for a particular purpose. 
+Les déclarations de fait et d'opinion publiées sur ce site web sont celles des auteurs et contributeurs respectifs et ne reflètent pas nécessairement celles de LIOS (LabInc Ogooue Stat), de ses éditeurs, de la Royal Statistical Society (RSS), ou d'autres partenaires et bailleurs de fonds.
 
-- any liability for damage to your computer hardware, data, information, materials and business resulting from the information or the lack of information available. 
+LIOS a préparé le contenu de ce site web de manière responsable et soignée. Cependant, LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds déclinent toute garantie, explicite ou implicite, quant à l'exactitude des informations contenues dans l'un des matériaux de ce site web ou sur d'autres sites web liés ou sur tout lien subséquent. Cela inclut, mais sans limitation :
 
-- any errors, omissions, or inaccuracies in the information. 
+-   toute garantie implicite de qualité marchande et d'adaptation à un usage particulier.
+-   toute responsabilité pour les dommages à votre matériel informatique, données, informations, matériaux et entreprise résultant des informations ou du manque d'informations disponibles.
+-   toute erreur, omission ou inexactitude dans les informations.
+-   toute décision prise ou action entreprise ou non en fonction des informations.
 
-- any decision made or action taken or not taken in reliance upon the information. 
+LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds ne garantissent pas le contenu, l'exactitude, l'opportunité ou l'exhaustivité des informations ou que les informations peuvent être utilisées pour une raison quelconque et ne portent aucune responsabilité pour l'exactitude, le contenu ou la légalité de tout site lié ou de celui de tout lien subséquent. LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds ne garantissent pas que le service du site web sera ininterrompu ou exempt d'erreurs ou que les défauts peuvent être corrigés.
 
-RWDS, its editors, the RSS, or other partners and funders make no warranty as to the content, accuracy, timeliness or completeness of the information or that the information may be relied upon for any reason and bear no responsibility for the accuracy, content or legality of any linked site or for that of any subsequent links. RWDS, its editors, the RSS, or other partners and funders make no warranty that the website service will be uninterrupted or error-free or that any defects can be corrected. 
+LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds ne seront pas responsables pour toute perte ou dommage (y compris sans limitation, dommage consécutif) découlant de l'utilisation, ou de la confiance en, les informations de ce site web, ou de l'utilisation de l'internet en général. Les liens vers d'autres sites web ou la publication d'annonces ne constituent pas une approbation ou une approbation par LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds.
 
-RWDS, its editors, the RSS, or other partners and funders shall not be liable for any losses or damages (including without limitation consequential loss or damage) whatsoever from the use of, or reliance on, the information in this website, or from the use of the internet generally. Links to other websites or the publication of advertisements do not constitute an endorsement or an approval by RWDS, its editors, the RSS, or other partners and funders. 
+Ces avertissements et exclusions seront régis et interprétés conformément aux lois de l'Angleterre et du Pays de Galles sous la juridiction exclusive des tribunaux de l'Angleterre et du Pays de Galles. Ceux qui choisissent d'accéder à ce site depuis l'extérieur du Royaume-Uni sont responsables de la conformité avec les lois locales dans la mesure où ces lois locales sont applicables.
 
-These disclaimers and exclusions shall be governed by and construed in accordance with the laws of England and Wales under the exclusive jurisdiction of the courts of England and Wales. Those who choose to access this site from outside the United Kingdom are responsible for compliance with local laws if and to the extent local laws are applicable. 
+En utilisant ce site, vous acceptez ces termes et conditions d'utilisation.
 
-By using this site, you agree to these terms and conditions of use.   
+## Quels sites web lions-nous ?
 
-## What websites do we link to? 
-RWDS editors and contributors recommend external web links on the basis of their suitability and usefulness for our users. Selection and addition of links to our website is entirely a matter for RWDS and for RWDS alone. 
+Les éditeurs et contributeurs de LIOS recommandent des liens web externes en fonction de leur pertinence et de leur utilité pour nos utilisateurs. La sélection et l'ajout de liens à notre site web sont entièrement à la discrétion de LIOS.
 
-It is not our policy to enter into agreements for reciprocal links. 
+Il n'est pas de notre politique de conclure des accords pour des liens réciproques.
 
-The inclusion of a link to an organisation's or individual's website does not constitute an endorsement or an approval by RWDS, its editors, the RSS, or other partners and funders of any product, service, policy or opinion of the organisation or individual. RWDS, its editors, the RSS, or other partners and funders are not responsible for the content of external websites. 
+L'inclusion d'un lien vers le site web d'une organisation ou d'un individu ne constitue pas une approbation ou une approbation par LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds de tout produit, service, politique ou opinion de l'organisation ou de l'individu. LIOS, ses éditeurs, la RSS, ou d'autres partenaires et bailleurs de fonds ne sont pas responsables du contenu des sites web externes.
 
-## What websites will we not link to? 
-We will not link to websites that contain racist, sexual or misleading content; that promote violence; that are in breach of any UK law; which are otherwise offensive to individuals or to groups of people. 
+## Quels sites web ne lions-nous pas ?
 
-The decision of RWDS is final and no correspondence will be entered into. 
+Nous ne lions pas les sites web qui contiennent du contenu raciste, sexuel ou trompeur; qui promeuvent la violence; qui sont en violation de toute loi du Royaume-Uni; ou qui sont autrement offensants pour des individus ou des groupes de personnes.
 
-If you wish to report a concern, please email [rwds@rss.org.uk](mailto:rwds@rss.org.uk).
+La décision de LIOS est définitive et aucune correspondance ne sera entamée.
 
-## Notice and Takedown policy
-If you are a rights holder and are concerned that you have found material on our site for which you have not given permission, or is not covered by a limitation or exception in national law, please contact us in writing stating the following:
+<!-- Si vous souhaitez signaler une préoccupation, veuillez envoyer un email à [rwds@rss.org.uk](mailto:rwds@rss.org.uk). -->
 
-1. Your contact details.
-2. The full bibliographic details of the material.
-3. The exact and full url where you found the material.
-4. Proof that you are the rights holder and a statement that, under penalty of perjury, you are the rights holder or are an authorised representative.
+## Politique de notification et de retrait
 
-**Contact details:**\
-Notice and Takedown,\
-Licensing,\
-12 Errol Street,\
-London EC1Y 8LX\
-web@rss.org.uk
+Si vous êtes titulaire de droits et que vous êtes préoccupé par le fait que vous avez trouvé du matériel sur notre site pour lequel vous n'avez pas donné votre permission, ou qui n'est pas couvert par une limitation ou une exception dans la loi nationale, veuillez nous contacter par écrit en indiquant les informations suivantes :
 
-Upon receipt of notification, the 'Notice and Takedown' procedure is then invoked as follows:
+1.  Vos coordonnées.
+2.  Les détails bibliographiques complets du matériel.
+3.  L'URL exacte et complète où vous avez trouvé le matériel.
+4.  Preuve que vous êtes le détenteur des droits et une déclaration que, sous peine de parjure, vous êtes le détenteur des droits ou êtes un représentant autorisé.
 
-1. We will acknowledge receipt of your complaint by email or letter and will make an initial assessment of the validity and plausibility of the complaint.
-2. Upon receipt of a valid complaint the material will be temporarily removed from our website pending an agreed solution.
-3. We will contact the contributor who deposited the material, if relevant. The contributor will be notified that the material is subject to a complaint, under what allegations, and will be encouraged to assuage the complaints concerned.
-4. The complainant and the contributor will be encouraged to resolve the issue swiftly and amicably and to the satisfaction of both parties, with the following possible outcomes:
-    - The material is replaced on our website unchanged.
-    - The material is replaced on our website with changes.
-    - The material is permanently removed from our website.
+**Coordonnées :**
+LabInc.
 
-If the contributor and the complainant are unable to agree a solution, the material will remain unavailable through the website until a time when a resolution has been reached.
+À réception de la notification, la procédure 'Notice and Takedown' est ensuite invoquée comme suit :
+
+1.  Nous accuserons réception de votre plainte par email ou lettre et ferons une évaluation initiale de la validité et de la plausibilité de la plainte.
+2.  À réception d'une plainte valide, le matériel sera temporairement retiré de notre site web en attendant une solution convenue.
+3.  Nous contacterons le contributeur qui a déposé le matériel, si pertinent. Le contributeur sera informé que le matériel fait l'objet d'une plainte, sous quelles allégations, et sera encouragé à apaiser les plaintes concernées.
+4.  Le plaignant et le contributeur seront encouragés à résoudre le problème rapidement et à l'amiable et à la satisfaction des deux parties, avec les résultats possibles suivants :
+    -   Le matériel est replacé sur notre site web inchangé.
+    -   Le matériel est replacé sur notre site web avec des modifications.
+    -   Le matériel est retiré de façon permanente de notre site web.
+
+Si le contributeur et le plaignant ne parviennent pas à s'entendre sur une solution, le matériel restera indisponible via le site web jusqu'à ce qu'une résolution soit trouvée.

@@ -59,17 +59,17 @@ website:
   page-footer:
     background: "#000000"
     left: |
-      [Copyright &copy; 2024 Royal Statistical Society](/LICENCE.md)
+        [Copyright &copy; 2024 LabInc Ogoouee Stat](/LICENCE.md)
     center:
-      - href: https://twitter.com/rwdatasci
+      - href: https://twitter.com/lios
         icon: twitter-x
         aria-label: Twitter/X
-      - href: https://fosstodon.org/@rwdatasci
+      - href: https://fosstodon.org/@lios
         icon: mastodon
         aria-label: Mastodon
       - href: feeds.html
         icon: rss
-        aria-label: RWDS rss
+        aria-label: LIOS rss
 
     right: |
       [Terms & Conditions](/ts-and-cs.qmd)

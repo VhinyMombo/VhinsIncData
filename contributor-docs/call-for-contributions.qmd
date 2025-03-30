@@ -1,0 +1,26 @@
+---
+title: "Appel à contributions"
+subtitle: "Partagez vos travaux, insights et expertises sur l'utilisation de la science des données dans la prise de décision réelle"
+---
+  
+**LIOS** (LabInc Ogooue Stat) vise à éclairer, inspirer et renforcer la communauté de la science des données en présentant des exemples concrets de la pratique de la science des données et en rassemblant des scientifiques de données pour partager leurs connaissances.
+
+Nous ne pouvons pas réussir ces objectifs sans le soutien et les contributions de la communauté des sciences de données. Merci donc de prendre le temps de consulter cet appel ouvert à contributions.
+
+## Que recherchons-nous ?
+Ci-dessous, vous trouverez une liste de nos domaines de contenu principaux. Nous accueillons les soumissions dans tous ces domaines. Chaque domaine de contenu est lié à son propre ensemble de notes pour les contributeurs.
+
+* [Études de cas](case-studies.qmd)
+* [Explicatifs](explainers.qmd)
+* [Jeux de données](datasets.qmd)
+* [Guides de formation](training-guides.qmd)
+
+
+Les soumissions peuvent porter sur tous les sujets et tous les domaines d'application. Nous souhaitons que notre contenu reflète la largeur et la profondeur de la science des données dans le monde réel.
+
+## Notre public cible
+LIOS est destiné à tous ceux qui travaillent dans le domaine de la science des données, qu'ils soient étudiants, enseignants, praticiens ou leaders. Les contributions n'ont pas besoin de plaire à *tous* les scientifiques de données. Les contributeurs devraient réfléchir soigneusement à qui ils essaient de s'adresser et adapter leurs contributions en conséquence.
+
+  
+## Comment soumettre
+Une fois que vous avez consulté nos notes pour les contributeurs et décidé d'un domaine de contenu, d'un thème et d'un public, veuillez consulter nos [directives pour les contributeurs](contributor-guidelines.qmd) pour plus de détails sur le processus de soumission.

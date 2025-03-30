@@ -1,0 +1,36 @@
+---
+title: "A prios de LIOS"
+subtitle: Les données pour l'aide a la prise de decision
+sidebar: false
+page-layout: article
+toc: false
+title-block-banner: true
+---
+
+# Bienvenue chez LIOS
+
+**LIOS** (LabInc Ogooue Stat) est une initiative pionnière développée par [LabInc](https://labinc.org/), conçue pour exploiter le potentiel de la science des données afin de renforcer la prise de décision au Gabon. Notre objectif est de transformer les approches analytiques en outils pratiques et accessibles qui améliorent les processus décisionnels dans divers secteurs.
+
+## Notre mission
+
+La mission de LIOS est de promouvoir l'utilisation des sciences de données de manière éthique et efficace, offrant des solutions concrètes aux défis locaux. Nous nous engageons à :
+
+-   **Éduquer** : Former les décideurs et les professionnels aux méthodologies avancées de la science des données.
+-   **Innover** : Développer des outils qui adaptent les technologies de pointe aux contextes spécifiques du Gabon.
+-   **Collaborer** : Travailler en partenariat avec des institutions gouvernementales, des entreprises et des ONG pour intégrer la science des données dans les pratiques courantes.
+
+## Ce que nous offrons
+
+LIOS offre une gamme de ressources conçues pour faciliter l'apprentissage et l'application de la science des données :
+
+-   **Études de cas** : Illustrations de la manière dont la science des données peut résoudre des problèmes réels.
+-   **Formations** : Programmes éducatifs ciblés pour développer des compétences en analyse de données.
+-   **Ressources** : Accès à des jeux de données, des guides méthodologiques, et des analyses approfondies.
+
+## Impliquez-vous
+
+Nous encourageons la participation active de la communauté à travers des contributions et des collaborations. Pour en savoir plus sur comment vous pouvez contribuer ou bénéficier de nos ressources, consultez notre [appel à contributions](contributor-docs/call-for-contributions.qmd).
+
+------------------------------------------------------------------------
+
+Ce texte en Markdown peut être utilisé pour une page web, un document ou tout support nécessitant une description formatée de LIOS. Il est conçu pour être clair, informatif et facilement intégrable dans divers contextes de communication.
