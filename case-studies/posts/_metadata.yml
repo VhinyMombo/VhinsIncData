@@ -3,5 +3,5 @@ include-in-header:
   
 comments:
   giscus: 
-      repo: realworlddatascience/realworlddatascience.github.io
+      repo: VhinyMombo/VhinsIncData
       category: General
