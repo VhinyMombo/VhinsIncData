@@ -309,16 +309,16 @@ A propos des auteurs
 
 Copyright and licence
 
-:   © 2024 Ogoouee Stat
+:   ©2025 LIOS
 
-<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>. Thumbnail photo by <a href="https://unsplash.com/@goumbik">Lukas Blazek</a> on <a href="https://unsplash.com/photos/turned-on-black-and-grey-laptop-computer-mcSDtbWXUZU">Unsplash</a>.
+<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>. 
 :::
 
 ::: {.g-col-12 .g-col-md-6}
 
 How to cite
 
-:   LabInc, Ogooue Stat. "Economy du Gabon, evolution et perspectives" LIOS, Mars 29, 2024.
+:   LabInc, Ogooue Stat. "Economy du Gabon, evolution et perspectives" LIOS, Mars 29, 2025.
 :::
 :::
 :::
