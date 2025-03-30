@@ -416,11 +416,151 @@ map
 
 La répartition des infrastructures au Gabon présente un tableau complexe marqué par **des disparités profondes** entre différentes régions du pays. Ces inégalités ne sont pas simplement géographiques ; elles reflètent des défis structurels qui façonnent l'avenir économique et social de cette nation d'Afrique centrale.
 
-### Le Grand Fossé : centres urbains vs. périphéries rurales
+### Le Grand fossé : centres urbains vs. périphéries rurales
 
 Le contraste entre les zones urbaines et rurales est saisissant. Alors que **Libreville et Port-Gentil jouissent d'infrastructures relativement modernes**, avec des réseaux routiers entretenus, un accès plus fiable à l'électricité, des services d'eau potable plus développés et des établissements de santé et d'éducation de meilleure qualité.
 
 Les régions rurales, quant à elles, font face à une **précarité infrastructurelle alarmante**, caractérisée par des routes souvent impraticables en saison des pluies, un approvisionnement électrique intermittent ou inexistant, des difficultés d'accès à l'eau potable et des services de santé et d'éducation limités.
+
+
+Avant d'examiner les détails du graphique, il est crucial de comprendre **l'importance de cette répartition**. Les disparités mises en lumière soulignent un besoin urgent d'interventions ciblées pour corriger **l'inégalité flagrante entre les centres urbains et les régions périphériques**. Une stratégie bien pensée pourrait non seulement améliorer la qualité de vie dans les zones défavorisées mais aussi entraîner un développement harmonieux et inclusif sur l'ensemble du territoire national.
+
+
+```{r enseignement, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Scores de priorité basés sur la densité de population et la proximité des installations éducatives. \nLes trois villes avec les indices les plus élevés sont mises en évidence en rouge pour signaler les zones nécessitant une attention particulière."}
+
+source("theme/theme.R")
+gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
+
+
+# Assurer que les deux jeux de données sont dans le même système de coordonnées
+gabon_sport <- st_transform(gabon_enseignement, st_crs(gabon_cities))
+
+# Calculer pour chaque ville l'indice de l'installation sportive la plus proche
+nearest_indices <- st_nearest_feature(gabon_cities, gabon_sport)
+
+# Calculer la distance entre chaque ville et son installation sportive la plus proche
+distances <- st_distance(gabon_cities, gabon_sport[nearest_indices, ], by_element = TRUE)
+
+# Ajouter cette distance comme attribut aux villes
+gabon_cities$distance_to_nearest_stadium <- as.numeric(distances)
+
+
+# Créer un facteur composite (distance × population)
+# Plus la distance est grande et plus la population est importante, plus le besoin est grand
+comp_factor <- gabon_cities$distance_to_nearest_stadium * gabon_cities$POP_MAX
+
+# Normaliser pour que la somme soit égale à 1
+gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
+
+# Variante avec une relation non linéaire pour la distance
+# Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_stadium) * gabon_cities$POP_MAX
+gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
+
+# Variante avec un poids plus important sur la population
+# Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
+comp_factor_pop <- gabon_cities$distance_to_nearest_stadium * (gabon_cities$POP_MAX)^0.4
+gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
+
+
+
+# Define a custom function to assign priority levels based on ranks
+priority_classification <- function(rank) {
+  ifelse(rank <= 3, "Zone prioritaire",
+         ifelse(rank <= 6, "Semi-prioritaire", "Modéré"))
+}
+
+# Apply this classification in the ggplot
+sport <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
+                aes(x = reorder(NAME, -pop_weighted_score),
+                    y = pop_weighted_score,
+                    fill = priority_classification(rank(-pop_weighted_score)))) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
+                               "Semi-prioritaire" = "#874116", 
+                               "Modéré" = "steelblue")) +
+  labs(title = "Priorité dans l'enseignement par villes",
+       subtitle = "Scores de priorité basés sur la densité de population et la proximité des installations éducatives.",
+       x = "Ville",
+       y = "Score de Priorité",
+       fill = "Classification des zones",
+       caption = "@LIOS"
+  ) +
+  theme_labinc() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")
+
+sport
+```
+
+
+```{r sport, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructure supérieure et de leur rôle central dans la promotion culturelle du pays."}
+
+
+gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
+
+
+# Assurer que les deux jeux de données sont dans le même système de coordonnées
+gabon_sport <- st_transform(gabon_culture, st_crs(gabon_cities))
+
+# Calculer pour chaque ville l'indice de l'installation sportive la plus proche
+nearest_indices <- st_nearest_feature(gabon_cities, gabon_sport)
+
+# Calculer la distance entre chaque ville et son installation sportive la plus proche
+distances <- st_distance(gabon_cities, gabon_sport[nearest_indices, ], by_element = TRUE)
+
+# Ajouter cette distance comme attribut aux villes
+gabon_cities$distance_to_nearest_stadium <- as.numeric(distances)
+
+
+# Créer un facteur composite (distance × population)
+# Plus la distance est grande et plus la population est importante, plus le besoin est grand
+comp_factor <- gabon_cities$distance_to_nearest_stadium * gabon_cities$POP_MAX
+
+# Normaliser pour que la somme soit égale à 1
+gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
+
+# Variante avec une relation non linéaire pour la distance
+# Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_stadium) * gabon_cities$POP_MAX
+gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
+
+# Variante avec un poids plus important sur la population
+# Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
+comp_factor_pop <- gabon_cities$distance_to_nearest_stadium * (gabon_cities$POP_MAX)^0.4
+gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
+
+
+
+# Define a custom function to assign priority levels based on ranks
+priority_classification <- function(rank) {
+  ifelse(rank <= 3, "Zone prioritaire",
+         ifelse(rank <= 6, "Semi-prioritaire", "Modéré"))
+}
+
+culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
+                  aes(x = reorder(NAME, -pop_weighted_score),
+                      y = pop_weighted_score,
+                      fill = priority_classification(rank(-pop_weighted_score)))) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
+                               "Semi-prioritaire" = "#874116", 
+                               "Modéré" = "steelblue")) +
+  labs(title = "Priorité d'accès en terme de lieu de culture et loisirs",
+       subtitle = "Identification des villes clés en fonction de l'accès aux infrastructures culturelles. Les trois premières sont mises en évidence.",
+       x = "Ville",
+       y = "Score de Priorité",
+       fill = "Classification des zones", 
+       caption = "@LIOS") +
+  theme_labinc() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")
+culture
+```
+
+Le graphique ci-dessus met en exergue la répartition inégale des infrastructures éducatives au Gabon, soulignant particulièrement les zones du **Sud-Ouest** et de l’**Est** comme prioritaires pour des interventions. Ces régions, souvent délaissées, requièrent une attention immédiate afin de répondre aux carences significatives en matière d'éducation et de loisirs, qui sont cruciales pour le développement socio-économique. Dans une démarche de prise de décision efficace, il est essentiel de concentrer les investissements dans ces zones afin d'**équilibrer l'accès aux services** et de stimuler le développement régional. Une action ciblée permettrait non seulement de combler le fossé d'infrastructure mais aussi de favoriser une croissance plus inclusive et durable à travers le Gabon.
+
+
 
 ### L'Économie entravée : Quand l'infrastructure bride le potentiel
 
