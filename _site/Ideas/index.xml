@@ -10,13 +10,13 @@
 <atom:link href="https://labinc.ogoouestat.com/Ideas/index.xml" rel="self" type="application/rss+xml"/>
 <description></description>
 <image>
-<url>https://labinc.ogoouestat.com/logo/logo-files-8/logo.png</url>
+<url>https://labinc.ogoouestat.com/logo/logo-files-7/logo.png</url>
 <title>Ogooue Stat</title>
 <link>https://labinc.ogoouestat.com/Ideas/</link>
-<height>23</height>
+<height>88</height>
 <width>144</width>
 </image>
 <generator>quarto-1.6.42</generator>
-<lastBuildDate>Sun, 30 Mar 2025 09:07:13 GMT</lastBuildDate>
+<lastBuildDate>Sun, 30 Mar 2025 09:12:20 GMT</lastBuildDate>
 </channel>
 </rss>
