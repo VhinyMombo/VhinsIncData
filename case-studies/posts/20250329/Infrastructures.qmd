@@ -467,7 +467,7 @@ gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm 
 # Define a custom function to assign priority levels based on ranks
 priority_classification <- function(rank) {
   ifelse(rank <= 3, "Zone prioritaire",
-         ifelse(rank <= 6, "Semi-prioritaire", "Modéré"))
+         ifelse(rank <= 6, "Semi-prioritaire", "Modérée"))
 }
 
 # Apply this classification in the ggplot
@@ -535,7 +535,7 @@ gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm 
 # Define a custom function to assign priority levels based on ranks
 priority_classification <- function(rank) {
   ifelse(rank <= 3, "Zone prioritaire",
-         ifelse(rank <= 6, "Semi-prioritaire", "Modéré"))
+         ifelse(rank <= 6, "Semi-prioritaire", "Modérée"))
 }
 
 culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
