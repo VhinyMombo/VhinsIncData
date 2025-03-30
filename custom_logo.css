@@ -1,0 +1,5 @@
+.navbar-brand-container img {
+    max-height: 80px;  /* Maximum height of the logo */
+    width: auto;       /* Maintain aspect ratio */
+    object-fit: contain;
+}

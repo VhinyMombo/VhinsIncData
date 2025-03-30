@@ -1,0 +1,98 @@
+---
+pagetitle: "Electricity"
+page-layout: custom
+section-divs: false
+editor: source
+sidebar: false
+search: false
+repo-actions: false
+toc: false
+---
+
+## Infrastructure Électrique au Gabon  
+
+Cette carte présente l'**infrastructure électrique** du Gabon, incluant à la fois les **lignes électriques** et les **emplacements des pylônes**. Les données proviennent d'OpenStreetMap (OSM) et comprennent les éléments clés suivants :  
+
+### Éléments clés :  
+
+- **Lignes Électriques** : Représentées par des lignes rouges sur la carte, elles indiquent les différentes lignes de transport d'électricité à travers le pays. Ces lignes sont colorées en fonction de leur **niveau de tension**. En survolant une ligne, vous pourrez voir son **niveau de tension** en volts (V).  
+
+- **Pylônes** : Ces marqueurs en cercles bleus montrent les emplacements des pylônes. Ces pylônes jouent un rôle essentiel dans la transmission et la distribution de l'énergie électrique. En cliquant sur un marqueur, une étiquette "Crossing" s'affichera, se référant au point de croisement associé au pylône.  
+
+### Fonctionnalités de la Carte :  
+
+- **Couches Interactives** : La carte permet aux utilisateurs d'interagir avec les lignes électriques et les pylônes, offrant des informations détaillées lorsqu'ils sont sélectionnés.  
+
+- **Informations contextuelles** : Chaque élément de la carte (lignes et pylônes) est associé à une fenêtre contextuelle affichant des informations pertinentes, telles que la **tension d'une ligne électrique** ou un **libellé descriptif pour les pylônes**.  
+
+- **Contrôle des couches** : La carte inclut un panneau de contrôle interactif permettant aux utilisateurs d'activer ou de désactiver différentes couches, comme les lignes électriques et les pylônes.  
+
+Cette carte offre un aperçu précieux de l'**infrastructure électrique** du Gabon, facilitant la compréhension de la disposition des lignes de transmission et des points critiques de distribution énergétique à travers le pays.  
+
+::: {#fig-interactive-plot}
+
+
+```{r, echo=FALSE, warning=FALSE}
+library(leaflet)
+library(sf)
+
+path.osm <- "data/C_OSM_TRANSPORT_ENERGIE/"
+
+
+# Charger les voies ferrées (lignes)
+gabon_elec_sf <- st_read(path.osm, layer = "LIGNE_ELECTRIQUE", quiet = TRUE)
+
+# Charger les passages à niveau (points)
+gabon_pylone <- st_read(path.osm, layer = "PYLONE", quiet = TRUE)
+
+voltage_pal <- colorNumeric(palette = c("red", "yellow", "green"), domain = gabon_elec_sf$VOLTAGE)
+
+# Créer la carte avec les voies ferrées
+masp <- leaflet() %>%
+  addTiles() %>%
+  addProviderTiles(providers$OpenStreetMap, group = "Open Street Map") %>% 
+  addProviderTiles(providers$Esri.WorldImagery, group = "Esri World Imagery") %>% 
+  addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri World Topography") %>% 
+  
+  
+  addPolylines(
+    data = gabon_elec_sf,
+    color = ~voltage_pal(VOLTAGE),  # Apply the color palette based on VOLTAGE
+    weight = 2,
+    opacity = 0.8,
+    popup = ~paste("VOLTAGE:", VOLTAGE, " V"),
+    group = "Line"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_pylone,
+    radius = 1,
+    color = "blue",
+    stroke = FALSE,
+    fillOpacity = 0.8,
+    popup = ~paste("Pylone"),
+    group = "Pylone"
+  ) %>%
+  # Add layer control
+  addLayersControl(
+    options = layersControlOptions(collapsed = TRUE),
+    overlayGroups = c("Pylone", "Line"),
+    baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
+    
+  ) %>%
+    addLegend(
+    position = "bottomright",  # Adjust position of the legend
+    pal = voltage_pal,         # Use the defined color palette
+    values = gabon_elec_sf$VOLTAGE,  # The values corresponding to the palette
+    title = "Voltage (V)",     # Title of the legend
+    opacity = 1                # Set opacity for the legend
+  )
+
+
+
+# Afficher la carte finale
+masp
+
+```
+
+:::
+

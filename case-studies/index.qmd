@@ -1,0 +1,20 @@
+---
+pagetitle: Case studies | LIOS
+title: Case studies
+subtitle: Usage de la data science pour l'aide à la prise decision 
+search: false
+repo-actions: false
+listing:
+  contents: 
+  - posts
+  - "!index.qmd"
+  sort: "date desc"
+  type: grid
+  categories: true
+  sort-ui: false
+  filter-ui: false
+  page-size: 30
+  feed: true
+---
+
+Our case study content is in development. Interested in contributing a case study to LIOS? [Check out our call for contributions](/contributor-docs/call-for-contributions.qmd).
