@@ -1,0 +1,492 @@
+---
+title: "Infrastructures et Loisirs au Gabon : Quelles Perspectives ?"
+description: | 
+  Explorez comment le Gabon utilise ses ressources naturelles pour façonner son développement économique et social.
+categories: 
+  - Tourisme
+  - Loisirs
+author: LabInc. 
+date: last-modified
+toc: true
+format: 
+  html:
+    code-annotations: below
+execute:
+  eval: true
+  echo: true
+  messages: false
+  error: false
+  warning: false
+image: images/infra.png
+image-alt: "Vue satellite du Gabon"
+---
+
+
+## Gabon : Une convergence entre nature et développement
+
+Le Gabon, un écrin de verdure bordé par la Guinée Équatoriale, le Cameroun, et la République du Congo, avec l'océan Atlantique caressant ses côtes à l'ouest, couvre une superficie impressionnante de 267 667 km². Peuplé par environ 2,3 millions d'habitants, le pays se distingue par ses forêts denses et une biodiversité exceptionnellement riche, faisant de lui un véritable havre pour les espèces endémiques et migratoires.
+
+### Démographie et dynamiques urbaines
+
+La population du Gabon est caractérisée par une jeunesse prédominante, avec une médiane d'âge estimée à 22 ans. Cette jeunesse représente à la fois un défi et une opportunité pour le développement national, en termes de besoin en éducation et en emploi. La distribution démographique montre également une urbanisation croissante : plus de 87% de la population réside dans les grands centres urbains, avec Libreville, la capitale, et Port-Gentil comme épicentres économiques et administratifs.
+
+Libreville, en tant que capitale, concentre une grande partie de l'activité économique, politique et culturelle du pays. Cette ville est le cœur pulsant du Gabon, avec ses institutions gouvernementales, ses ambassades, et une vie urbaine dynamique marquée par des marchés vibrants, des quartiers d'affaires modernes et des espaces verts préservés. Port-Gentil, de son côté, est essentiellement connue pour son industrie pétrolière et son port qui joue un rôle crucial dans le commerce extérieur du Gabon.
+
+Ces centres urbains sont en constante évolution, cherchant à intégrer durablement les principes de développement urbain durable face aux défis de l'urbanisation rapide. Les projets de développement infrastructurel tels que l'amélioration des réseaux de transport public, la construction de logements accessibles et la modernisation des services publics sont essentiels pour soutenir cette croissance démographique et favoriser une intégration harmonieuse avec les richesses naturelles du pays.
+
+La carte qui suit illustre la localisation des principaux centres urbains au Gabon, mettant en lumière la concentration des activités et des populations dans ces zones dynamiques.
+
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+library(sf)
+library(rnaturalearth)
+library(leaflet)
+library(dplyr)
+library(leaflet.extras)
+
+library(WDI)
+library(jsonlite)
+library(ggplot2)
+library(plotly)
+
+
+library(data.table)
+library(patchwork)
+
+
+# Replace with your shapefile path
+shapefile_path <- "data/Gabon2.gpkg"
+
+# Read the shapefile
+gabon_sf <- st_read(shapefile_path, quiet = T, )
+
+pal <- colorFactor(palette = "Set3", domain = gabon_sf$NAME_1)
+
+
+
+###################
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+
+cities <- rnaturalearth::ne_download(scale = "large", type = "populated_places", category = "cultural")
+```
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
+
+
+################
+
+
+# Create a color palette based on the population size (using both POP_MIN and POP_MAX)
+pop_palette <- colorNumeric(
+  palette = "YlOrRd",   # Color palette for population range
+  domain = c(min(gabon_cities$POP_MIN), max(gabon_cities$POP_MAX)),  # Use both minimum and maximum population
+  na.color = "gray"  # For missing data
+)
+
+
+leaflet(gabon_sf) %>%
+  addProviderTiles(providers$OpenStreetMap, group = "Open Street Map") %>%
+  addProviderTiles(providers$Esri.WorldImagery, group = "Esri World Imagery") %>%
+  
+  # Add Gabon polygons
+  addPolygons(
+    fillColor = ~pal(NAME_1),
+    fillOpacity = 0.3,
+    color = "black",
+    weight = 1,
+    popup = ~paste("Region:", NAME_2, "<br>Province:", NAME_1),
+    highlightOptions = highlightOptions(
+      weight = 3, color = "red",
+      bringToFront = TRUE
+    ),
+    options = pathOptions(interactive = FALSE),
+    group = "Gabon"
+  ) %>%
+  
+  # Add Circle Markers with color based on population size
+  addCircleMarkers(
+    data = gabon_cities,
+    ~LONGITUDE, ~LATITUDE,
+    radius = ~sqrt(POP_MAX) / 50,  # Adjust size based on population
+    color = ~pop_palette(POP_MAX),  # Color based on population
+    fillColor = ~pop_palette(POP_MAX),  # Fill color based on population
+    fillOpacity = 0.7,
+    popup = ~paste(NAME, "<br> Population:", POP_MAX, "hab"),
+    label = ~NAME
+  ) %>%
+  
+  # Add Minimap
+  addMiniMap(
+    tiles = providers$OpenStreetMap,
+    toggleDisplay = TRUE,
+    minimized = FALSE,
+    width = 150, height = 150,
+    position = "bottomright"
+  ) %>%
+  
+  # Add Layers Control
+  addLayersControl(
+    baseGroups = c("Esri World Imagery", "Open Street Map"),
+    overlayGroups = c("Gabon"),
+    options = layersControlOptions(collapsed = FALSE)
+  )
+
+```
+
+
+## Développement durable : Une priorité nationale
+
+Engagé dans une transition vers une économie plus verte, le Gabon explore activement des voies alternatives telles que l'écotourisme et le développement des industries durables. Cette orientation stratégique vise non seulement à protéger ses trésors naturels mais aussi à les valoriser, plaçant la conservation écologique au cœur de ses ambitions de croissance économique. Les initiatives telles que la création de parcs nationaux et la promotion du tourisme responsable illustrent l'engagement du Gabon à harmoniser développement économique et préservation environnementale.
+
+## Le rôle clé des infrastructures dans le développement socio-économique
+
+Pour soutenir cette transformation, le Gabon investit dans l'amélioration et l'expansion de ses infrastructures. Routes, ponts, et réseaux de communication sont en cours de modernisation pour faciliter l'accès aux zones reculées et stimuler le commerce local. Ces développements infrastructurels sont essentiels pour assurer une distribution équitable des bénéfices du tourisme et pour intégrer durablement les communautés locales dans le circuit économique national.
+
+En définitive, le Gabon illustre comment un pays richement doté en ressources naturelles peut pivoter vers un modèle de développement durable. En mettant en avant une gestion intégrée des ressources naturelles et des infrastructures, le Gabon pourrait servir de modèle pour d'autres nations cherchant à concilier croissance économique et conservation environnementale.
+
+### Les Parcs nationaux et réserves naturelles du Gabon
+
+Le Gabon se distingue par son engagement exceptionnel envers la conservation de la nature, avec une politique environnementale qui place la préservation de la biodiversité au centre de ses priorités nationales. Ce pays abrite 13 parcs nationaux qui couvrent près de 11 % de son territoire, un effort considérable pour protéger la faune et la flore dans un contexte de défis environnementaux mondiaux.
+
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# Load the shapefile
+
+
+# Define the base path
+base_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_"
+
+# Generate file paths
+shapefiles <- sprintf("%s%d", base_path, 0:2)
+
+# Read and combine shapefiles
+shapelist <- lapply(shapefiles, 
+                    st_read, 
+                    layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
+                    quiet = T)
+
+
+
+combined_shapefile <- do.call(rbind, shapelist)
+
+# shapefile_path <- "data/WDPA_WDOECM_Feb2025_Public_GAB_shp/WDPA_WDOECM_Feb2025_Public_GAB_shp_0"
+# gabon_parks_sf <- st_read(shapefile_path,
+#                           layer = "WDPA_WDOECM_Feb2025_Public_GAB_shp-polygons", 
+#                           quiet = TRUE)
+
+
+gabon_parks_sf <- combined_shapefile[, c("NAME", "DESIG_TYPE", "DESIG_ENG")]
+# plot(gabon_parks_sf)
+
+
+
+# Create a color palette
+park_palette_type <- colorFactor("Set2", domain = gabon_parks_sf$DESIG_TYPE)
+
+# Define your map with base tiles
+map <- leaflet(gabon_sf) %>% 
+  addProviderTiles(providers$OpenStreetMap, group = "Open Street Map") %>% 
+  addProviderTiles(providers$Esri.WorldImagery, group = "Esri World Imagery") %>% 
+  addProviderTiles(providers$Esri.WorldTopoMap, group = "Esri World Topography") %>% 
+  
+  addPolygons(
+    fillColor = ~pal(COUNTRY),
+    fillOpacity = 0.1,
+    color = "black",
+    weight = 0.5,
+    popup = ~paste("Region:", NAME_2, "<br>Province:", NAME_1),
+    highlightOptions = highlightOptions(
+      weight = 3, color = "red",
+      bringToFront = TRUE
+    ),
+    options = pathOptions(interactive = FALSE),
+    group = "Gabon"
+  )
+
+# Loop through unique combinations of DESIG_TYPE and DESIG_ENG to add park layers
+for (group in unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG))) {
+  map <- map %>% 
+    addPolygons(
+      data = gabon_parks_sf %>% filter(paste(DESIG_TYPE, "-", DESIG_ENG) == group), 
+      fillColor = ~park_palette_type(DESIG_TYPE), # Correctly reference the column
+      fillOpacity = 0.5,
+      color = "black",
+      weight = 1,
+      popup = ~paste("Name:", NAME, "<br>Type:", DESIG_TYPE, "<br>English Type:", DESIG_ENG),
+      group = group # Assign unique group name
+    )
+}
+
+# Add Minimap
+map <- map %>% 
+  addMiniMap(
+    tiles = providers$OpenStreetMap, 
+    toggleDisplay = TRUE, 
+    minimized = FALSE, 
+    width = 150, height = 150, 
+    position = "bottomright"
+  ) %>% 
+  
+  # Add Layer Control for both the park and tile providers
+  addLayersControl(
+    baseGroups = c("Esri World Imagery", "Open Street Map", "Esri World Topography"), # Tile providers
+    overlayGroups = unique(paste(gabon_parks_sf$DESIG_TYPE, "-", gabon_parks_sf$DESIG_ENG)), # Park types
+    options = layersControlOptions(collapsed = TRUE)
+  )
+
+# Print the final map
+map
+```
+
+
+#### Importance des aires protégées
+
+Ces parcs nationaux et réserves naturelles sont cruciaux pour la protection des espèces menacées telles que les gorilles, les éléphants de forêt et les panthères. Ils servent également de refuges vitaux pour de nombreuses autres espèces de faune et de flore, préservant des écosystèmes uniques qui ne se trouvent nulle part ailleurs sur la planète. En outre, ces zones protégées sont des lieux privilégiés pour la recherche scientifique et l'écotourisme, contribuant à une économie durable et à la sensibilisation à l'environnement.
+
+#### Stratégies de conservation
+
+Le Gabon a mis en place des stratégies innovantes pour la gestion de ses parcs, incluant des partenariats avec des organisations internationales et des ONG pour le financement et l'expertise technique. La surveillance par satellite et les patrouilles sur le terrain sont quelques-unes des méthodes utilisées pour lutter contre le braconnage et surveiller les zones protégées.
+
+#### Exemples de Parcs nationaux remarquables
+
+- **Parc National de Loango** : Souvent surnommé "la Terre des Giants" en raison de ses vastes populations d'éléphants et de baleines qui fréquentent ses côtes, ce parc offre une combinaison rare de plages, de savanes et de forêts tropicales.
+- **Parc National de la Lopé** : Ce site du patrimoine mondial mélange forêts et savanes, où l'on peut observer des mandrills et des buffles de forêt dans leur habitat naturel.
+- **Parc National des Plateaux Batéké** : Un paysage de savanes et de forêts galerie, ce parc est essentiel pour la conservation des gorilles de plaine et des léopards.
+
+
+---------------------------------------------------------------
+
+## Les Infrastructures au Gabon : Un défi de développement équitable
+
+
+Le Gabon, reconnu pour ses initiatives environnementales, abrite également une mosaïque de zones d'activité qui façonnent son paysage économique et social. Cette section met en lumière la diversité des infrastructures et des points d'intérêt à travers le pays, offrant ainsi un aperçu de la manière dont le Gabon conjugue développement et conservation.
+
+Le développement des infrastructures, qu'il s'agisse de zones résidentielles, éducatives ou de loisirs, est tout aussi crucial pour répondre aux besoins de la population croissante et pour soutenir l'économie. En effet, tout en préservant ses richesses naturelles, le Gabon s'efforce également de développer des infrastructures modernes qui respectent et valorisent son environnement unique.
+
+La carte interactive que nous allons explorer ci-dessous offre une vue d'ensemble des différentes zones d'activité qui marquent le paysage gabonais. De Libreville à Port-Gentil, les infrastructures urbaines se déploient à côté des zones protégées, illustrant un équilibre entre développement humain et conservation de la nature. Cette cartographie détaillée permet non seulement de visualiser l'organisation spatiale du Gabon mais aussi de comprendre comment les différentes facettes de son développement s'entremêlent.
+
+
+Cette carte interactive offre une visualisation détaillée des localisations clés et des caractéristiques diverses au Gabon. Elle englobe plusieurs catégories telles que les installations sportives, les sites culturels, les zones militaires, les établissements éducatifs, les zones résidentielles et les caractéristiques hydrographiques.
+
+### Comment Utiliser la Carte
+
+- La carte est initialement vierge, ce qui vous permet de **basculer les couches** manuellement.
+- Utilisez le **panneau de contrôle des couches** (en haut à droite) pour activer ou désactiver des catégories spécifiques.
+- Cliquez sur les **marqueurs et polygones** pour voir des détails supplémentaires via des popups.
+
+### Aperçu des Catégories de la Carte
+- 🏟️ **Installations Sportives** : Stades, gymnases et complexes sportifs.
+- 🎭 **Culture et Loisirs** : Musées, théâtres, parcs et centres culturels.
+- 🪖 **Zones Militaires** : Bases et zones d'entraînement des forces armées.
+- 🏫 **Institutions Éducatives** : Écoles, collèges, universités et centres de recherche.
+- 🏘️ **Zones Résidentielles** : Ensembles habitables, quartiers et complexes résidentiels.
+- 💧 **Hydrographie** : Rivières, lacs et autres plans d'eau importants.
+
+### Cartes de Base
+- 🌍 **Imagerie** : Vue satellite d'Esri.
+- 🗺️ **Vue de Rue Ouverte** : Carte classique avec rues détaillées.
+
+Explorez la carte et découvrez le paysage et l'infrastructure diversifiée du Gabon !
+
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+# Define the path to the shapefile
+path.osm <- "data/202303_OSM2IGEO_GABON_SHP_WGS84_4326/I_OSM_ZONE_ACTIVITE"
+
+# List the layers available in the shapefile
+layers <- st_layers(path.osm)
+
+# Initialize the leaflet map
+map <- leaflet() %>%
+  # Add first additional tile provider (e.g., Stamen Toner)
+  addProviderTiles(providers$Esri.WorldImagery, group = "Imagery") %>%
+  
+  # Add second additional tile provider (e.g., CartoDB Positron)
+  addProviderTiles(providers$OpenStreetMap, group = "Open street view")
+
+
+gabon_sport <- st_read(path.osm, layer = "PAI_SPORT", quiet = TRUE)
+
+gabon_culture <- st_read(path.osm, layer = "PAI_CULTURE_LOISIRS", quiet = TRUE)
+
+gabon_army <- st_read(path.osm, layer = "TERRAIN_MILITAIRE", quiet = TRUE)
+
+gabon_enseignement <- st_read(path.osm, layer = "PAI_SCIENCE_ENSEIGNEMENT", quiet = TRUE)
+
+
+gabon_habitation <- st_read(path.osm, layer = "PAI_ZONE_HABITATION", quiet = TRUE)
+
+gabon_hydrographie <- st_read(path.osm, layer = "PAI_HYDROGRAPHIE", quiet = TRUE)
+
+map <- map %>% 
+  addCircleMarkers(
+    data = gabon_sport,
+    radius = 5,
+    color = "orange",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Sport", ":", NOM),
+    group = "🏅 Sport"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_culture,
+    radius = 5,
+    color = "purple",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Culture et Loisirs", ":", NOM),
+    group = "🎭 Culture et Loisirs"
+  ) %>%
+  addPolygons(
+    data = gabon_army,
+    color = "brown",
+    weight = 1,
+    fillOpacity = 0.4,
+    popup = ~paste("Army"),
+    group = "🪖 Military Zones"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_enseignement,
+    radius = 5,
+    color = "pink",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Enseignement", ":", NOM),
+    group = "🎓 Enseignement"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_habitation,
+    radius = 5,
+    color = "blue",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Habitation", ":", NOM),
+    group = "🏠 Habitation"
+  ) %>%
+  addCircleMarkers(
+    data = gabon_hydrographie,
+    radius = 5,
+    color = "cyan",
+    stroke = TRUE,
+    weight = 1,
+    fillOpacity = 0.9,
+    popup = ~paste("Hydrographie", ":", NOM),
+    group = "🌊 Hydrographie"
+  ) %>%
+  
+  addMiniMap(
+    tiles = providers$OpenStreetMap, 
+    toggleDisplay = TRUE, 
+    minimized = FALSE, 
+    width = 150, height = 150, 
+    position = "bottomright"
+  ) %>% 
+  
+  
+  addLayersControl(
+    overlayGroups = c("🏅 Sport", "🎭 Culture et Loisirs", "🪖 Military Zones", "🎓 Enseignement", "🏠 Habitation", "🌊 Hydrographie"),
+    options = layersControlOptions(collapsed = TRUE),
+    baseGroups = c("Imagery", "Open street view")
+  ) %>%
+  hideGroup(c("🏅 Sport", "🎭 Culture et Loisirs", "🪖 Military Zones", 
+              "🎓 Enseignement", "🏠 Habitation", "🌊 Hydrographie")) # Hide all layers initially
+
+
+map
+
+
+
+```
+
+
+------------------------------------------------------------------
+
+### Le Paradoxe Gabonais : Richesse naturelle et pauvreté infrastructurelle
+
+La répartition des infrastructures au Gabon présente un tableau complexe marqué par **des disparités profondes** entre différentes régions du pays. Ces inégalités ne sont pas simplement géographiques ; elles reflètent des défis structurels qui façonnent l'avenir économique et social de cette nation d'Afrique centrale.
+
+### Le Grand Fossé : centres urbains vs. périphéries rurales
+
+Le contraste entre les zones urbaines et rurales est saisissant. Alors que **Libreville et Port-Gentil jouissent d'infrastructures relativement modernes**, avec des réseaux routiers entretenus, un accès plus fiable à l'électricité, des services d'eau potable plus développés et des établissements de santé et d'éducation de meilleure qualité.
+
+Les régions rurales, quant à elles, font face à une **précarité infrastructurelle alarmante**, caractérisée par des routes souvent impraticables en saison des pluies, un approvisionnement électrique intermittent ou inexistant, des difficultés d'accès à l'eau potable et des services de santé et d'éducation limités.
+
+### L'Économie entravée : Quand l'infrastructure bride le potentiel
+
+Cette fracture infrastructurelle ne représente pas seulement un problème de confort ; elle constitue un **obstacle majeur au développement économique** du pays. Les régions rurales, paradoxalement riches en ressources naturelles, se trouvent isolées des chaînes de valeur nationales et internationales en raison de **l'insuffisance des réseaux de transport** limitant l'acheminement des produits, **le manque de connectivité numérique** freinant l'innovation et l'entrepreneuriat et **l'accès restreint à l'énergie** empêchant le développement industriel local.
+
+## Vers un avenir plus équilibré : initiatives et perspectives
+
+Face à ces défis, le gouvernement gabonais a initié plusieurs stratégies visant à réduire ces disparités : **le développement de l'écotourisme** comme levier de croissance pour les zones rurales, **l'investissement dans les énergies renouvelables** pour améliorer l'accès à l'électricité et **la modernisation des infrastructures de transport** pour désenclaver les régions isolées.
+
+Ces efforts, bien que prometteurs, nécessitent une **vision à long terme** et un **engagement financier soutenu** pour transformer véritablement le paysage infrastructurel du pays et permettre un développement plus équitable entre toutes les régions.
+
+## L'Enjeu de la durabilité : Concilier développement et préservation
+
+Le défi pour le Gabon reste de **développer ses infrastructures tout en préservant son patrimoine naturel exceptionnel**, qui constitue l'un de ses atouts les plus précieux. Cette double ambition représente non seulement une nécessité économique mais aussi un **impératif écologique** dans un contexte mondial où la biodiversité devient un capital de plus en plus valorisé.
+
+
+-------------------------------------------------------------
+
+### Conclusion
+
+En définitive, bien que le Gabon ait fait des progrès significatifs dans le développement de ses infrastructures urbaines, un grand travail reste à faire pour assurer une répartition plus équitable des ressources à travers le pays. Réduire les disparités infrastructurelles est crucial pour assurer une croissance inclusive qui bénéficie à tous les Gabonais et pour maintenir la stabilité sociale et économique à long terme.
+
+
+
+
+::: nav-btn-container
+::: grid
+::: {.g-col-12 .g-col-sm-6}
+::: nav-btn
+[Part 2: Etudes du reseaux routiers &rarr;](/case-studies/posts/20250329/Routes.qmd)
+:::
+:::
+
+::: {.g-col-12 .g-col-sm-6}
+<!-- ::: nav-btn -->
+<!-- [Part 2: Etudes du reseaux routiers &rarr;](/case-studies/posts/20250329/Routes.qmd) -->
+<!-- ::: -->
+:::
+:::
+:::
+
+::: further-info
+::: grid
+::: {.g-col-12 .g-col-md-12}
+
+A propos des auteurs
+
+:   **LabInc** est une entreprise innovante qui se spécialise dans le développement de solutions technologiques avancées, avec un accent particulier sur l'intelligence artificielle et l'analyse de données.
+
+:   **OgooueStat** est un think tank indépendant basé au Gabon, spécialisé dans l'analyse des politiques publiques, la recherche économique et la statistique environnementale. Notre mission est d'orienter les décisions politiques et de soutenir le développement durable à travers des études rigoureuses et des recommandations fondées sur des données probantes.
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+Copyright and licence
+
+:   ©2025 LIOS
+
+<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>. 
+:::
+
+::: {.g-col-12 .g-col-md-6}
+
+How to cite
+
+:   LabInc, Ogooue Stat. "Economy du Gabon, evolution et perspectives" LIOS, Mars 29, 2025.
+:::
+:::
+:::

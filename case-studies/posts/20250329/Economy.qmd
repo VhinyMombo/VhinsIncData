@@ -1,7 +1,7 @@
 ---
-title: Economy of Gabon
+title: Economie du Gabon
 description: | 
-  Evolution of the economy of gabon and perspectives.
+  Evolution economique du gabon and perspectives.
 categories: 
   - World bank
   - GDP
@@ -282,13 +282,15 @@ Les données montrent que des marges de progression existent. Reste à transform
 ::: grid
 ::: {.g-col-12 .g-col-sm-6}
 <!-- ::: nav-btn -->
+
 <!-- [← Part 2: What is the CDE?](/case-studies/posts/2024/11/08/what-is-CDE-2.qmd) -->
+
 <!-- ::: -->
 :::
 
 ::: {.g-col-12 .g-col-sm-6}
 ::: nav-btn
-[Part 2: Etudes du reseaux routiers &rarr;](/case-studies/posts/20250329/Routes.qmd)
+[Part 2: Etudes du reseaux routiers →](/case-studies/posts/20250329/Routes.qmd)
 :::
 :::
 :::
@@ -311,7 +313,7 @@ Copyright and licence
 
 :   ©2025 LIOS
 
-<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>. 
+<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>.
 :::
 
 ::: {.g-col-12 .g-col-md-6}
