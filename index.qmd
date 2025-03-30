@@ -289,7 +289,7 @@ Excerpt from the UK government's framework for the use of generative AI
 ::: {.g-col-12 .g-col-md-2}
 ### Published by
 
-[![](logo/logo-files-3/favicon-32x32.png){fig-align="left"}](https://rss.org.uk/)
+[![](logo/logo-files-7/favicon-32x32.png){fig-align="left"}](https://rss.org.uk/)
 :::
 
 ::: {.g-col-12 .g-col-md-2}

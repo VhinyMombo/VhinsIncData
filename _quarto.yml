@@ -3,8 +3,8 @@ project:
   
 website:
   title: "Ogooue Stat"
-  image: "logo/logo-files-8/logo.png"
-  favicon: "logo/logo-files-8/favicon-32x32.png"
+  image: "logo/logo-files-7/logo.png"
+  favicon: "logo/logo-files-7/favicon-32x32.png"
   open-graph: true
   site-url: https://labinc.ogoouestat.com
   
