@@ -151,7 +151,12 @@ Découvrez les projets des chercheurs visant à développer l'Entreprise de Donn
 ::: header-text
 ::: content-container
 ::: header-block
-Bienvenue sur **Ogooue Stat**, une initiative passionnante lancée par [LabInc](https://rss.org.uk/), en partenariat avec l'[Association Américaine de Statistiques](https://www.amstat.org/). Notre mission est de réunir des **experts en data science et statistiques, praticiens, leaders et éducateurs** pour partager des connaissances, échanger des idées et s'inspirer des applications concrètes de la data science et de l'intelligence artificielle. À travers la collaboration et l'innovation, nous visons à responsabiliser les décideurs au **Gabon** en transformant les données en perspectives exploitables qui stimulent le progrès et le développement durable.
+
+Bienvenue sur **Ogooue Stat**, une initiative portée par **LabInc**, un *think tank gabonais indépendant* dédié à la valorisation des données au service du développement. Notre objectif est de rassembler des **experts en data science, statisticiens, décideurs, chercheurs et éducateurs** pour partager des connaissances, croiser les perspectives et mettre en lumière les usages concrets de la science des données et de l'intelligence artificielle.
+
+À travers des analyses rigoureuses et une approche collaborative, **LIOS** (LabInc OgooueSta) s’engage à produire des **informations utiles, accessibles et orientées vers l’action**, afin de soutenir la prise de décision publique et privée au **Gabon**.En transformant les données en leviers stratégiques, nous aspirons à contribuer à une gouvernance plus éclairée et à un développement plus inclusif et durable.
+
+
 :::
 :::
 :::
@@ -174,12 +179,23 @@ Bienvenue sur **Ogooue Stat**, une initiative passionnante lancée par [LabInc](
 ::: {.pullout-block .black-background}
 ![](images/quote-purple.png){width="100px"}
 
-## Le secteur de l'énergie au Gabon est-il à l'aube d'une révolution axée sur les données ? Ou bien est-ce (comme certains le suggèrent) une continuation des pratiques établies, désormais renforcées par des outils analytiques modernes ? Dans cet article, nous explorons comment les méthodes statistiques avancées et les techniques de science des données peuvent aider à transformer le **paysage énergétique au Gabon**---de l'optimisation de la gestion des ressources à l'élaboration de politiques énergétiques durables. À travers des études de cas concrètes, nous analysons les tendances clés, révélons des informations cruciales et examinons comment les approches fondées sur les données redéfinissent la prise de décision dans le secteur de l'énergie. **LabInc** vous invite à plonger au cœur de l'intersection entre la **science des données** et la **politique énergétique**---là où l'innovation rencontre des solutions concrètes pour un avenir plus durable au **Gabon**.
+## Infrastructures routières au Gabon : un état des lieux contrasté
 
-**LabInc** pose la question : *"Quelle est la situation actuelle du secteur de l'énergie au Gabon ?"*
+Le réseau routier gabonais reste profondément inégal. **Si les grands centres urbains comme Libreville ou Port-Gentil bénéficient d’infrastructures relativement développées**, de nombreuses régions périphériques, notamment dans l’**Est et le Sud**, souffrent d’un **manque criant de routes praticables**.
+
+Cette situation limite l’accès aux services essentiels, freine les échanges économiques et renforce les disparités territoriales. Malgré des efforts d’investissement, l’entretien, la connectivité et la résilience du réseau restent des défis majeurs.
+
+Dans ce contexte, **une analyse fine et territorialisée des infrastructures existantes devient cruciale** pour identifier les zones les plus vulnérables et prioriser les interventions. En s’appuyant sur des données ouvertes, des cartes interactives et des indicateurs de couverture, **LabInc** propose une lecture factuelle de l’état du réseau routier gabonais et **soutient une planification plus équitable et plus efficace** de l’aménagement du territoire.
+
+**LabInc** pose la question : *"Comment assurer un maillage routier qui profite à tous les Gabonais ?"*
+
+
+
+
+
 
 ::: button
-[Lire l'analyse ici](case-studies/posts/20250329/electricity.qmd)
+[Lire l'analyse ici](case-studies/posts/20250329/Routes.qmd)
 :::
 :::
 :::
@@ -221,29 +237,29 @@ Bienvenue sur **Ogooue Stat**, une initiative passionnante lancée par [LabInc](
 
 :::
 
-::: {.pullout-text}
+<!-- ::: {.pullout-text} -->
 
-::: {.pullout-container}
+<!-- ::: {.pullout-container} -->
 
-::: {.pullout-block .black-background}
+<!-- ::: {.pullout-block .black-background} -->
 
-![](images/quote-purple.png){width="100px"}
+<!-- ![](images/quote-purple.png){width="100px"} -->
 
-## Generative AI is based on neural networks, which are so-called ‘black boxes’. This makes it difficult or impossible to explain the inner workings of the model which has potential implications if in the future you are challenged to justify decisioning or guidance based on the model.
+<!-- ## Generative AI is based on neural networks, which are so-called ‘black boxes’. This makes it difficult or impossible to explain the inner workings of the model which has potential implications if in the future you are challenged to justify decisioning or guidance based on the model. -->
 
-Excerpt from the UK government's framework for the use of generative AI
+<!-- Excerpt from the UK government's framework for the use of generative AI -->
 
-::: {.button}
+<!-- ::: {.button} -->
 
-[Read our key takeaways](viewpoints/editors-blog/posts/2024/01/22/gen-ai-framework.qmd)
+<!-- [Read our key takeaways](viewpoints/editors-blog/posts/2024/01/22/gen-ai-framework.qmd) -->
 
-:::
+<!-- ::: -->
 
-:::
+<!-- ::: -->
 
-:::
+<!-- ::: -->
 
-:::
+<!-- ::: -->
 
 ::: {.content-container}
 
