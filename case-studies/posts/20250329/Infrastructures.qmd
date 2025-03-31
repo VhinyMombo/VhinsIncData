@@ -426,6 +426,11 @@ Les régions rurales, quant à elles, font face à une **précarité infrastruct
 Avant d'examiner les détails du graphique, il est crucial de comprendre **l'importance de cette répartition**. Les disparités mises en lumière soulignent un besoin urgent d'interventions ciblées pour corriger **l'inégalité flagrante entre les centres urbains et les régions périphériques**. Une stratégie bien pensée pourrait non seulement améliorer la qualité de vie dans les zones défavorisées mais aussi entraîner un développement harmonieux et inclusif sur l'ensemble du territoire national.
 
 
+--------------------------------------------------------------------
+
+#### Centre de formation et d'enseignement : Les endroits prioritaires
+
+
 ```{r enseignement, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Scores de priorité basés sur la densité de population et la proximité des installations éducatives. \nLes trois villes avec les indices les plus élevés sont mises en évidence en rouge pour signaler les zones nécessitant une attention particulière."}
 
 source("theme/theme.R")
@@ -433,53 +438,53 @@ gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGIT
 
 
 # Assurer que les deux jeux de données sont dans le même système de coordonnées
-gabon_sport <- st_transform(gabon_enseignement, st_crs(gabon_cities))
+gabon_ens <- st_transform(gabon_enseignement, st_crs(gabon_cities))
 
 # Calculer pour chaque ville l'indice de l'installation sportive la plus proche
-nearest_indices <- st_nearest_feature(gabon_cities, gabon_sport)
+nearest_indices <- st_nearest_feature(gabon_cities, gabon_ens)
 
 # Calculer la distance entre chaque ville et son installation sportive la plus proche
-distances <- st_distance(gabon_cities, gabon_sport[nearest_indices, ], by_element = TRUE)
+distances <- st_distance(gabon_cities, gabon_ens[nearest_indices, ], by_element = TRUE)
 
 # Ajouter cette distance comme attribut aux villes
-gabon_cities$distance_to_nearest_stadium <- as.numeric(distances)
+gabon_cities$distance_to_nearest_ens <- as.numeric(distances)
 
 
 # Créer un facteur composite (distance × population)
 # Plus la distance est grande et plus la population est importante, plus le besoin est grand
-comp_factor <- gabon_cities$distance_to_nearest_stadium * gabon_cities$POP_MAX
+comp_factor <- gabon_cities$distance_to_nearest_ens * gabon_cities$POP_MAX
 
 # Normaliser pour que la somme soit égale à 1
 gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
 
 # Variante avec une relation non linéaire pour la distance
 # Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
-comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_stadium) * gabon_cities$POP_MAX
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_ens) * gabon_cities$POP_MAX
 gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
 
 # Variante avec un poids plus important sur la population
 # Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
-comp_factor_pop <- gabon_cities$distance_to_nearest_stadium * (gabon_cities$POP_MAX)^0.4
+comp_factor_pop <- gabon_cities$distance_to_nearest_ens * (gabon_cities$POP_MAX)^0.4
 gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
 
 
 
 # Define a custom function to assign priority levels based on ranks
-priority_classification <- function(rank) {
+priority_classification1 <- function(rank) {
   ifelse(rank <= 3, "Zone prioritaire",
          ifelse(rank <= 6, "Semi-prioritaire", "Modérée"))
 }
 
 # Apply this classification in the ggplot
-sport <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
+sport1 <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
                 aes(x = reorder(NAME, -pop_weighted_score),
                     y = pop_weighted_score,
-                    fill = priority_classification(rank(-pop_weighted_score)))) +
+                    fill = priority_classification1(rank(-pop_weighted_score)))) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
                                "Semi-prioritaire" = "#874116", 
                                "Modérée" = "steelblue")) +
-  labs(title = "Priorité dans l'enseignement par villes",
+  labs(title = "Priorités en infrastructures de Recherche par ville",
        subtitle = "Scores de priorité basés sur la densité de population et la proximité des installations éducatives.",
        x = "Ville",
        y = "Score de Priorité",
@@ -490,14 +495,143 @@ sport <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
         legend.position = "bottom")
 
-sport
+# sport
+```
+
+```{r enseignement2, echo=FALSE, message=FALSE, warning=FALSE}
+# First, let's prepare the data for clustering
+# We'll create a dataframe with the variables we want to use for clustering
+cluster_data <- data.frame(
+  city = gabon_cities$NAME,
+  population = gabon_cities$POP_MAX,
+  distance = gabon_cities$distance_to_nearest_ens,
+  latitude = gabon_cities$LATITUDE,
+  longitude = gabon_cities$LONGITUDE
+)
+
+# Remove any rows with NA values
+cluster_data <- na.omit(cluster_data)
+
+# Scale the variables to have comparable ranges
+scaled_data <- scale(cluster_data[, c("population", "distance", "latitude", "longitude")])
+
+# Based on the results, let's say we choose k=4 clusters
+k <- 7  # Adjust this based on the analysis above
+
+# Perform k-means clustering
+km_result <- kmeans(scaled_data, centers = k, nstart = 25)
+
+# Add cluster assignments back to our data
+cluster_data$cluster <- as.factor(km_result$cluster)
+
+# Add the clusters back to the original gabon_cities
+gabon_cities$cluster <- NA
+gabon_cities$cluster[match(cluster_data$city, gabon_cities$NAME)] <- cluster_data$cluster
+
+# Visualize the clusters spatially
+# Convert to sf object for mapping
+gabon_cities_sf <- st_as_sf(gabon_cities, coords = c("LONGITUDE", "LATITUDE"), crs = 4326)
+
+
+
+
+gabon_cities_sf_filtered <- gabon_cities_sf[gabon_cities_sf$NAME != "Ebebiyín", ]
+# Create a summary of cities in each cluster
+cluster_cities <- gabon_cities_sf_filtered %>%
+  st_drop_geometry() %>%
+  group_by(cluster) %>%
+  summarize(
+    city_count = n(),
+    center_lat = mean(LATITUDE, na.rm = TRUE),
+    center_long = mean(LONGITUDE, na.rm = TRUE),
+    cities = paste(NAME, collapse = ", "),
+    main_cities = paste(head(NAME[order(POP_MAX, decreasing = TRUE)], 2), collapse = "-"),
+    total_pop = sum(POP_MAX, na.rm = TRUE)
+  )
+
+
+# Create meaningful names for clusters based on their major cities
+# We'll use the top 1-2 cities by population to name each cluster
+cluster_names <- setNames(
+  cluster_cities$main_cities,
+  as.character(cluster_cities$cluster)
+)
+
+# Create a more descriptive name that includes the region
+cluster_descriptive_names <- setNames(
+  paste(cluster_names, "Cluster"),
+  as.character(cluster_cities$cluster)
+)
+
+# Add these names to our data
+gabon_cities_sf_filtered$cluster_name <- cluster_names[as.character(gabon_cities_sf_filtered$cluster)]
+gabon_cities_sf_filtered$cluster_descriptive <- cluster_descriptive_names[as.character(gabon_cities_sf_filtered$cluster)]
+
+
+distinct_colors <- c("#E41A1C", "#377EB8", "#4DAF4A", "#984EA3", "#FF7F00", "#FFFF33", "#dd321e","#f25ade")
+# Create a new color palette with the named clusters
+# Ensure that color_palette uses the correct cluster names
+color_palette <- colorFactor(
+  palette = distinct_colors[1:length(unique(gabon_cities_sf_filtered$cluster_name))],
+  domain = gabon_cities_sf_filtered$cluster_name
+)
+
+# Update the leaflet map
+named_map <- leaflet(gabon_cities_sf_filtered) %>%
+  # Add first additional tile provider (e.g., Stamen Toner)
+  addProviderTiles(providers$Esri.WorldImagery, group = "Imagery") %>%
+  
+  # Add second additional tile provider (e.g., CartoDB Positron)
+  addProviderTiles(providers$OpenStreetMap, group = "Open street view") %>%
+  addCircleMarkers(
+    radius = ~ifelse(is.na(POP_MAX), 5, 5 + log(POP_MAX/1000)),
+    color = "black",
+    weight = 1,
+    fillColor = ~color_palette(cluster_name),  # Use color_palette for fillColor
+    fillOpacity = 0.8,
+    popup = ~paste(
+      "<b>", NAME, "</b><br/>",
+      "Cluster: <b>", cluster_name, "</b><br/>",
+      "Population: ", format(POP_MAX, big.mark = ","),
+      "<br/>Distance to nearest educational facility: ",
+      round(distance_to_nearest_ens, 1), " m"
+    ),
+    label = ~paste(NAME, "-", cluster_name)
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = distinct_colors[1:length(unique(gabon_cities_sf_filtered$cluster_name))],
+    labels = levels(factor(gabon_cities_sf_filtered$cluster_name)),
+    title = "Clusters Urbains",
+    opacity = 1
+  )
+# Add a title to the map
+named_map <- named_map %>%
+  addLayersControl(
+    options = layersControlOptions(collapsed = TRUE),
+    baseGroups = c("Imagery", "Open street view")
+  ) 
+
+named_map
 ```
 
 
-```{r sport, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructures inférieures ou inexistence"}
+
+La distribution géographique des infrastructures éducatives au Gabon met en lumière une **inégalité criante** entre les régions développées et les zones défavorisées, avec une concentration plus dense d'infrastructures dans les centres urbains comme **Libreville et Port-Gentil**. En revanche, les zones rurales, en particulier dans le **Sud-Ouest et l’Est** du pays, demeurent largement sous-équipées, ce qui freine leur développement et perpétue un cycle de pauvreté et d'isolement.
+
+Cet état de fait n'est pas seulement une question de développement régional mais touche à l'équité sociale et à l'égalité des chances. Les enfants et jeunes adultes dans les zones rurales se retrouvent privés des opportunités éducatives qui pourraient transformer leur avenir, limitant leur potentiel de contribution à l'économie nationale. Il devient donc impératif pour le Gabon d'adopter une **stratégie d'investissement ciblée** qui non seulement étend les infrastructures existantes mais en crée de nouvelles là où elles sont le plus nécessaires.
 
 
-gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
+
+```{r enseignement3, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+cluster_centers_sf <- st_as_sf(cluster_cities, coords = c("center_long", "center_lat"), crs = 4326, remove = FALSE)
+
+
+
+source("theme/theme.R")
+gabon_cities <- cluster_centers_sf[, c("main_cities", "center_lat", "center_long", "total_pop")]
 
 
 # Assurer que les deux jeux de données sont dans le même système de coordonnées
@@ -510,24 +644,24 @@ nearest_indices <- st_nearest_feature(gabon_cities, gabon_sport)
 distances <- st_distance(gabon_cities, gabon_sport[nearest_indices, ], by_element = TRUE)
 
 # Ajouter cette distance comme attribut aux villes
-gabon_cities$distance_to_nearest_stadium <- as.numeric(distances)
+gabon_cities$distance_to_nearest <- as.numeric(distances)
 
 
 # Créer un facteur composite (distance × population)
 # Plus la distance est grande et plus la population est importante, plus le besoin est grand
-comp_factor <- gabon_cities$distance_to_nearest_stadium * gabon_cities$POP_MAX
+comp_factor <- gabon_cities$distance_to_nearest * gabon_cities$total_pop
 
 # Normaliser pour que la somme soit égale à 1
 gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
 
 # Variante avec une relation non linéaire pour la distance
 # Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
-comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_stadium) * gabon_cities$POP_MAX
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest) * gabon_cities$total_pop
 gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
 
 # Variante avec un poids plus important sur la population
 # Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
-comp_factor_pop <- gabon_cities$distance_to_nearest_stadium * (gabon_cities$POP_MAX)^0.4
+comp_factor_pop <- gabon_cities$distance_to_nearest * (gabon_cities$total_pop)^0.1
 gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
 
 
@@ -535,13 +669,89 @@ gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm 
 # Define a custom function to assign priority levels based on ranks
 priority_classification <- function(rank) {
   ifelse(rank <= 3, "Zone prioritaire",
+         ifelse(rank <= 6, "Modérée", "Modérée"))
+}
+
+# Apply this classification in the ggplot
+sport <- ggplot(gabon_cities[!(gabon_cities$pop_weighted_score %in% "Ebebiyín"), ],
+                aes(x = reorder(main_cities, -pop_weighted_score),
+                    y = pop_weighted_score,
+                    fill = priority_classification(rank(-pop_weighted_score)))) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
+                               "Semi-prioritaire" = "#874116", 
+                               "Modérée" = "steelblue")) +
+  labs(title = "Priorité en centre de recherche/  enseignements par clusters",
+       subtitle = "Scores de priorité basés sur la densité de population et la proximité des installations éducatives.",
+       x = "Ville",
+       y = "Score de Priorité",
+       fill = "Classification des zones",
+       caption = "@LIOS"
+  ) +
+  theme_labinc() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")
+
+sport
+
+```
+
+L'investissement dans l'éducation est un **catalyseur reconnu de développement durable**. Il favorise la création de sociétés résilientes, augmente la productivité et permet de lutter contre les inégalités. Pour le Gabon, cela signifie aussi diversifier l'économie au-delà des industries extractives traditionnelles, en développant un capital humain capable d'innover et de répondre aux défis du XXIe siècle.
+
+En conclusion, prioriser l'éducation dans les zones rurales et périphériques du Gabon n'est pas seulement un impératif moral mais une nécessité économique. Cela nécessitera une collaboration étroite entre les gouvernements, les organisations internationales, et les acteurs locaux pour concevoir des solutions adaptées qui garantissent que chaque citoyen gabonais, quel que soit son lieu de résidence, ait accès à une éducation de qualité. Cette démarche est essentielle pour garantir la **stabilité, la prospérité, et la cohésion sociale à long terme**.
+
+-------------------------------------------------------------------------------
+
+### Centres de culture et de Loisirs
+
+
+```{r sport1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructures inférieures ou inexistence"}
+
+gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
+
+
+# Assurer que les deux jeux de données sont dans le même système de coordonnées
+gabon_culture2 <- st_transform(gabon_culture, st_crs(gabon_cities))
+
+# Calculer pour chaque ville l'indice de l'installation sportive la plus proche
+nearest_indices <- st_nearest_feature(gabon_cities, gabon_culture2)
+
+# Calculer la distance entre chaque ville et son installation sportive la plus proche
+distances <- st_distance(gabon_cities, gabon_culture2[nearest_indices, ], by_element = TRUE)
+
+# Ajouter cette distance comme attribut aux villes
+gabon_cities$distance_to_nearest_culture <- as.numeric(distances)
+
+
+# Créer un facteur composite (distance × population)
+# Plus la distance est grande et plus la population est importante, plus le besoin est grand
+comp_factor <- gabon_cities$distance_to_nearest_culture * gabon_cities$POP_MAX
+
+# Normaliser pour que la somme soit égale à 1
+gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
+
+# Variante avec une relation non linéaire pour la distance
+# Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest_culture) * gabon_cities$POP_MAX
+gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
+
+# Variante avec un poids plus important sur la population
+# Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
+comp_factor_pop <- gabon_cities$distance_to_nearest_culture * (gabon_cities$POP_MAX)^0.4
+gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
+
+
+
+# Define a custom function to assign priority levels based on ranks
+priority_classification1 <- function(rank) {
+  ifelse(rank <= 3, "Zone prioritaire",
          ifelse(rank <= 6, "Semi-prioritaire", "Modérée"))
 }
 
-culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
+culture1 <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
                   aes(x = reorder(NAME, -pop_weighted_score),
                       y = pop_weighted_score,
-                      fill = priority_classification(rank(-pop_weighted_score)))) +
+                      fill = priority_classification1(rank(-pop_weighted_score)))) +
   geom_bar(stat = "identity") +
   scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
                                "Semi-prioritaire" = "#874116", 
@@ -549,16 +759,209 @@ culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
   labs(title = "Priorité d'accès en terme de lieu de culture et loisirs",
        subtitle = "Scores de priorité basés sur la densité de population et la proximité aux structures de cultures et de Loisirs",
        x = "Ville",
-       y = "Score de Priorité",
+       y = "Score de priorité",
        fill = "Classification des zones", 
        caption = "@LIOS") +
   theme_labinc() +
   theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
         legend.position = "bottom")
-culture
+# culture
 ```
 
-Le graphique ci-dessus met en exergue la répartition inégale des infrastructures éducatives au Gabon, soulignant particulièrement les zones du **Sud-Ouest** et de l’**Est** comme prioritaires pour des interventions. Ces régions, souvent délaissées, requièrent une attention immédiate afin de répondre aux carences significatives en matière d'éducation et de loisirs, qui sont cruciales pour le développement socio-économique. Dans une démarche de prise de décision efficace, il est essentiel de concentrer les investissements dans ces zones afin d'**équilibrer l'accès aux services** et de stimuler le développement régional. Une action ciblée permettrait non seulement de combler le fossé d'infrastructure mais aussi de favoriser une croissance plus inclusive et durable à travers le Gabon.
+```{r sport2, echo=FALSE, message=FALSE, warning=FALSE}
+# First, let's prepare the data for clustering
+# We'll create a dataframe with the variables we want to use for clustering
+cluster_data <- data.frame(
+  city = gabon_cities$NAME,
+  population = gabon_cities$POP_MAX,
+  distance = gabon_cities$distance_to_nearest_culture,
+  latitude = gabon_cities$LATITUDE,
+  longitude = gabon_cities$LONGITUDE
+)
+
+# Remove any rows with NA values
+cluster_data <- na.omit(cluster_data)
+
+# Scale the variables to have comparable ranges
+scaled_data <- scale(cluster_data[, c("population", "distance", "latitude", "longitude")])
+
+# Based on the results, let's say we choose k=4 clusters
+k <- 7  # Adjust this based on the analysis above
+
+# Perform k-means clustering
+km_result <- kmeans(scaled_data, centers = k, nstart = 25)
+
+# Add cluster assignments back to our data
+cluster_data$cluster <- as.factor(km_result$cluster)
+
+# Add the clusters back to the original gabon_cities
+gabon_cities$cluster <- NA
+gabon_cities$cluster[match(cluster_data$city, gabon_cities$NAME)] <- cluster_data$cluster
+
+# Visualize the clusters spatially
+# Convert to sf object for mapping
+gabon_cities_sf <- st_as_sf(gabon_cities, coords = c("LONGITUDE", "LATITUDE"), crs = 4326)
+
+
+
+
+gabon_cities_sf_filtered <- gabon_cities_sf[gabon_cities_sf$NAME != "Ebebiyín", ]
+# Create a summary of cities in each cluster
+cluster_cities <- gabon_cities_sf_filtered %>%
+  st_drop_geometry() %>%
+  group_by(cluster) %>%
+  summarize(
+    city_count = n(),
+    center_lat = mean(LATITUDE, na.rm = TRUE),
+    center_long = mean(LONGITUDE, na.rm = TRUE),
+    cities = paste(NAME, collapse = ", "),
+    main_cities = paste(head(NAME[order(POP_MAX, decreasing = TRUE)], 2), collapse = "-"),
+    total_pop = sum(POP_MAX, na.rm = TRUE)
+  )
+
+# Create meaningful names for clusters based on their major cities
+# We'll use the top 1-2 cities by population to name each cluster
+cluster_names <- setNames(
+  cluster_cities$main_cities,
+  as.character(cluster_cities$cluster)
+)
+
+# Create a more descriptive name that includes the region
+cluster_descriptive_names <- setNames(
+  paste(cluster_names, "Cluster"),
+  as.character(cluster_cities$cluster)
+)
+
+# Add these names to our data
+gabon_cities_sf_filtered$cluster_name <- cluster_names[as.character(gabon_cities_sf_filtered$cluster)]
+gabon_cities_sf_filtered$cluster_descriptive <- cluster_descriptive_names[as.character(gabon_cities_sf_filtered$cluster)]
+
+
+color_palette <- colorFactor(rainbow(length(unique(gabon_cities_sf$cluster))), gabon_cities_sf$cluster)
+
+# Create a map with city-based cluster names
+named_map <- leaflet(gabon_cities_sf_filtered) %>%
+  # Add first additional tile provider (e.g., Stamen Toner)
+  addProviderTiles(providers$Esri.WorldImagery, group = "Imagery") %>%
+  
+  # Add second additional tile provider (e.g., CartoDB Positron)
+  addProviderTiles(providers$OpenStreetMap, group = "Open street view") %>%
+  addCircleMarkers(
+    radius = ~ifelse(is.na(POP_MAX), 5, 5 + log(POP_MAX/1000)),
+    color = "black",
+    weight = 1,
+    fillColor = ~color_palette(cluster),
+    fillOpacity = 0.8,
+    popup = ~paste(
+      "<b>", NAME, "</b><br/>",
+      "Cluster: <b>", cluster_name, "</b><br/>",
+      "Population: ", format(POP_MAX, big.mark = ","), "<br/>",
+      "Distance à l'installation culturelle/de loisirs la plus proche: ", 
+      round(distance_to_nearest_culture, 1), " m"
+    ),
+    label = ~paste(NAME, "-", cluster_name)
+  ) %>%
+  addLegend(
+    position = "bottomright",
+    colors = distinct_colors[1:length(cluster_names)],
+    labels = cluster_names,
+    title = "Clusters urbains",
+    opacity = 1
+  ) %>%
+  addLayersControl(
+    options = layersControlOptions(collapsed = TRUE),
+    baseGroups = c("Imagery", "Open street view")
+  )
+
+named_map
+```
+
+
+La carte interactive ci-dessus offre une vue détaillée de la répartition géographique des centres de culture et de loisirs au Gabon, en mettant l’accent sur la diversité des installations disponibles et leur accessibilité par rapport aux zones urbaines et rurales. Chaque point coloré représente un centre culturel ou de loisirs, classé selon sa proximité aux grandes agglomérations et zones densément peuplées.
+
+Dans les métropoles comme **Libreville et Port-Gentil**, les ressources culturelles sont abondantes, avec une variété d’options allant des musées et galeries d’art aux théâtres et espaces de concert. Ces centres sont essentiels pour stimuler la vie culturelle de la population urbaine et offrir des espaces de loisirs qui contribuent à **la qualité de vie des citadins**.
+
+Par contraste, les zones moins peuplées telles que **Oyem et Mékambo** montrent des scores de priorité plus élevés, indiquant une pénurie relative de telles infrastructures. Cette disparité souligne **le défi de l’accessibilité** aux activités culturelles et récréatives dans les régions éloignées, où les résidents peuvent se sentir isolés des principaux courants culturels du pays.
+
+
+
+```{r sport3, echo=FALSE, message=FALSE, warning=FALSE}
+
+
+cluster_centers_sf <- st_as_sf(cluster_cities, coords = c("center_long", "center_lat"), crs = 4326, remove = FALSE)
+
+
+
+source("theme/theme.R")
+gabon_cities <- cluster_centers_sf[, c("main_cities", "center_lat", "center_long", "total_pop")]
+
+
+# Assurer que les deux jeux de données sont dans le même système de coordonnées
+gabon_sport <- st_transform(gabon_culture, st_crs(gabon_cities))
+
+# Calculer pour chaque ville l'indice de l'installation sportive la plus proche
+nearest_indices <- st_nearest_feature(gabon_cities, gabon_sport)
+
+# Calculer la distance entre chaque ville et son installation sportive la plus proche
+distances <- st_distance(gabon_cities, gabon_sport[nearest_indices, ], by_element = TRUE)
+
+# Ajouter cette distance comme attribut aux villes
+gabon_cities$distance_to_nearest <- as.numeric(distances)
+
+
+# Créer un facteur composite (distance × population)
+# Plus la distance est grande et plus la population est importante, plus le besoin est grand
+comp_factor <- gabon_cities$distance_to_nearest * gabon_cities$total_pop
+
+# Normaliser pour que la somme soit égale à 1
+gabon_cities$pop_distance_score <- comp_factor / sum(comp_factor, na.rm = TRUE)
+
+# Variante avec une relation non linéaire pour la distance
+# Utiliser la racine carrée de la distance pour réduire l'impact des valeurs extrêmes
+comp_factor_sqrt <- sqrt(gabon_cities$distance_to_nearest) * gabon_cities$total_pop
+gabon_cities$pop_distance_sqrt_score <- comp_factor_sqrt / sum(comp_factor_sqrt, na.rm = TRUE)
+
+# Variante avec un poids plus important sur la population
+# Élever la population à une puissance > 1 pour donner plus d'importance aux grandes villes
+comp_factor_pop <- gabon_cities$distance_to_nearest * (gabon_cities$total_pop)^0.1
+gabon_cities$pop_weighted_score <- comp_factor_pop / sum(comp_factor_pop, na.rm = TRUE)
+
+
+
+# Define a custom function to assign priority levels based on ranks
+priority_classification <- function(rank) {
+  ifelse(rank <= 3, "Zone prioritaire",
+         ifelse(rank <= 6, "Modérée", "Modérée"))
+}
+
+# Apply this classification in the ggplot
+sport <- ggplot(gabon_cities[!(gabon_cities$pop_weighted_score %in% "Ebebiyín"), ],
+                aes(x = reorder(main_cities, -pop_weighted_score),
+                    y = pop_weighted_score,
+                    fill = priority_classification(rank(-pop_weighted_score)))) +
+  geom_bar(stat = "identity") +
+  scale_fill_manual(values = c("Zone prioritaire" = "#872916", 
+                               "Semi-prioritaire" = "#874116", 
+                               "Modérée" = "steelblue")) +
+  labs(title = "Priorisation des investissements Culturels et de Loisirs",
+       subtitle = "Scores de priorité basés sur la densité de population et la proximité des installations éducatives.",
+       x = "Ville",
+       y = "Score de priorité",
+       fill = "Classification des zones",
+       caption = "@LIOS"
+  ) +
+  theme_labinc() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+        legend.position = "bottom")
+
+sport
+
+```
+
+Le graphique en barres inclus reflète les scores de priorité attribués à différentes villes, basés sur la densité de population et la distance aux installations les plus proches. Les villes avec les scores les plus élevés, telles que Oyem-Bitam et Mouila-Tchibanga, sont identifiées comme des zones prioritaires pour le développement futur. Ces endroits nécessitent une attention particulière pour développer des infrastructures culturelles qui peuvent enrichir la vie communautaire et stimuler l’engagement social.
+
+En définitive, cette analyse révèle une nécessité urgente de planification stratégique et d’investissement dans les infrastructures culturelles à travers le Gabon. En priorisant le développement dans les zones identifiées, il est possible de promouvoir une croissance équilibrée et d’assurer que tous les Gabonais, indépendamment de leur lieu de résidence, aient accès à des ressources culturelles enrichissantes.
+
 
 --------------------------------------------------------
 
@@ -576,14 +979,42 @@ Ces efforts, bien que prometteurs, nécessitent une **vision à long terme** et 
 
 Le défi pour le Gabon reste de **développer ses infrastructures tout en préservant son patrimoine naturel exceptionnel**, qui constitue l'un de ses atouts les plus précieux. Cette double ambition représente non seulement une nécessité économique mais aussi un **impératif écologique** dans un contexte mondial où la biodiversité devient un capital de plus en plus valorisé.
 
-
 -------------------------------------------------------------
 
-### Conclusion
+## Conclusion
 
 En définitive, bien que le Gabon ait fait des progrès significatifs dans le développement de ses infrastructures urbaines, un grand travail reste à faire pour assurer une répartition plus équitable des ressources à travers le pays. Réduire les disparités infrastructurelles est crucial pour assurer une croissance inclusive qui bénéficie à tous les Gabonais et pour maintenir la stabilité sociale et économique à long terme.
 
 
+
+
+
+##### Supplementaire : details de l'analyse par métropole
+
+##### Analyse approfondie par métropole
+
+L'objectif de cette section est de fournir une analyse détaillée des scores de priorité pour les centres de recherche et les installations culturelles dans les principales métropoles du Gabon. Ces analyses nous aident à identifier les zones ayant le plus grand besoin d'infrastructures et de ressources, facilitant ainsi une allocation ciblée et efficace des investissements.
+
+##### Centres de recherche
+
+Le graphique ci-dessous, illustre la priorisation des centres de recherche dans les métropoles du Gabon. Les scores de priorité sont calculés sur la base de la densité de population et de la proximité à des infrastructures éducatives existantes. Les métropoles avec les scores les plus élevés sont identifiées comme des zones prioritaires pour de futurs développements, visant à stimuler l'innovation et le développement scientifique.
+
+```{r sup1, echo=FALSE, message=FALSE, warning=FALSE}
+sport1
+```
+
+
+##### Installations culturelles et de loisirs
+
+Ce segment met en lumière les villes qui bénéficieraient significativement d'un enrichissement de leur offre culturelle et récréative. Les scores sont attribués en tenant compte des besoins de la population locale et de l'accès actuel aux installations, mettant en évidence les régions qui nécessitent une attention accrue pour renforcer la cohésion sociale et promouvoir un bien-être communautaire.
+
+
+```{r sup2, echo=FALSE, message=FALSE, warning=FALSE}
+culture1
+```
+
+
+Ces analyses détaillées soutiennent les décideurs dans la mise en œuvre de stratégies de développement urbain qui répondent de manière adéquate aux besoins des citoyens et contribuent à l'équilibrage des services à travers le pays.
 
 
 ::: nav-btn-container
