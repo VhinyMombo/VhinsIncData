@@ -494,7 +494,7 @@ sport
 ```
 
 
-```{r sport, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructure supérieure et de leur rôle central dans la promotion culturelle du pays."}
+```{r sport, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructures inférieures ou inexistence"}
 
 
 gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
@@ -547,7 +547,7 @@ culture <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
                                "Semi-prioritaire" = "#874116", 
                                "Modérée" = "steelblue")) +
   labs(title = "Priorité d'accès en terme de lieu de culture et loisirs",
-       subtitle = "Identification des villes clés en fonction de l'accès aux infrastructures culturelles. Les trois premières sont mises en évidence.",
+       subtitle = "Scores de priorité basés sur la densité de population et la proximité aux structures de cultures et de Loisirs",
        x = "Ville",
        y = "Score de Priorité",
        fill = "Classification des zones", 
