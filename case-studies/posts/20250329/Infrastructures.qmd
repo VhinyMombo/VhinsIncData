@@ -21,7 +21,6 @@ image: images/infras.png
 image-alt: "Vue satellite du Gabon"
 ---
 
-
 ## Gabon : Une convergence entre nature et développement
 
 Le Gabon, un écrin de verdure bordé par la Guinée Équatoriale, le Cameroun, et la République du Congo, avec l'océan Atlantique caressant ses côtes à l'ouest, couvre une superficie impressionnante de 267 667 km². Peuplé par environ 2,3 millions d'habitants, le pays se distingue par ses forêts denses et une biodiversité exceptionnellement riche, faisant de lui un véritable havre pour les espèces endémiques et migratoires.
@@ -35,8 +34,6 @@ Libreville, en tant que capitale, concentre une grande partie de l'activité éc
 Ces centres urbains sont en constante évolution, cherchant à intégrer durablement les principes de développement urbain durable face aux défis de l'urbanisation rapide. Les projets de développement infrastructurel tels que l'amélioration des réseaux de transport public, la construction de logements accessibles et la modernisation des services publics sont essentiels pour soutenir cette croissance démographique et favoriser une intégration harmonieuse avec les richesses naturelles du pays.
 
 La carte qui suit illustre la localisation des principaux centres urbains au Gabon, mettant en lumière la concentration des activités et des populations dans ces zones dynamiques.
-
-
 
 ```{r, echo=FALSE, message=FALSE, warning=FALSE}
 library(sf)
@@ -73,7 +70,7 @@ pal <- colorFactor(palette = "Set3", domain = gabon_sf$NAME_1)
 cities <- rnaturalearth::ne_download(scale = "large", type = "populated_places", category = "cultural")
 ```
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
 
 
@@ -137,7 +134,6 @@ leaflet(gabon_sf) %>%
 
 ```
 
-
 ## Développement durable : Une priorité nationale
 
 Engagé dans une transition vers une économie plus verte, le Gabon explore activement des voies alternatives telles que l'écotourisme et le développement des industries durables. Cette orientation stratégique vise non seulement à protéger ses trésors naturels mais aussi à les valoriser, plaçant la conservation écologique au cœur de ses ambitions de croissance économique. Les initiatives telles que la création de parcs nationaux et la promotion du tourisme responsable illustrent l'engagement du Gabon à harmoniser développement économique et préservation environnementale.
@@ -152,8 +148,7 @@ En définitive, le Gabon illustre comment un pays richement doté en ressources 
 
 Le Gabon se distingue par son engagement exceptionnel envers la conservation de la nature, avec une politique environnementale qui place la préservation de la biodiversité au centre de ses priorités nationales. Ce pays abrite 13 parcs nationaux qui couvrent près de 11 % de son territoire, un effort considérable pour protéger la faune et la flore dans un contexte de défis environnementaux mondiaux.
 
-
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 
 
 # Load the shapefile
@@ -244,7 +239,6 @@ map <- map %>%
 map
 ```
 
-
 #### Importance des aires protégées
 
 Ces parcs nationaux et réserves naturelles sont cruciaux pour la protection des espèces menacées telles que les gorilles, les éléphants de forêt et les panthères. Ils servent également de refuges vitaux pour de nombreuses autres espèces de faune et de flore, préservant des écosystèmes uniques qui ne se trouvent nulle part ailleurs sur la planète. En outre, ces zones protégées sont des lieux privilégiés pour la recherche scientifique et l'écotourisme, contribuant à une économie durable et à la sensibilisation à l'environnement.
@@ -255,15 +249,13 @@ Le Gabon a mis en place des stratégies innovantes pour la gestion de ses parcs,
 
 #### Exemples de Parcs nationaux remarquables
 
-- **Parc National de Loango** : Souvent surnommé "la Terre des Giants" en raison de ses vastes populations d'éléphants et de baleines qui fréquentent ses côtes, ce parc offre une combinaison rare de plages, de savanes et de forêts tropicales.
-- **Parc National de la Lopé** : Ce site du patrimoine mondial mélange forêts et savanes, où l'on peut observer des mandrills et des buffles de forêt dans leur habitat naturel.
-- **Parc National des Plateaux Batéké** : Un paysage de savanes et de forêts galerie, ce parc est essentiel pour la conservation des gorilles de plaine et des léopards.
+-   **Parc National de Loango** : Souvent surnommé "la Terre des Giants" en raison de ses vastes populations d'éléphants et de baleines qui fréquentent ses côtes, ce parc offre une combinaison rare de plages, de savanes et de forêts tropicales.
+-   **Parc National de la Lopé** : Ce site du patrimoine mondial mélange forêts et savanes, où l'on peut observer des mandrills et des buffles de forêt dans leur habitat naturel.
+-   **Parc National des Plateaux Batéké** : Un paysage de savanes et de forêts galerie, ce parc est essentiel pour la conservation des gorilles de plaine et des léopards.
 
-
----------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## Les Infrastructures au Gabon : Un défi de développement équitable
-
 
 Le Gabon, reconnu pour ses initiatives environnementales, abrite également une mosaïque de zones d'activité qui façonnent son paysage économique et social. Cette section met en lumière la diversité des infrastructures et des points d'intérêt à travers le pays, offrant ainsi un aperçu de la manière dont le Gabon conjugue développement et conservation.
 
@@ -271,30 +263,31 @@ Le développement des infrastructures, qu'il s'agisse de zones résidentielles, 
 
 La carte interactive que nous allons explorer ci-dessous offre une vue d'ensemble des différentes zones d'activité qui marquent le paysage gabonais. De Libreville à Port-Gentil, les infrastructures urbaines se déploient à côté des zones protégées, illustrant un équilibre entre développement humain et conservation de la nature. Cette cartographie détaillée permet non seulement de visualiser l'organisation spatiale du Gabon mais aussi de comprendre comment les différentes facettes de son développement s'entremêlent.
 
-
 Cette carte interactive offre une visualisation détaillée des localisations clés et des caractéristiques diverses au Gabon. Elle englobe plusieurs catégories telles que les installations sportives, les sites culturels, les zones militaires, les établissements éducatifs, les zones résidentielles et les caractéristiques hydrographiques.
 
 ### Comment Utiliser la Carte
 
-- La carte est initialement vierge, ce qui vous permet de **basculer les couches** manuellement.
-- Utilisez le **panneau de contrôle des couches** (en haut à droite) pour activer ou désactiver des catégories spécifiques.
-- Cliquez sur les **marqueurs et polygones** pour voir des détails supplémentaires via des popups.
+-   La carte est initialement vierge, ce qui vous permet de **basculer les couches** manuellement.
+-   Utilisez le **panneau de contrôle des couches** (en haut à droite) pour activer ou désactiver des catégories spécifiques.
+-   Cliquez sur les **marqueurs et polygones** pour voir des détails supplémentaires via des popups.
 
 ### Aperçu des catégories de la Carte
-- 🏟️ **Installations Sportives** : Stades, gymnases et complexes sportifs.
-- 🎭 **Culture et Loisirs** : Musées, théâtres, parcs et centres culturels.
-- 🪖 **Zones Militaires** : Bases et zones d'entraînement des forces armées.
-- 🏫 **Institutions Éducatives** : Écoles, collèges, universités et centres de recherche.
-- 🏘️ **Zones Résidentielles** : Ensembles habitables, quartiers et complexes résidentiels.
-- 💧 **Hydrographie** : Rivières, lacs et autres plans d'eau importants.
+
+-   🏟️ **Installations Sportives** : Stades, gymnases et complexes sportifs.
+-   🎭 **Culture et Loisirs** : Musées, théâtres, parcs et centres culturels.
+-   🪖 **Zones Militaires** : Bases et zones d'entraînement des forces armées.
+-   🏫 **Institutions Éducatives** : Écoles, collèges, universités et centres de recherche.
+-   🏘️ **Zones Résidentielles** : Ensembles habitables, quartiers et complexes résidentiels.
+-   💧 **Hydrographie** : Rivières, lacs et autres plans d'eau importants.
 
 ### Cartes de base
-- 🌍 **Imagerie** : Vue satellite d'Esri.
-- 🗺️ **Vue de Rue Ouverte** : Carte classique avec rues détaillées.
+
+-   🌍 **Imagerie** : Vue satellite d'Esri.
+-   🗺️ **Vue de Rue Ouverte** : Carte classique avec rues détaillées.
 
 Explorez la carte et découvrez le paysage et l'infrastructure diversifiée du Gabon !
 
-```{r, echo=FALSE, message=FALSE, warning=FALSE}
+```{r, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 
 
 # Define the path to the shapefile
@@ -409,8 +402,7 @@ map
 
 ```
 
-
-------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ### Le Paradoxe Gabonais : Richesse naturelle et pauvreté infrastructurelle
 
@@ -422,16 +414,13 @@ Le contraste entre les zones urbaines et rurales est saisissant. Alors que **Lib
 
 Les régions rurales, quant à elles, font face à une **précarité infrastructurelle alarmante**, caractérisée par des routes souvent impraticables en saison des pluies, un approvisionnement électrique intermittent ou inexistant, des difficultés d'accès à l'eau potable et des services de santé et d'éducation limités.
 
-
 Avant d'examiner les détails du graphique, il est crucial de comprendre **l'importance de cette répartition**. Les disparités mises en lumière soulignent un besoin urgent d'interventions ciblées pour corriger **l'inégalité flagrante entre les centres urbains et les régions périphériques**. Une stratégie bien pensée pourrait non seulement améliorer la qualité de vie dans les zones défavorisées mais aussi entraîner un développement harmonieux et inclusif sur l'ensemble du territoire national.
 
-
---------------------------------------------------------------------
+------------------------------------------------------------------------
 
 #### Centre de formation et d'enseignement : Les endroits prioritaires
 
-
-```{r enseignement, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Scores de priorité basés sur la densité de population et la proximité des installations éducatives. \nLes trois villes avec les indices les plus élevés sont mises en évidence en rouge pour signaler les zones nécessitant une attention particulière."}
+```{r enseignement, echo=FALSE, message=FALSE, warning=FALSE, fig.cap="Scores de priorité basés sur la densité de population et la proximité des installations éducatives. \nLes trois villes avec les indices les plus élevés sont mises en évidence en rouge pour signaler les zones nécessitant une attention particulière.", fig.width=12, fig.height=8}
 
 source("theme/theme.R")
 gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
@@ -498,7 +487,7 @@ sport1 <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
 # sport
 ```
 
-```{r enseignement2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r enseignement2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 # First, let's prepare the data for clustering
 # We'll create a dataframe with the variables we want to use for clustering
 cluster_data <- data.frame(
@@ -615,15 +604,11 @@ named_map <- named_map %>%
 named_map
 ```
 
-
-
-La distribution géographique des infrastructures éducatives au Gabon met en lumière une **inégalité criante** entre les régions développées et les zones défavorisées, avec une concentration plus dense d'infrastructures dans les centres urbains comme **Libreville et Port-Gentil**. En revanche, les zones rurales, en particulier dans le **Sud-Ouest et l’Est** du pays, demeurent largement sous-équipées, ce qui freine leur développement et perpétue un cycle de pauvreté et d'isolement.
+La distribution géographique des infrastructures éducatives au Gabon met en lumière une **inégalité criante** entre les régions développées et les zones défavorisées, avec une concentration plus dense d'infrastructures dans les centres urbains comme **Libreville et Port-Gentil**. En revanche, les zones rurales, en particulier dans le **Sud-Ouest et l'Est** du pays, demeurent largement sous-équipées, ce qui freine leur développement et perpétue un cycle de pauvreté et d'isolement.
 
 Cet état de fait n'est pas seulement une question de développement régional mais touche à l'équité sociale et à l'égalité des chances. Les enfants et jeunes adultes dans les zones rurales se retrouvent privés des opportunités éducatives qui pourraient transformer leur avenir, limitant leur potentiel de contribution à l'économie nationale. Il devient donc impératif pour le Gabon d'adopter une **stratégie d'investissement ciblée** qui non seulement étend les infrastructures existantes mais en crée de nouvelles là où elles sont le plus nécessaires.
 
-
-
-```{r enseignement3, echo=FALSE, message=FALSE, warning=FALSE}
+```{r enseignement3, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 
 
 cluster_centers_sf <- st_as_sf(cluster_cities, coords = c("center_long", "center_lat"), crs = 4326, remove = FALSE)
@@ -700,12 +685,11 @@ L'investissement dans l'éducation est un **catalyseur reconnu de développement
 
 En conclusion, prioriser l'éducation dans les zones rurales et périphériques du Gabon n'est pas seulement un impératif moral mais une nécessité économique. Cela nécessitera une collaboration étroite entre les gouvernements, les organisations internationales, et les acteurs locaux pour concevoir des solutions adaptées qui garantissent que chaque citoyen gabonais, quel que soit son lieu de résidence, ait accès à une éducation de qualité. Cette démarche est essentielle pour garantir la **stabilité, la prospérité, et la cohésion sociale à long terme**.
 
--------------------------------------------------------------------------------
+------------------------------------------------------------------------
 
 ### Centres de culture et de Loisirs
 
-
-```{r sport1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructures inférieures ou inexistence"}
+```{r sport1, echo=FALSE, message=FALSE, warning=FALSE, fig.cap= "Cette analyse détaille la répartition et l'accessibilité des infrastructures culturelles à travers le Gabon, mettant en lumière les villes avec le meilleur accès. Trois villes se distinguent particulièrement, marquées comme prioritaires en raison de leur infrastructures inférieures ou inexistence", fig.width=12, fig.height=8}
 
 gabon_cities <- cities[cities$ADM0NAME == "Gabon", c("NAME", "LATITUDE", "LONGITUDE", "POP_MAX", "POP_MIN")]
 
@@ -768,7 +752,7 @@ culture1 <- ggplot(gabon_cities[!(gabon_cities$NAME %in% "Ebebiyín"), ],
 # culture
 ```
 
-```{r sport2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r sport2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 # First, let's prepare the data for clustering
 # We'll create a dataframe with the variables we want to use for clustering
 cluster_data <- data.frame(
@@ -876,16 +860,13 @@ named_map <- leaflet(gabon_cities_sf_filtered) %>%
 named_map
 ```
 
+La carte interactive ci-dessus offre une vue détaillée de la répartition géographique des centres de culture et de loisirs au Gabon, en mettant l'accent sur la diversité des installations disponibles et leur accessibilité par rapport aux zones urbaines et rurales. Chaque point coloré représente un centre culturel ou de loisirs, classé selon sa proximité aux grandes agglomérations et zones densément peuplées.
 
-La carte interactive ci-dessus offre une vue détaillée de la répartition géographique des centres de culture et de loisirs au Gabon, en mettant l’accent sur la diversité des installations disponibles et leur accessibilité par rapport aux zones urbaines et rurales. Chaque point coloré représente un centre culturel ou de loisirs, classé selon sa proximité aux grandes agglomérations et zones densément peuplées.
+Dans les métropoles comme **Libreville et Port-Gentil**, les ressources culturelles sont abondantes, avec une variété d'options allant des musées et galeries d'art aux théâtres et espaces de concert. Ces centres sont essentiels pour stimuler la vie culturelle de la population urbaine et offrir des espaces de loisirs qui contribuent à **la qualité de vie des citadins**.
 
-Dans les métropoles comme **Libreville et Port-Gentil**, les ressources culturelles sont abondantes, avec une variété d’options allant des musées et galeries d’art aux théâtres et espaces de concert. Ces centres sont essentiels pour stimuler la vie culturelle de la population urbaine et offrir des espaces de loisirs qui contribuent à **la qualité de vie des citadins**.
+Par contraste, les zones moins peuplées telles que **Oyem et Mékambo** montrent des scores de priorité plus élevés, indiquant une pénurie relative de telles infrastructures. Cette disparité souligne **le défi de l'accessibilité** aux activités culturelles et récréatives dans les régions éloignées, où les résidents peuvent se sentir isolés des principaux courants culturels du pays.
 
-Par contraste, les zones moins peuplées telles que **Oyem et Mékambo** montrent des scores de priorité plus élevés, indiquant une pénurie relative de telles infrastructures. Cette disparité souligne **le défi de l’accessibilité** aux activités culturelles et récréatives dans les régions éloignées, où les résidents peuvent se sentir isolés des principaux courants culturels du pays.
-
-
-
-```{r sport3, echo=FALSE, message=FALSE, warning=FALSE}
+```{r sport3, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 
 
 cluster_centers_sf <- st_as_sf(cluster_cities, coords = c("center_long", "center_lat"), crs = 4326, remove = FALSE)
@@ -958,12 +939,11 @@ sport
 
 ```
 
-Le graphique en barres inclus reflète les scores de priorité attribués à différentes villes, basés sur la densité de population et la distance aux installations les plus proches. Les villes avec les scores les plus élevés, telles que Oyem-Bitam et Mouila-Tchibanga, sont identifiées comme des zones prioritaires pour le développement futur. Ces endroits nécessitent une attention particulière pour développer des infrastructures culturelles qui peuvent enrichir la vie communautaire et stimuler l’engagement social.
+Le graphique en barres inclus reflète les scores de priorité attribués à différentes villes, basés sur la densité de population et la distance aux installations les plus proches. Les villes avec les scores les plus élevés, telles que Oyem-Bitam et Mouila-Tchibanga, sont identifiées comme des zones prioritaires pour le développement futur. Ces endroits nécessitent une attention particulière pour développer des infrastructures culturelles qui peuvent enrichir la vie communautaire et stimuler l'engagement social.
 
-En définitive, cette analyse révèle une nécessité urgente de planification stratégique et d’investissement dans les infrastructures culturelles à travers le Gabon. En priorisant le développement dans les zones identifiées, il est possible de promouvoir une croissance équilibrée et d’assurer que tous les Gabonais, indépendamment de leur lieu de résidence, aient accès à des ressources culturelles enrichissantes.
+En définitive, cette analyse révèle une nécessité urgente de planification stratégique et d'investissement dans les infrastructures culturelles à travers le Gabon. En priorisant le développement dans les zones identifiées, il est possible de promouvoir une croissance équilibrée et d'assurer que tous les Gabonais, indépendamment de leur lieu de résidence, aient accès à des ressources culturelles enrichissantes.
 
-
---------------------------------------------------------
+------------------------------------------------------------------------
 
 ### L'Économie entravée : Quand l'infrastructure bride le potentiel
 
@@ -979,15 +959,11 @@ Ces efforts, bien que prometteurs, nécessitent une **vision à long terme** et 
 
 Le défi pour le Gabon reste de **développer ses infrastructures tout en préservant son patrimoine naturel exceptionnel**, qui constitue l'un de ses atouts les plus précieux. Cette double ambition représente non seulement une nécessité économique mais aussi un **impératif écologique** dans un contexte mondial où la biodiversité devient un capital de plus en plus valorisé.
 
--------------------------------------------------------------
+------------------------------------------------------------------------
 
 ## Conclusion
 
 En définitive, bien que le Gabon ait fait des progrès significatifs dans le développement de ses infrastructures urbaines, un grand travail reste à faire pour assurer une répartition plus équitable des ressources à travers le pays. Réduire les disparités infrastructurelles est crucial pour assurer une croissance inclusive qui bénéficie à tous les Gabonais et pour maintenir la stabilité sociale et économique à long terme.
-
-
-
-
 
 ##### Supplementaire : details de l'analyse par métropole
 
@@ -999,35 +975,33 @@ L'objectif de cette section est de fournir une analyse détaillée des scores de
 
 Le graphique ci-dessous, illustre la priorisation des centres de recherche dans les métropoles du Gabon. Les scores de priorité sont calculés sur la base de la densité de population et de la proximité à des infrastructures éducatives existantes. Les métropoles avec les scores les plus élevés sont identifiées comme des zones prioritaires pour de futurs développements, visant à stimuler l'innovation et le développement scientifique.
 
-```{r sup1, echo=FALSE, message=FALSE, warning=FALSE}
+```{r sup1, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 sport1
 ```
-
 
 ##### Installations culturelles et de loisirs
 
 Ce segment met en lumière les villes qui bénéficieraient significativement d'un enrichissement de leur offre culturelle et récréative. Les scores sont attribués en tenant compte des besoins de la population locale et de l'accès actuel aux installations, mettant en évidence les régions qui nécessitent une attention accrue pour renforcer la cohésion sociale et promouvoir un bien-être communautaire.
 
-
-```{r sup2, echo=FALSE, message=FALSE, warning=FALSE}
+```{r sup2, echo=FALSE, message=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 culture1
 ```
 
-
 Ces analyses détaillées soutiennent les décideurs dans la mise en œuvre de stratégies de développement urbain qui répondent de manière adéquate aux besoins des citoyens et contribuent à l'équilibrage des services à travers le pays.
-
 
 ::: nav-btn-container
 ::: grid
 ::: {.g-col-12 .g-col-sm-6}
 ::: nav-btn
-[&larr; Part 2: Etudes du reseaux routiers](/case-studies/posts/20250329/Routes.qmd)
+[← Part 2: Etudes du reseaux routiers](/case-studies/posts/20250329/Routes.qmd)
 :::
 :::
 
 ::: {.g-col-12 .g-col-sm-6}
 <!-- ::: nav-btn -->
+
 <!-- [Part 2: Etudes du reseaux routiers &rarr;](/case-studies/posts/20250329/Routes.qmd) -->
+
 <!-- ::: -->
 :::
 :::
@@ -1050,7 +1024,7 @@ Copyright and licence
 
 :   ©2025 LIOS
 
-<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>. 
+<a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> <img src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" style="height:22px!important;vertical-align:text-bottom;"/><img src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"/></a> This article is licensed under a Creative Commons Attribution 4.0 (CC BY 4.0) <a href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1" target="_blank" rel="license noopener noreferrer" style="display:inline-block;"> International licence</a>.
 :::
 
 ::: {.g-col-12 .g-col-md-6}

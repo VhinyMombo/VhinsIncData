@@ -99,7 +99,7 @@ Les données utilisées proviennent de la plateforme OpenStreetMap. Après trait
 
 Un graphique interactif permet d'observer la part de chaque type de route dans l'ensemble du réseau. Ce graphique met en lumière les segments les plus fréquents, notamment les routes résidentielles et secondaires, qui composent une grande partie de l'armature routière du pays.
 
-```{r, echo=FALSE, warning=FALSE}
+```{r, echo=FALSE, warning=FALSE, fig.width=12, fig.height=8}
 road_counts$NATURE <- factor(road_counts$NATURE, levels = road_counts$NATURE[order(road_counts$percentage)])
 # Assuming your data frame 'road_counts' is already loaded
 
@@ -128,26 +128,41 @@ custom_colors <- c(
   "Zone de rencontre" = "#B22222"
 )
 
+
+source("theme/theme.R")
 # Create the bar plot
+library(dplyr)
+
+# Reorder the factor levels by decreasing percentage
+road_counts <- road_counts %>%
+  mutate(NATURE = reorder(NATURE, -percentage))
+
 roundbarplot <- ggplot(road_counts, aes(x = NATURE, y = percentage, fill = NATURE)) + 
   geom_bar(stat = "identity") + 
   theme_minimal() + 
   labs(
-    title = "Distribution of road types in Gabon",
-    x = "Type of road",
-    y = "Percentage (%)",
-    fill = "Road type"
+    title = "Répartition des types de routes au Gabon",
+    subtitle = "Part relative de chaque type de voie selon les données OSM",
+    caption = "@LIOS",
+    x = "Type de route",
+    y = "Pourcentage (%)",
+    fill = "Type de voie"
   ) + 
-  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +  # Rotates x-axis labels for better readability
-  scale_fill_manual(values = custom_colors) +  # Apply custom colors
-  guides(fill = guide_legend(ncol = 2))  # Display legend in two columns
-  # Apply custom colors
+  theme(
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    legend.position = "bottom"
+  ) +
+  scale_fill_manual(values = custom_colors) +  # Utilise les couleurs personnalisées
+  guides(fill = guide_legend(ncol = 7)) +      # Affiche la légende sur plusieurs colonnes
+  theme_labinc()  + 
+    theme(
+    axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1),
+    legend.position = "bottom"
+  )
+# Applique ton thème personnalisé
 
-# Convert to interactive plot with ggplotly
-ggplot_obj3 <- ggplotly(roundbarplot)
-
-# Show the plot
-ggplot_obj3
+# Afficher le graphique
+roundbarplot
 ```
 
 Cette prédominance de routes locales indique un maillage surtout pensé à l'échelle urbaine ou régionale. Les voies destinées à une circulation rapide ou longue distance restent rares, ce qui peut poser des problèmes de connectivité entre les grandes zones du territoire.
@@ -161,7 +176,7 @@ library(DT)
 
 # Create a data frame with road types and their definitions
 road_data <- data.frame(
-  Road_Type = c(
+  Type_de_voie = c(
     "Chemin carrossable", "Route résidentielle", "Route d'accès", 
     "Route non classifiée", "Route tertiaire", "Route secondaire", 
     "Route primaire", "Voie rapide", "Voie piétonne", 
@@ -171,28 +186,28 @@ road_data <- data.frame(
     "Autoroute", "Escaliers", "Piste de circuit", 
     "Rue piétonne", "Voie cyclable", "Zone de rencontre"
   ),
-  Definition = c(
-    "A dirt or gravel road that is passable by vehicles, typically in rural or less developed areas.",
-    "A road primarily found within residential neighborhoods, typically narrower and designed for low-speed traffic.",
-    "A road designed to provide access to a specific area such as a business, residential development, or industrial facility.",
-    "A road that does not fall under any specific classification and may be poorly maintained.",
-    "A road that serves as a minor road in the overall hierarchy, connecting smaller towns or rural areas to main roads.",
-    "A road that serves as an intermediate connection between major roads and local roads.",
-    "A major road or highway designed for long-distance travel, typically connecting cities or regions.",
-    "A high-capacity urban road designed for fast-moving traffic with controlled access.",
-    "A pathway designed exclusively for pedestrians, may be a sidewalk or a separate pedestrian-only pathway.",
-    "A road that cannot support regular vehicle traffic due to poor conditions or rough terrain.",
-    "A short road or ramp providing access to or from an expressway or highway.",
-    "A short connecting road or ramp between a primary road and another road type.",
-    "A connecting ramp designed to link secondary roads to other major roads.",
-    "A connecting ramp for minor tertiary roads linking with other roads.",
-    "A road that is under construction and may be temporarily closed or hazardous.",
-    "A major road designed for high-speed, long-distance travel with multiple lanes.",
-    "A set of steps or stairs serving as pedestrian access, usually in urban settings.",
-    "A specially designed track for racing, found in motorsports, usually for high-performance vehicles.",
-    "A street exclusively for pedestrians, typically found in urban centers with shops and entertainment.",
-    "A designated lane for bicycles, separated from motor vehicle traffic to ensure cyclist safety.",
-    "A shared road where pedestrians, cyclists, and motor vehicles share the space in low-speed areas."
+  Définition = c(
+    "Route en terre ou gravier praticable par des véhicules, généralement en zones rurales ou peu développées.",
+    "Route située dans des quartiers résidentiels, souvent étroite et conçue pour une circulation à faible vitesse.",
+    "Route desservant une zone spécifique comme un quartier résidentiel, une zone industrielle ou commerciale.",
+    "Route sans classification spécifique, souvent mal entretenue ou peu structurée.",
+    "Route mineure reliant des zones rurales ou petites localités à des routes plus importantes.",
+    "Route intermédiaire entre les routes principales et les routes locales.",
+    "Route principale ou nationale reliant généralement plusieurs villes ou régions.",
+    "Route urbaine à grande capacité, conçue pour un trafic rapide avec accès contrôlé.",
+    "Voie exclusivement réservée aux piétons, comme un trottoir ou un chemin piéton distinct.",
+    "Chemin impraticable pour les véhicules motorisés en raison de son mauvais état ou du terrain accidenté.",
+    "Bretelle ou voie d'accès courte menant à ou sortant d'une voie rapide.",
+    "Bretelle reliant une route primaire à une autre voie.",
+    "Bretelle permettant l’accès ou la sortie d’une route secondaire.",
+    "Bretelle connectant des routes tertiaires à d'autres routes.",
+    "Route en cours de construction, potentiellement fermée ou dangereuse.",
+    "Voie à plusieurs voies et à grande vitesse destinée aux trajets longue distance.",
+    "Escalier utilisé pour le passage piéton en milieu urbain.",
+    "Piste spécialement conçue pour les compétitions de sport automobile.",
+    "Rue exclusivement piétonne, souvent en centre-ville avec commerces ou lieux de loisirs.",
+    "Voie réservée aux cyclistes, séparée du trafic motorisé pour plus de sécurité.",
+    "Zone partagée où piétons, cyclistes et véhicules circulent à faible vitesse dans un espace commun."
   )
 )
 
@@ -208,7 +223,7 @@ Ce lexique permet de mieux comprendre à quoi correspond chaque catégorie et co
 
 Une carte interactive a été développée pour visualiser la distribution des routes sur le territoire. Elle permet de : • Basculer entre plusieurs fonds de carte (satellite, rues, OpenStreetMap) • Afficher ou masquer les routes en fonction de leur type • Consulter les caractéristiques de chaque segment (type, date de mise à jour)
 
-```{r,  echo=FALSE, warning=FALSE}
+```{r,  echo=FALSE, warning=FALSE, fig.width=12, fig.height=10}
 # Dans un bloc R de votre document Quarto
 
 library(leaflet)
