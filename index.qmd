@@ -130,7 +130,7 @@ toc: false
 
 ::: content-container
 ::: {.top-story .purple-background}
-<a href="/case-studies/posts/2024/11/22/development-plan-2.qmd">
+<a href="/case-studies/posts/20250329/Economy.qmd">
 
 ::: grid
 ::: {.g-col-12 .g-col-lg-4 .top-story-text}
@@ -140,7 +140,7 @@ Découvrez les projets des chercheurs visant à développer l'Entreprise de Donn
 :::
 
 ::: {.g-col-12 .g-col-lg-8 .top-story-img}
-![](images/intro.png)
+![](case-studies/posts/20250329/images/test.png)
 :::
 :::
 

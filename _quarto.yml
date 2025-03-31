@@ -27,14 +27,18 @@ website:
         href: Opinions/index.html
       - text: "About LIOS"
         menu:
-        - href: Gabon.qmd
-          text: Home
-        - href: Economy.qmd
-          text: Economy
-        - href: electricity.qmd
-          text: Energie
-        - href: Routes.qmd
-          text: Roads
+        - text: "Qui sommes nous?"
+          href: about-lios.qmd
+        - text: "Comment contribuer"
+          href: contributor-docs/call-for-contributions.qmd
+        - text: "Code de conduite"
+          href: CODE_OF_CONDUCT.md
+        - text: "Nous contacter"
+          href: contact.qmd
+        # - href: electricity.qmd
+        #   text: Energie
+        # - href: Routes.qmd
+        #  text: Roads
         
   sidebar: 
     - title: "About us"
@@ -59,7 +63,7 @@ website:
   page-footer:
     background: "#000000"
     left: |
-        [Copyright &copy; 2024 LabInc Ogoouee Stat](/LICENCE.md)
+        [Copyright &copy; 2024 LabInc OgooueStat](/LICENCE.md)
     center:
       - href: https://twitter.com/lios
         icon: twitter-x
