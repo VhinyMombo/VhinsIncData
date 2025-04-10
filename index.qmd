@@ -128,7 +128,7 @@ listing:
 toc: false
 ---
 
-::: content-container
+::: {.content-container}
 ::: {.top-story .purple-background}
 <a href="/case-studies/posts/20250329/Economy.qmd">
 
@@ -145,12 +145,13 @@ Découvrez les projets des chercheurs visant à développer l'Entreprise de Donn
 :::
 
 </a>
+
 :::
 :::
 
-::: header-text
-::: content-container
-::: header-block
+::: {.header-text}
+::: {.content-container}
+::: {.header-block}
 
 Bienvenue sur **Ogooue Stat**, une initiative portée par **LabInc**, un *think tank gabonais indépendant* dédié à la valorisation des données au service du développement. Notre objectif est de rassembler des **experts en data science, statisticiens, décideurs, chercheurs et éducateurs** pour partager des connaissances, croiser les perspectives et mettre en lumière les usages concrets de la science des données et de l'intelligence artificielle.
 
@@ -161,8 +162,8 @@ Bienvenue sur **Ogooue Stat**, une initiative portée par **LabInc**, un *think 
 :::
 :::
 
-::: content-container
-::: listing-block
+::: {.content-container}
+::: {.listing-block}
 <a href="latest-content.qmd">
 
 ## Dernière publication
@@ -174,8 +175,8 @@ Bienvenue sur **Ogooue Stat**, une initiative portée par **LabInc**, un *think 
 :::
 :::
 
-::: pullout-text
-::: pullout-container
+::: {.pullout-text}
+::: {.pullout-container}
 ::: {.pullout-block .black-background}
 ![](images/quote-purple.png){width="100px"}
 
@@ -194,29 +195,27 @@ Dans ce contexte, **une analyse fine et territorialisée des infrastructures exi
 
 
 
-::: button
+::: {.button}
 [Lire l'analyse ici](case-studies/posts/20250329/Routes.qmd)
 :::
+
 :::
 :::
 :::
 
 ::: {.content-container}
-
 ::: {.listing-block}
 
-<a href="viewpoints/index.qmd">
+<a href="Opinions/index.qmd">
 
 ## Opinions
 
 </a>
 
-::: {#viewpoints}
-
+::: {#Opinions}
 :::
 
 :::
-
 :::
 
 ::: {.content-container}
@@ -230,71 +229,59 @@ Dans ce contexte, **une analyse fine et territorialisée des infrastructures exi
 </a>
 
 ::: {#case-studies}
-
 :::
 
 :::
-
 :::
 
-<!-- ::: {.pullout-text} -->
+::: {.pullout-text}
 
-<!-- ::: {.pullout-container} -->
+::: {.pullout-container}
 
-<!-- ::: {.pullout-block .black-background} -->
+::: {.pullout-block .black-background}
 
-<!-- ![](images/quote-purple.png){width="100px"} -->
+![](images/quote-purple.png){width="100px"}
 
-<!-- ## Generative AI is based on neural networks, which are so-called ‘black boxes’. This makes it difficult or impossible to explain the inner workings of the model which has potential implications if in the future you are challenged to justify decisioning or guidance based on the model. -->
+## Une vraie démocratie ne se mesure pas au jour du vote.  
+Elle se construit dans la capacité à apprendre des erreurs du passé, à garantir la voix de chaque citoyen, et à faire des institutions des outils de justice. Les peuples d’Afrique méritent mieux que des élections formelles — ils méritent des élections sincères.
 
-<!-- Excerpt from the UK government's framework for the use of generative AI -->
+> _« La démocratie, ce n’est pas un événement, c’est un processus. Elle exige la vigilance, la transparence, et la volonté de rendre des comptes. » — Nelson Mandela_
 
-<!-- ::: {.button} -->
+::: {.button}
+[Voir notre analyse des élections](Opinions/posts/20250410/Elections.qmd)
+:::
 
-<!-- [Read our key takeaways](viewpoints/editors-blog/posts/2024/01/22/gen-ai-framework.qmd) -->
-
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- ::: -->
-
-<!-- ::: -->
+:::
+:::
+:::
 
 ::: {.content-container}
-
 ::: {.listing-block}
 
 <a href="ideas/index.qmd">
 
-## Ideas
+## Idées
 
 </a>
 
 ::: {#ideas}
-
 :::
 
 :::
-
 :::
 
 ::: {.content-container}
-
 ::: {.listing-block}
-
-<a href="careers/index.qmd">
+<a href="Parcours/index.qmd">
 
 ## Parcours
 
 </a>
 
-::: {#careers}
-
+::: {#Parcours}
 :::
 
 :::
-
 :::
 
 ::: {.footer-text} 
@@ -304,25 +291,19 @@ Dans ce contexte, **une analyse fine et territorialisée des infrastructures exi
 
 ::: {.g-col-12 .g-col-md-2}
 ### Published by
-
 [![](logo/logo-files-7/favicon-32x32.png){fig-align="left"}](https://rss.org.uk/)
 :::
-
 ::: {.g-col-12 .g-col-md-2}
-### Our partners
-
+### Nos partenaires
 <!-- [![](images/asa-footer-new.png){fig-align="left"}](https://www.amstat.org/) -->
 :::
 
 ::: {.g-col-12 .g-col-md-2}
 ### With support from
-
 <!-- [![](images/ati-footer-new.png){fig-align="left"}](https://www.turing.ac.uk/) -->
 :::
-
 ::: {.g-col-12 .g-col-md-2}
 :::
-
 ::: {.g-col-12 .g-col-md-2}
 ### About us
 
@@ -331,7 +312,6 @@ Dans ce contexte, **une analyse fine et territorialisée des infrastructures exi
 <!-- [Partners and funders](rwds-partners.qmd)\ -->
 <!-- [Contact us](contact.qmd) -->
 :::
-
 ::: {.g-col-12 .g-col-md-2}
 ### Contribute
 
@@ -340,12 +320,13 @@ Dans ce contexte, **une analyse fine et territorialisée des infrastructures exi
 <!-- [Style guide](/contributor-docs/style-guide.qmd) -->
 :::
 
-```{=html}
-<!-- ::: {.g-col-12 .g-col-md-12}
-### Our partners
-logos to go here
-::: -->
-```
+
+<!-- ::: {.g-col-12 .g-col-md-12} -->
+<!-- ### Our partners -->
+<!-- logos to go here -->
+<!-- ::: -->
+
+
 :::
 :::
 :::

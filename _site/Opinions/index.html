@@ -79,9 +79,9 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      valueNames: ['listing-title','listing-author','listing-date','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-categories"],
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -132,14 +132,17 @@ window.Quarto = {
 <link rel="stylesheet" href="../rwds.css">
 <link rel="alternate" type="application/rss+xml" title="Ogooue Stat" href="index.xml" data-external="1"><meta property="og:title" content="Opinions | LIOS">
 <meta property="og:description" content="Critical perspectives on the stories, themes, challenges and opportunities shaping data science. In this section: Editors’ blog | Interviews | Newsletter">
-<meta property="og:image" content="https://labinc.ogoouestat.com/Opinions/logo/logo-files-7/logo.png">
+<meta property="og:image" content="https://labinc.ogoouestat.com/Opinions/posts/20250410/images/imge1.png">
 <meta property="og:site_name" content="Ogooue Stat">
+<meta property="og:image:alt" content="A photographic rendering of a smiling face emoji seen through a refractive glass grid, overlaid with a diagram of a neural network.">
+<meta property="og:image:height" content="1536">
+<meta property="og:image:width" content="1024">
 </head>
 
 <body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -200,33 +203,34 @@ window.Quarto = {
     </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Opinions</h1>
+            <p class="subtitle lead">Critical perspectives on the stories, themes, challenges and opportunities shaping data science. In this section: <a href="editors-blog/index.qmd">Editors’ blog</a> | <a href="interviews/index.qmd">Interviews</a> | <a href="newsletter/index.qmd">Newsletter</a></p>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(0)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(1)</span></div><div class="category" data-category="R2Fib24=">Gabon <span class="quarto-category-count">(1)</span></div><div class="category" data-category="UG9saXRpcXVl">Politique <span class="quarto-category-count">(1)</span></div><div class="category" data-category="JUMzJTg5bGVjdGlvbnM=">Élections <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Opinions</h1>
-<p class="subtitle lead">Critical perspectives on the stories, themes, challenges and opportunities shaping data science. In this section: <a href="editors-blog/index.qmd">Editors’ blog</a> | <a href="interviews/index.qmd">Interviews</a> | <a href="newsletter/index.qmd">Newsletter</a></p>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 
@@ -235,7 +239,42 @@ window.Quarto = {
 
 <div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
 <div class="list grid quarto-listing-cols-3">
-
+<div class="g-col-1" data-index="0" data-categories="UG9saXRpcXVlJTJDJUMzJTg5bGVjdGlvbnMlMkNHYWJvbg==" data-listing-date-sort="1744236000000" data-listing-file-modified-sort="1744321169520" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="12" data-listing-word-count-sort="2223">
+<a href="../Opinions/posts/20250410/Elections.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="../Opinions/posts/20250410/images/imge1.png" class="thumbnail-image card-img" style="height: 150px;" alt="A photographic rendering of a smiling face emoji seen through a refractive glass grid, overlaid with a diagram of a neural network.">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Elections presidentielle au Gabon : Intention de votes.
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('UG9saXRpcXVl'); return false;">
+Politique
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('JUMzJTg5bGVjdGlvbnM='); return false;">
+Élections
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R2Fib24='); return false;">
+Gabon
+</div>
+</div>
+<div class="card-text listing-description">
+<p>Analyse des intentions de vote pour les élections présidentielles actuelles au Gabon.</p>
+</div>
+<div class="card-attribution card-text-small justify">
+<div class="listing-author">
+LIOS
+</div>
+<div class="listing-date">
+Apr 10, 2025
+</div>
+</div>
+</div>
+</div>
+</a>
+</div>
 </div>
 <div class="listing-no-matching d-none">
 No matching items
