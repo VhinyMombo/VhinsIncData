@@ -7,7 +7,7 @@ categories:
   - GDP
   - Economy
 author: LabInc. 
-date: last-modified
+date: 03/31/2025
 toc: true # can be set to 'false' if article is short or has few sections
 format: # this section is only required if code annotations or Mermaid diagrams are used
   html:
