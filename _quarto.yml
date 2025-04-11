@@ -1,7 +1,7 @@
 project:
   type: website
   resources:
-    - static/*
+    - google04e9ede0b577c2d9.html
   
 website:
   title: "Ogooue Stat"
