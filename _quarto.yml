@@ -7,6 +7,7 @@ website:
   favicon: "logo/logo-files-7/favicon-32x32.png"
   open-graph: true
   site-url: https://labinc.ogoouestat.com
+  site-path: "/"
   
   navbar:
     logo: "logo/logo-files-7/logo.png"
@@ -15,6 +16,7 @@ website:
     logo-alt: "Ogooue Stat brand" 
     title: false
     collapse-below: lg
+    page-navigation: true
     
     right:
       - text: "Case studies"
