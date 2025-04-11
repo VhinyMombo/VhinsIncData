@@ -22,26 +22,21 @@ Le Gabon se prépare pour ses élections présidentielles de 2025. Cet article p
 
 <!-- *[Ajouter ici le contexte politique actuel du Gabon et des élections]* -->
 
-Le Gabon traverse une période de transition politique significative depuis la fin du régime Bongo, marqué par la prise de pouvoir du général Brice Clotaire Oligui Nguema en 2023 à la suite d’un coup d’État. Le Comité pour la transition et la restauration des institutions (CTRI) dirige actuellement le pays, avec la promesse d’organiser des élections libres et transparentes en 2025. Cette élection est perçue comme un tournant démocratique crucial dans l’histoire du pays, après plusieurs décennies de pouvoir héréditaire.
+Le Gabon traverse une période de transition politique significative depuis la fin du régime Bongo, marqué par la prise de pouvoir du général Brice Clotaire Oligui Nguema en 2023 à la suite d'un coup d'État. Le Comité pour la transition et la restauration des institutions (CTRI) dirige actuellement le pays, avec la promesse d'organiser des élections libres et transparentes en 2025. Cette élection est perçue comme un tournant démocratique crucial dans l'histoire du pays, après plusieurs décennies de pouvoir héréditaire.
 
-De nouveaux acteurs politiques émergent, tandis que d’anciennes figures tentent un retour. L’environnement politique reste polarisé, entre espoirs de renouveau et méfiance envers les institutions de transition.
+De nouveaux acteurs politiques émergent, tandis que d'anciennes figures tentent un retour. L'environnement politique reste polarisé, entre espoirs de renouveau et méfiance envers les institutions de transition.
 
 ## Méthodologie
 
 <!-- *[Description de la méthodologie utilisée pour les sondages]* -->
 
-Les données analysées dans cet article proviennent d’un sondage en ligne ouvert, mené entre le 8 et le 10 avril 2024. Les participants étaient invités à exprimer leur intention de vote via une page dédiée sur le réseau social Facebook. Afin de maximiser la participation, le sondage a été relayé à plusieurs reprises sur différentes publications et groupes actifs.
+Les données analysées dans cet article proviennent d'un sondage en ligne ouvert, mené entre le 8 et le 10 avril 2024. Les participants étaient invités à exprimer leur intention de vote via une page dédiée sur le réseau social Facebook. Afin de maximiser la participation, le sondage a été relayé à plusieurs reprises sur différentes publications et groupes actifs.
 
-Ce type de sondage repose sur une participation volontaire, ce qui implique plusieurs limites méthodologiques :
-	•	Biais d’auto-sélection : seuls les internautes intéressés et connectés sont représentés.
-	•	Manque de représentativité : les résultats ne peuvent pas être généralisés à l’ensemble de la population gabonaise.
-	•	Effet de visibilité : comme les résultats étaient visibles avant la clôture, ils ont pu influencer certains choix.
+Ce type de sondage repose sur une participation volontaire, ce qui implique plusieurs limites méthodologiques : • Biais d'auto-sélection : seuls les internautes intéressés et connectés sont représentés. • Manque de représentativité : les résultats ne peuvent pas être généralisés à l'ensemble de la population gabonaise. • Effet de visibilité : comme les résultats étaient visibles avant la clôture, ils ont pu influencer certains choix.
 
-Pour pallier ces limites, une marge d’erreur théorique a été calculée pour chaque vague de réponse, en considérant une hypothèse de proportion maximale (p = 0.5) et une taille de fichier électoral estimée à 868 115 inscrits. Néanmoins, ces estimations restent indicatives et ne remplacent pas la rigueur d’un sondage probabiliste représentatif.
-
+Pour pallier ces limites, une marge d'erreur théorique a été calculée pour chaque vague de réponse, en considérant une hypothèse de proportion maximale (p = 0.5) et une taille de fichier électoral estimée à 868 115 inscrits. Néanmoins, ces estimations restent indicatives et ne remplacent pas la rigueur d'un sondage probabiliste représentatif.
 
 ## Résultats des sondages
-
 
 ```{r, echo=FALSE, message=FALSE,  fig.width=12, fig.height=8}
 #| label: fig-intentions-vote
@@ -155,7 +150,7 @@ intentions_list <- list(
     "Thierry Yvon Michel Nguema" = 13,
     "Bulletin blanc" = 77
   )
-
+  
 )
 
 # Transformation en data.table
@@ -250,68 +245,250 @@ ggplot(dt.intentions[date %in% last_4_dates], aes(x = reorder(candidat, -pct), y
     y = "Pourcentage (%)",
     fill = "Statut",
     caption = sprintf("Source : Sondage public (9tv).\n Analysis: Les résultats étant visibles avant le vote, ils peuvent influencer les participants et introduire un biais non pris en compte dans la marge d’erreur. \nCette dernière est calculée selon une hypothèse de proportion maximale (p = %s) sur le nombre de participants, pour un fichier electoral estimée à %s inscrits.", 
-    p, N)) + 
+                      p, N)) + 
   scale_y_continuous(labels = scales::percent_format(scale = 1), limits = c(0, max(dt.intentions$pct) + 10)) +
   theme_labinc() +
   theme(
     axis.text.x = element_text(angle = 45, hjust = 1, size = 10),
     plot.title = element_text(face = "bold", hjust = 0.5)
   )
-
-
-
-
-
 ```
-
 
 ### 🔍 Commentaire sur les résultats
 
 Les résultats du dernier panel, arrêté au **10 avril à 17h**, montrent une **avance nette de Brice Clotaire Oligui Nguema**, avec **52,5 % des intentions de vote**, soit une majorité absolue si le scrutin avait lieu ce jour-là. Il est suivi par **Alain Claude Billie Bi Nze** (28,6%), qui se positionne comme principal challenger.
 
-Les autres candidats restent pour l’instant en retrait, avec des scores inférieurs à 7 %, tandis que le **vote blanc représente 4,3 %**, signe d’un certain désengagement ou refus de l’offre politique actuelle.
+Les autres candidats restent pour l'instant en retrait, avec des scores inférieurs à 7 %, tandis que le **vote blanc représente 4,3 %**, signe d'un certain désengagement ou refus de l'offre politique actuelle.
 
-Cette photographie de l’opinion illustre une **dynamique polarisée** autour de deux figures dominantes, dans un contexte où l’écart semble se creuser à l’approche du scrutin. Toutefois, la **marge d’erreur estimée à ±2,3 %** rappelle que de légères évolutions restent possibles, surtout si la participation réelle diffère du profil des votants en ligne.
-
+Cette photographie de l'opinion illustre une **dynamique polarisée** autour de deux figures dominantes, dans un contexte où l'écart semble se creuser à l'approche du scrutin. Toutefois, la **marge d'erreur estimée à ±2,3 %** rappelle que de légères évolutions restent possibles, surtout si la participation réelle diffère du profil des votants en ligne.
 
 ## Analyse par région
 
 <!-- *[Analyse des intentions de vote par région]* -->
 
-En l’absence de données de géolocalisation ou de variables territoriales, il n’est pas possible d’assigner avec certitude les intentions de vote à des régions spécifiques du Gabon. Néanmoins, la diffusion du sondage via Facebook, notamment dans des groupes actifs basés à Libreville, Port-Gentil, Franceville et Oyem, indique une forte participation en provenance des centres urbains.
+En l'absence de données de géolocalisation ou de variables territoriales, il n'est pas possible d'assigner avec certitude les intentions de vote à des régions spécifiques du Gabon. Néanmoins, la diffusion du sondage via Facebook, notamment dans des groupes actifs basés à Libreville, Port-Gentil, Franceville et Oyem, indique une forte participation en provenance des centres urbains.
 
 Les zones rurales ou périphériques, souvent moins connectées, sont probablement sous-représentées. Cela pourrait expliquer certains déséquilibres dans les résultats, notamment en faveur de figures politiques médiatisées ou associées à la capitale.
-
 
 ## Analyse démographique
 
 <!-- *[Analyse des intentions de vote par groupe démographique]* -->
 
-Le sondage ne comportait pas de questions démographiques directes (âge, sexe, niveau d’éducation, zone géographique, etc.), ce qui limite la capacité à segmenter finement les résultats. Toutefois, l’analyse des profils Facebook des participants, des commentaires, ainsi que des groupes où le lien du sondage a été partagé, suggère une participation majoritairement jeune (18–35 ans).
+Le sondage ne comportait pas de questions démographiques directes (âge, sexe, niveau d'éducation, zone géographique, etc.), ce qui limite la capacité à segmenter finement les résultats. Toutefois, l'analyse des profils Facebook des participants, des commentaires, ainsi que des groupes où le lien du sondage a été partagé, suggère une participation majoritairement jeune (18--35 ans).
 
 Cette surreprésentation des jeunes électeurs est cohérente avec les usages numériques au Gabon, où les réseaux sociaux sont principalement utilisés par la jeunesse urbaine connectée. De plus, plusieurs indices laissent penser que la majorité des répondants sont politiquement engagés ou intéressés par les débats publics.
+
+```{r, echo=FALSE, message=FALSE, fig.width=9, fig.height=9, dev="png", dpi=300, fig.align='center', fig.asp=1, fig.cap="Répartition des électeurs par province"}
+suppressWarnings(library(sf))
+library(rnaturalearth)
+library(leaflet)
+library(dplyr)
+
+library(WDI)
+library(jsonlite)
+library(ggplot2)
+library(plotly)
+
+
+library(data.table)
+
+# Replace with your shapefile path
+shapefile_path <- "data/Gabon2.gpkg"
+
+# Read the shapefile
+gabon_sf <- st_read(shapefile_path, quiet = T, )
+
+pal <- colorFactor(palette = "Set3", domain = gabon_sf$NAME_1)
+
+provinces <- unique(gabon_sf$NAME_1)
+
+nombres_inscrit <- c(370383, 103347, 43792, 80286, 
+                     36785, 43005, 38427, 88739, 
+                     87293)
+
+nombres_bureaux <- c(888, 342, 190, 330, 
+                     173, 178, 191, 263, 
+                     386)
+
+data.elections <- data.table(NAME_1 = provinces, 
+                             Inscrits = nombres_inscrit, 
+                             bureaux = nombres_bureaux)
+
+gabon_sf <- merge(gabon_sf, data.elections, by = "NAME_1", all.x = TRUE)
+
+# 
+######################
+
+
+
+
+province_summary <- gabon_sf %>%
+  group_by(NAME_1) %>%
+  summarize(
+    Total_Inscrits = unique(Inscrits, na.rm = TRUE),
+    Total_bureaux = unique(bureaux, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+
+gabon_sf_centroids <- province_summary %>%
+  mutate(centroid = st_centroid(geom)) %>%
+  mutate(lon = st_coordinates(centroid)[,1],
+         lat = st_coordinates(centroid)[,2])
+
+# 
+# # Create a map with provinces filled by NAME_1 (categorical fill)
+# ggplot(data = province_summary) +
+#   # Fill provinces with distinct colors based on NAME_1
+#   geom_sf(aes(fill = NAME_1), color = "#636363", linewidth = 0.5) +
+#   
+#   # Add the Total_Inscrits values as text labels using centroids
+#   geom_text(data = gabon_sf_centroids,
+#             aes(x = lon, y = lat, label = format(Total_Inscrits, big.mark = ",")),
+#             color = "black", fontface = "bold", size = 3) +
+#   
+#   # Use a colorblind-friendly palette with distinct colors for the provinces
+#   scale_fill_brewer(palette = "Set3", name = "Province") +
+#   
+#   # Add titles and captions
+#   labs(
+#     title = "Répartition des électeurs inscrits par département",
+#     subtitle = "Gabon - Source: Données administratives",
+#     caption = "Nombre d'inscrits affiché au centre de chaque département"
+#   ) +
+#   
+#   # Use a clean theme
+#   theme_labinc() + 
+#   theme(
+#     legend.position = "right",
+#     plot.title = element_text(hjust = 0.5, face = "bold"),
+#     plot.subtitle = element_text(hjust = 0.5),
+#     axis.title.x = element_blank(),
+#     axis.title.y = element_blank()
+#   ) 
+#   
+
+
+###############
+
+
+national_total <- sum(province_summary$Total_Inscrits)
+national_bureaux <- sum(province_summary$Total_bureaux)
+
+
+# Ajout des pourcentages
+province_summary <- province_summary %>%
+  mutate(percIns = round(Total_Inscrits / national_total * 100, 1))
+
+province_summary <- province_summary %>%
+  mutate(percBur = round(Total_bureaux / national_bureaux * 100, 1))
+
+gabon_sf_centroids <- province_summary %>%
+  mutate(centroid = st_centroid(geom)) %>%
+  mutate(
+    lon = st_coordinates(centroid)[,1],
+    lat = st_coordinates(centroid)[,2],
+    label = paste0(format(Total_Inscrits, big.mark = ","), " inscrits\n(soit ", percIns, " %)")
+  )
+
+# Carte
+ggplot(data = province_summary) +
+  geom_sf(aes(fill = NAME_1), color = "#636363", linewidth = 0.5) +
+  
+  geom_text(data = gabon_sf_centroids,
+            aes(x = lon, y = lat, label = label),
+            color = "black", fontface = "bold", size = 2.5, lineheight = 1) +
+  
+  scale_fill_brewer(palette = "Set3", name = "Province") +
+  
+  labs(
+    title = "Répartition des électeurs par province — Liste électorale définitive",
+    subtitle = paste0("Gabon — Total national : ", format(national_total, big.mark = ","), " électeurs inscrits"),
+    caption = "Source : Ministère de l'Intérieur du Gabon\nCarte : LIOS"
+  ) +
+  coord_sf(expand = FALSE) +
+  theme_labinc() +
+  # theme(
+  #   legend.position = "right",
+  #   plot.title = element_text(hjust = 0.5, face = "bold"),
+  #   plot.subtitle = element_text(hjust = 0.5),
+  #   axis.title = element_blank(),
+  #   axis.text = element_blank(),
+  #   axis.ticks = element_blank(),
+  #   panel.grid = element_blank()
+  # )
+theme(
+  legend.position = "right",
+  plot.title = element_text(hjust = 0.5, face = "bold"),
+  plot.subtitle = element_text(hjust = 0.5),
+  axis.title.x = element_blank(),
+  axis.title.y = element_blank()
+)
+```
+
+```{r, echo=FALSE, message=TRUE,  fig.width=9, fig.height=9, dev="png", dpi=300, fig.align='center', fig.asp=1, fig.cap="Répartition des électeurs par province"}
+# Centroid + labels
+gabon_sf_centroids2 <- province_summary %>%
+  mutate(centroid = st_centroid(geom)) %>%
+  mutate(
+    lon = st_coordinates(centroid)[,1],
+    lat = st_coordinates(centroid)[,2],
+    label = paste0(format(Total_bureaux, big.mark = ","), "\n(~ ", round(Total_Inscrits / Total_bureaux), "/bur)")
+  )
+
+
+################
+
+
+
+
+# Plot
+ggplot(data = province_summary) +
+  geom_sf(aes(fill = NAME_1), linewidth = 0.5) +
+  
+  geom_text(data = gabon_sf_centroids2,
+            aes(x = lon, y = lat, label = label),
+            color = "black", fontface = "bold", size = 2.5) +
+  scale_fill_brewer(palette = "Set3", name = "Province") +
+  
+  labs(
+    title = "Nombre de bureaux (bur) de vote par province — Liste électorale définitive",
+    subtitle = paste0(
+      "Répartition nationale des ", format(national_bureaux, big.mark = ","), 
+      " bureaux de vote en vue du scrutin présidentiel"
+    ),
+    caption = "Source : Ministère de l'Intérieur du Gabon\nCarte réalisée par LIOS "
+  ) + 
+  
+  theme_labinc() + 
+  theme(
+    legend.position = "right",
+    plot.title = element_text(hjust = 0.5, face = "bold"),
+    plot.subtitle = element_text(hjust = 0.5),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank()
+  )
+
+
+
+```
 
 ## Facteurs d'influence
 
 <!-- *[Discussion des facteurs qui influencent les intentions de vote]* -->
 
-Les intentions de vote semblent influencées par plusieurs facteurs clés :
-	•	Visibilité médiatique des candidats : Brice Clotaire Oligui Nguema bénéficie d’une forte présence médiatique en tant que chef de la transition.
-	•	Réseaux sociaux : les partages, likes et commentaires jouent un rôle dans la formation des opinions.
-	•	Mémoire politique : les candidats associés à l’ancien régime font face à une défiance accrue chez une partie de la population.
-	•	Scepticisme sur la transition : certains électeurs hésitent entre soutenir le candidat de la transition ou manifester leur incertitude via un vote blanc.
-
+Les intentions de vote semblent influencées par plusieurs facteurs clés : • Visibilité médiatique des candidats : Brice Clotaire Oligui Nguema bénéficie d'une forte présence médiatique en tant que chef de la transition. • Réseaux sociaux : les partages, likes et commentaires jouent un rôle dans la formation des opinions. • Mémoire politique : les candidats associés à l'ancien régime font face à une défiance accrue chez une partie de la population. • Scepticisme sur la transition : certains électeurs hésitent entre soutenir le candidat de la transition ou manifester leur incertitude via un vote blanc.
 
 ## Conclusion
 
 <!-- *[Conclusions sur les tendances actuelles et perspectives]* -->
 
-Les données issues de ce sondage offrent un aperçu dynamique et en temps réel des intentions de vote à l’approche du scrutin. Bien qu’elles ne soient pas représentatives de l’ensemble de l’électorat, elles mettent en lumière certaines tendances clés et l’évolution rapide des préférences électorales.
+Les données issues de ce sondage offrent un aperçu dynamique et en temps réel des intentions de vote à l'approche du scrutin. Bien qu'elles ne soient pas représentatives de l'ensemble de l'électorat, elles mettent en lumière certaines tendances clés et l'évolution rapide des préférences électorales.
 
-À quelques jours de l’élection, et alors que la campagne officielle touche à sa fin, l’opinion publique demeure encore fluide. Les derniers rassemblements, débats télévisés, prises de parole publiques et mouvements sur les réseaux sociaux pourraient encore influencer une partie des électeurs indécis.
+À quelques jours de l'élection, et alors que la campagne officielle touche à sa fin, l'opinion publique demeure encore fluide. Les derniers rassemblements, débats télévisés, prises de parole publiques et mouvements sur les réseaux sociaux pourraient encore influencer une partie des électeurs indécis.
 
-Ce sondage illustre également l’importance croissante des plateformes numériques dans la mobilisation et la formation de l’opinion, en particulier chez les jeunes. Le scrutin à venir s’annonce donc non seulement décisif pour l’avenir politique du Gabon, mais aussi révélateur des nouvelles dynamiques de participation citoyenne à l’ère numérique.
+Ce sondage illustre également l'importance croissante des plateformes numériques dans la mobilisation et la formation de l'opinion, en particulier chez les jeunes. Le scrutin à venir s'annonce donc non seulement décisif pour l'avenir politique du Gabon, mais aussi révélateur des nouvelles dynamiques de participation citoyenne à l'ère numérique.
 
 ## Références
 
-*[Références et sources de données]*
+*\[Références et sources de données\]*
