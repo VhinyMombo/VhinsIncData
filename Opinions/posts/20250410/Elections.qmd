@@ -278,7 +278,7 @@ Le sondage ne comportait pas de questions démographiques directes (âge, sexe, 
 
 Cette surreprésentation des jeunes électeurs est cohérente avec les usages numériques au Gabon, où les réseaux sociaux sont principalement utilisés par la jeunesse urbaine connectée. De plus, plusieurs indices laissent penser que la majorité des répondants sont politiquement engagés ou intéressés par les débats publics.
 
-```{r, echo=FALSE, message=FALSE, fig.width=9, fig.height=9, dev="png", dpi=300, fig.align='center', fig.asp=1, fig.cap="Répartition des électeurs par province"}
+```{r, echo=FALSE, message=FALSE, fig.width=9, fig.height=9, dpi=300, fig.align='center'}
 suppressWarnings(library(sf))
 library(rnaturalearth)
 library(leaflet)
@@ -426,7 +426,7 @@ theme(
 )
 ```
 
-```{r, echo=FALSE, message=TRUE,  fig.width=9, fig.height=9, dev="png", dpi=300, fig.align='center', fig.asp=1, fig.cap="Répartition des électeurs par province"}
+```{r, echo=FALSE, message=TRUE,  fig.width=9, fig.height=9, dpi=300, fig.align='center'}
 # Centroid + labels
 gabon_sf_centroids2 <- province_summary %>%
   mutate(centroid = st_centroid(geom)) %>%
