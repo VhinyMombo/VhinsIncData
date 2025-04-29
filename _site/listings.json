@@ -2,23 +2,11 @@
   {
     "listing": "/latest-content.html",
     "items": [
+      "/case-studies/posts/20250404/democratie.html",
       "/case-studies/posts/20250329/Infrastructures.html",
       "/case-studies/posts/20250329/Economy.html",
       "/case-studies/posts/20250329/Routes.html"
     ]
-  },
-  {
-    "listing": "/index.html",
-    "items": [
-      "/Opinions/posts/20250410/Elections.html",
-      "/case-studies/posts/20250329/Infrastructures.html",
-      "/case-studies/posts/20250329/Economy.html",
-      "/case-studies/posts/20250329/Routes.html"
-    ]
-  },
-  {
-    "listing": "/Parcours/index.html",
-    "items": []
   },
   {
     "listing": "/Opinions/index.html",
@@ -27,8 +15,23 @@
     ]
   },
   {
+    "listing": "/Parcours/index.html",
+    "items": []
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "/case-studies/posts/20250404/democratie.html",
+      "/Opinions/posts/20250410/Elections.html",
+      "/case-studies/posts/20250329/Infrastructures.html",
+      "/case-studies/posts/20250329/Economy.html",
+      "/case-studies/posts/20250329/Routes.html"
+    ]
+  },
+  {
     "listing": "/case-studies/index.html",
     "items": [
+      "/case-studies/posts/20250404/democratie.html",
       "/case-studies/posts/20250329/Infrastructures.html",
       "/case-studies/posts/20250329/Economy.html",
       "/case-studies/posts/20250329/Routes.html"

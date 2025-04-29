@@ -2,6 +2,8 @@ library(data.table)
 library(gganimate)
 library(av)
 
+source("case-studies/posts/20250329/theme/theme.R")
+
 # Liste de toutes les intentions avec date associée
 intentions_list <- list(
   "2024-04-08 - 17:00" = list(
@@ -61,10 +63,45 @@ intentions_list <- list(
     "Stephane Germain Iloko" = 16,
     "Thierry Yvon Michel Nguema" = 10,
     "Bulletin blanc" = 68
+  ), 
+  
+  "2024-04-09 - 22:30" = list(
+    "Alain Simplice Bongouères" = 116,
+    "Alain Claude\n Billie Bi Nze" = 476,
+    "Axel Stophène Ibinga Ibinga" = 24,
+    "Brice Clotaire\n Oligui Nguema" = 846,
+    "Zenaba Gninga Chaning" = 33,
+    "Joseph Lapensée Essingone" = 38,
+    "Stephane Germain Iloko" = 17,
+    "Thierry Yvon Michel Nguema" = 11,
+    "Bulletin blanc" = 71
+  ), 
+  
+  "2024-04-10 - 10:00" = list(
+    "Alain Simplice Bongouères" = 121,
+    "Alain Claude\n Billie Bi Nze" = 499,
+    "Axel Stophène Ibinga Ibinga" = 28,
+    "Brice Clotaire\n Oligui Nguema" = 903,
+    "Zenaba Gninga Chaning" = 34,
+    "Joseph Lapensée Essingone" = 40,
+    "Stephane Germain Iloko" = 17,
+    "Thierry Yvon Michel Nguema" = 12,
+    "Bulletin blanc" = 75
+  ), 
+  
+  
+  "2024-04-10 - 17:00" = list(
+    "Alain Simplice Bongouères" = 120,
+    "Alain Claude\n Billie Bi Nze" = 510,
+    "Axel Stophène Ibinga Ibinga" = 29,
+    "Brice Clotaire\n Oligui Nguema" = 936,
+    "Zenaba Gninga Chaning" = 37,
+    "Joseph Lapensée Essingone" = 44,
+    "Stephane Germain Iloko" = 17,
+    "Thierry Yvon Michel Nguema" = 13,
+    "Bulletin blanc" = 77
   )
-  
-  
-  
+
 )
 
 # Transformation en data.table
@@ -139,9 +176,14 @@ dt.intentions[, facet_label := paste0(
 #   "\nLes intentions peuvent évoluer avec le temps et la visibilité des résultats."
 # ), by = date]
 
+last_4_dates <- dt.intentions[, sort(unique(date), decreasing = TRUE)][1:4]
+
+# Filter for these dates
+dt_last4 <- dt.intentions[date %in% last_4_dates]
 
 # Ajouter le texte au-dessus des barres
 ggplot(dt.intentions, aes(x = reorder(candidat, -pct), y = pct, fill = gagnant)) +
+# ggplot(dt.intentions[date %in% last_4_dates], aes(x = reorder(candidat, -pct), y = pct, fill = gagnant)) +
   geom_bar(stat = "identity") +
   geom_text(aes(label = paste0(round(pct, 1), "%")), 
             vjust = -0.5, size = 3.5) +
@@ -164,55 +206,55 @@ ggplot(dt.intentions, aes(x = reorder(candidat, -pct), y = pct, fill = gagnant))
     plot.title = element_text(face = "bold", hjust = 0.5)
   )
 
-
-
-# Extraire les colonnes nécessaires
-# evolution_dt <- dt.intentions[, .(candidat, pct, date = as.POSIXct(date, format = "%Y-%m-%d - %H:%M"))]
-
+# 
+# 
+# # Extraire les colonnes nécessaires
+# # evolution_dt <- dt.intentions[, .(candidat, pct, date = as.POSIXct(date, format = "%Y-%m-%d - %H:%M"))]
+# 
 evolution_dt <- dt.intentions[
   candidat != "Bulletin blanc",
   .(candidat, pct, date = as.POSIXct(date, format = "%Y-%m-%d - %H:%M"), ME)
 ]
 
-# Ajouter les bornes d'incertitude
+# # Ajouter les bornes d'incertitude
 evolution_dt[, `:=`(
   lower = pmax(0, pct - ME),
   upper = pmin(100, pct + ME)
 )]
-
-ggplot(evolution_dt[candidat != "Bulletin blanc"], aes(x = date, y = pct, color = candidat, group = candidat)) +
-  geom_line(linewidth = 1) +
-  geom_point(size = 2) +
-  scale_y_continuous(labels = scales::percent_format(scale = 1)) +
-  labs(
-    title = "Évolution temporelle des intentions de vote",
-    subtitle = "Basé sur les différents relevés du sondage 9tv",
-    x = "Date",
-    y = "Pourcentage (%)",
-    color = "Candidat",
-    caption = "Attention : les résultats visibles en amont peuvent influencer les votes. Courbes lissées selon les déclarations successives."
-  ) +
-  theme_labinc() +
-  theme(
-    axis.text.x = element_text(angle = 45, hjust = 1),
-    plot.title = element_text(face = "bold", hjust = 0.5)
-  )
-
-
+# 
+# ggplot(evolution_dt[candidat != "Bulletin blanc"], aes(x = date, y = pct, color = candidat, group = candidat)) +
+#   geom_line(linewidth = 1) +
+#   geom_point(size = 2) +
+#   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
+#   labs(
+#     title = "Évolution temporelle des intentions de vote",
+#     subtitle = "Basé sur les différents relevés du sondage 9tv",
+#     x = "Date",
+#     y = "Pourcentage (%)",
+#     color = "Candidat",
+#     caption = "Attention : les résultats visibles en amont peuvent influencer les votes. Courbes lissées selon les déclarations successives."
+#   ) +
+#   theme_labinc() +
+#   theme(
+#     axis.text.x = element_text(angle = 45, hjust = 1),
+#     plot.title = element_text(face = "bold", hjust = 0.5)
+#   )
+# 
+# 
 evolution_dt[, date_label := format(date, "%d/%m %Hh")]
-
-
-ggplot(evolution_dt, aes(x = factor(date_label), y = pct, color = candidat, group = candidat)) +
+# 
+# # 
+ggplot(evolution_dt[(candidat %in% c("Brice Clotaire\n Oligui Nguema", "Alain Claude\n Billie Bi Nze")), ], aes(x = factor(date_label), y = pct, color = candidat, group = candidat)) +
   # Ribbon pour la marge d'erreur
   geom_ribbon(aes(ymin = lower, ymax = upper, fill = candidat), alpha = 0.15, colour = NA) +
   # Courbe d'évolution
   geom_line(linewidth = 1) +
   # Points pour chaque date
   geom_point(size = 2) +
-  
+
   # Échelle en pourcentage
   scale_y_continuous(labels = scales::percent_format(scale = 1)) +
-  
+
   labs(
     title = "Évolution temporelle des intentions de vote avec incertitude",
     subtitle = "Les zones en transparence indiquent la marge d’erreur estimée (±)",
@@ -222,13 +264,13 @@ ggplot(evolution_dt, aes(x = factor(date_label), y = pct, color = candidat, grou
     fill = "Candidat",
     caption = "Source : Sondage 9tv. La marge d’erreur est estimée à partir d’un échantillon libre et non représentatif."
   ) +
-  
+
   theme(
     theme(axis.text.x = element_text(angle = 45, hjust = 1)),
     plot.title = element_text(face = "bold", hjust = 0.5)
-  ) + 
+  ) +
 
-  theme_labinc() 
+  theme_labinc()
 
 
 ############

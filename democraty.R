@@ -211,27 +211,273 @@ plot_democracy_index <- function(vc.country, index_col, year_min = NULL, year_ma
 
 
 
+plot_democracy_radar <- function(vc.country, index_col, year_sel = NULL) {
+  # Use the min/max years from the data if not provided
+  if (is.null(year_sel)) year_sel <- max(data.vdem$year)
+  
+  
+  source('data/titlevdem.R', local = T)
+  
+  # Afficher un aperçu
+  print(vdem_indicators)
+  
+  index_title <- vdem_indicators[match(index_col, Code), index]
+  index_subtitle <- vdem_indicators[match(index_col, Code), Description]
+  index_interpretation <- vdem_indicators[match(index_col, Code), Interpretation]
+  
+  
+  # Filter data by country and year range
+  
+  
+  
+  plot_data <- data.vdem[country_name %in% vc.country & 
+                           year == year_sel, 
+                         c("country_name", (index_col)), with = F]
+  
+  if("v2x_corr" %in% names(plot_data)) plot_data[, v2x_corr := 1 - v2x_corr]
+  if("v2xnp_pres" %in% names(plot_data)) plot_data[, v2xnp_pres := 1 - v2xnp_pres]
+  if("v2xnp_client" %in% names(plot_data)) plot_data[, v2xnp_client := 1 - v2xnp_client]
+  
+  
+  setnames(plot_data, c("country_name", index_col), c("country", index_title))
+  
+  make_textbox_label <- function(titles, interpretations) {
+    n <- length(titles)
+    mid <- ceiling(n / 2)
+    
+    left <- paste0("\n• ", titles[1:mid], " : ", interpretations[1:mid])
+    right <- paste0("\n• ", titles[(mid + 1):n], " : ", interpretations[(mid + 1):n])
+    
+    # équilibrer la longueur
+    max_len <- max(length(left), length(right))
+    left <- c(left, rep("", max_len - length(left)))
+    right <- c(right, rep("", max_len - length(right)))
+    
+    paste(
+      "Interprétation des indices :\n\n",
+      paste0(format(left, width = 60, justify = "left"), "   ", right, collapse = "\n")
+    )
+  }
+  
+  
+  
+  library(RColorBrewer)
+  
+  # Get the Set3 color palette with enough colors for your countries
+  num_countries <- length(unique(plot_data$country))
+  set3_colors <- brewer.pal(min(12, max(3, num_countries)), "Set2")
+  
+  # If you have more than 12 countries, you may need to extend the palette
+  if(num_countries > 12) {
+    set3_colors <- colorRampPalette(set3_colors)(num_countries)
+  }
+  
+  plt <- plot_data %>%
+    ggradar(
+      font.radar = "Oswald",
+      grid.label.size = 5,
+      axis.label.size = 5,
+      group.point.size = 1,
+      group.line.width = 0.5,
+      group.colours = set3_colors
+    ) + 
+    labs(
+      title = paste0("Indices démocratiques comparés – ", year_sel),
+      #subtitle = paste(vc.country, collapse = " vs "),
+      x = NULL,
+      y = NULL, 
+      caption = paste0(
+        "Données : V-DEM\nAnalyse : Le Tayame\n"
+        # paste0(paste(gsub("\n", "", index_title), " : ", index_interpretation), collapse = "\n")
+      )
+    ) + 
+    theme_labinc2() + 
+    theme(
+      plot.title = element_text(size = 20, face = "bold"),
+      plot.title.position = "plot", # slightly different from default
+      plot.subtitle = element_text(size = 16),
+      plot.caption = element_text(size = 15),
+      legend.position = "bottom",
+      legend.text = element_text(size = 12),
+      legend.title = element_blank(),
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank(),
+      plot.margin = margin(10,10,10,10)
+    ) 
+    # theme(
+    #   axis.title = element_blank(),
+    #   axis.text = element_text(color=txt_col, size=7),
+    #   strip.text.x = element_text(face="bold"),
+    #   plot.title = element_markdown(hjust=.5,size=34, color=txt_col,lineheight=.8, face="bold", margin=margin(20,0,30,0)),
+    #   plot.subtitle = element_markdown(hjust=.5,size=18, color=txt_col,lineheight = 1, margin=margin(10,0,30,0)),
+    #   plot.caption = element_markdown(hjust=.5, margin=margin(60,0,0,0), size=8, color=txt_col, lineheight = 1.2),
+    #   plot.caption.position = "plot",
+    #   plot.background = element_rect(color=bg, fill=bg),
+    #   plot.margin = margin(10,10,10,10),
+    #   legend.position = "none",
+    #   legend.title = element_text(face="bold")
+    # )
+  
+  
+ 
+  library(ggtext)
+  
+  text <- tibble(
+    x = 0, y = 0,
+    label = make_textbox_label(index_title, index_interpretation)
+  )
+  
+  sub <- ggplot(text, aes(x = x, y = y)) +
+    geom_textbox(
+      aes(label = label),
+      box.color = "#f0eeeb", fill = "#f0eeeb",
+      width = unit(25, "lines"),
+      family = "Oswald",
+      size = 5,
+      lineheight = 1.1
+    ) +
+    labs(
+      x = NULL,
+      y = NULL
+    ) + 
+    coord_cartesian(expand = FALSE, clip = "off") +
+    theme_labinc2() + 
+    theme(
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank()
+    )
+  
+  # TITLE
+  text2 <- tibble(
+    x = 0, y = 0,
+    label = paste0("**Indices démocratiques\n comparés –", year_sel, "**")
+  )
+  
+  title <- ggplot(text2, aes(x = x, y = y)) +
+    geom_textbox(
+      aes(label = label),
+      box.color = "#f0eeeb", fill="#f0eeeb", width = unit(12, "lines"),
+      family="Oswald", size = 10, lineheight = 1
+    ) +
+    labs(
+      x = NULL,
+      y = NULL
+    ) + 
+    coord_cartesian(expand = FALSE, clip = "off") +
+    theme_void() +
+    theme(plot.background = element_rect(color="#f0eeeb", fill="#f0eeeb")) + 
+    theme_labinc2() + 
+    theme(
+      axis.text.x = element_blank(),
+      axis.text.y = element_blank()
+    )
+    
+  
+  
+
+  # finalPlot <- (plt) 
+
+
+  # finalPlot <- (plt) + sub
+  
+  # finalPlot <- plt+ plot_spacer() + sub
+  
+  
+  finalPlot <- (plt + theme(plot.margin = unit(c(0,150,0,0), "pt"))) +
+  (sub) + plot_layout(widths = c(4, 1))
+  
+  # finalPlot <- wrap_elements(title) /
+  #   wrap_elements(sub) /
+  #   plt +
+  #   plot_layout(heights = c(1, 1.2, 3)) +
+  #   plot_annotation(
+  #     theme = theme(
+  
+  #       plot.caption = element_markdown(
+  #         hjust = 0, margin = margin(20, 0, 0, 0),
+  #         size = 6, color = txt_col, lineheight = 1.2
+  #       ),
+  #       plot.margin = margin(20, 20, 20, 20)
+  #     )
+  #   )
+  
+    # finalPlot <- wrap_elements(title) /
+    #   (plt | sub) +
+    #   plot_layout(heights = c(1, 2), widths = c(2, 1)) +
+    #   plot_annotation(
+    #     theme = theme(
+    #       plot.caption = element_markdown(
+    #         hjust = 0, margin = margin(20, 0, 0, 0),
+    #         size = 6, color = txt_col, lineheight = 1.2
+    #       ),
+    #       plot.margin = margin(20, 20, 20, 20)
+    #     )
+    #   )
+    # 
+  
+  
+  return(finalPlot)
+  
+}
 
 
 
 
 
-# vc.country <- c("Nigeria", "Gabon", "Cameroon", "Equatorial Guinea", "Republic of the Congo")
-vc.country <- c("Gabon", "Senegal", "Ivory Coast")
 
+
+
+
+
+
+library(ggradar)
+
+
+
+
+vc.country <- c("Nigeria", "Gabon", "Cameroon", "Equatorial Guinea", "Republic of the Congo")
+# vc.country <- c("Gabon", "Senegal", "Ivory Coast", "Cameroon", "Nigeria", "Namibia")
+vc.country <- c("Gabon", "Botswana", "Senegal", "Kenya")
+
+vc.indicator <- c("v2x_civlib", "v2x_jucon", "v2x_corr", "v2xps_party", "v2x_mpi", "v2xcs_ccsi", 
+                  "v2xnp_pres", "v2x_libdem", "v2x_partipdem", "v2x_rule", "v2xnp_client")
+
+plt <- plot_democracy_radar(vc.country = vc.country, index_col = vc.indicator, year_sel = 2023)
+plt
+
+
+library(purrr)
+
+years <- 2004:2024  # ou toute autre plage disponible
+
+# Génère et sauvegarde les graphes pour chaque année
+for (y in years) {
+  
+  print(y) 
+  plt <- plot_democracy_radar(vc.country = vc.country, index_col = vc.indicator, year_sel = y)
+  # ggsave(sprintf("vdem_radar_%d.png", y), plot = plt, width = 20, height = 20, dpi = 300)
+  # 
+  ggsave(
+    filename = here::here(sprintf("vdem_radar_%d.png", y)),
+    plot = plt,
+    width = 20,
+    height = 15,
+    units = "cm",
+    device = "png"
+  )
+}
+
+
+# system("ffmpeg -framerate 1 -i vdem_radar_%d.png -c:v libx264 -r 30 -pix_fmt yuv420p vdem_radar_video.mp4")
+system("ffmpeg -framerate 1 -start_number 2004 -i vdem_radar_%d.png -c:v libx264 -r 30 -pix_fmt yuv420p radar_democracy.mp4")
 
 # Example usage with different year ranges:
-p1 <- plot_democracy_index(vc.country = vc.country, index_col = "v2x_civlib", 2009, 2024) 
+p1 <- plot_democracy_index(vc.country = vc.country, index_col = "v2x_civlib", year_min = 2009, 2024) 
 p2 <- plot_democracy_index(vc.country = vc.country, index_col = "v2x_jucon", 2009, 2024) 
 p3 <- plot_democracy_index(vc.country = vc.country, index_col = "v2x_corr",  2009, 2024) 
 p4 <- plot_democracy_index(vc.country = vc.country, index_col = "v2xps_party", 2009, 2024) 
 p5 <- plot_democracy_index(vc.country = vc.country, index_col = "v2x_mpi", 2005, 2024) 
 p6 <- plot_democracy_index(vc.country = vc.country, index_col = "v2xcs_ccsi", 2005, 2024) 
-
-
-
-
-
 
 
 
