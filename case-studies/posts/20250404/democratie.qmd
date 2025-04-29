@@ -68,7 +68,7 @@ Cette sélection permet donc d'observer, à travers le prisme des **indicateurs 
 ```{r, echo=FALSE, warning=FALSE, fig.align='center', fig.width=15, fig.height=14.006125}
 vc.country <- c("Nigeria", "Gabon", "Cameroon", "Equatorial Guinea", "Republic of the Congo", "")
 # vc.country <- c("Gabon", "Senegal", "Ivory Coast", "Cameroon", "Nigeria", "Namibia")
-vc.country <- c("Gabon", "Botswana", "Senegal", "Kenya", "France")
+vc.country <- c("Gabon", "Botswana", "Senegal", "Kenya")
 
 vc.indicator <- c("v2x_civlib", "v2x_jucon", "v2x_corr", "v2xps_party", "v2x_mpi", "v2xcs_ccsi", 
                   "v2xnp_pres", "v2x_libdem", "v2x_partipdem", "v2x_rule", "v2xnp_client")
