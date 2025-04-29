@@ -205,7 +205,7 @@ plot_democracy_radar <- function(vc.country, index_col, year_sel = NULL) {
       x = NULL,
       y = NULL, 
       caption = paste0(
-        "Données : V-DEM\nAnalyse : Le Tayame\n"
+        "Données : V-DEM\nAnalyse : labinc.ogoouestat.com"
         # paste0(paste(gsub("\n", "", index_title), " : ", index_interpretation), collapse = "\n")
       )
     ) + 
